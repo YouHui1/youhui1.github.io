@@ -19,9 +19,11 @@ $$</p>
 </ul>
 <h3 id="1-2-单位矩阵和逆矩阵">1.2. 单位矩阵和逆矩阵</h3>
 <p><strong>单位矩阵：</strong>$\boldsymbol{I}_n(\boldsymbol{I}_n \in \mathbb{R}^{n*n})$<br>
-$$ \begin{equation}<br>
+$$<br>
+\begin{equation}<br>
 \forall\boldsymbol{x} \in \mathbb{R}^{n},\boldsymbol{I}_n\boldsymbol{x}=\boldsymbol{x}<br>
-\end{equation} $$</p>
+\end{equation}<br>
+$$</p>
 <p>矩阵 $\boldsymbol{A}$ 的<strong>矩阵逆</strong>记作 $\boldsymbol{A}^{-1}$ ，其定义的矩阵满足如下条件：<br>
 $$<br>
 \begin{equation}<br>
@@ -112,7 +114,7 @@ $$</p>
 \end{equation}<br>
 $$</p>
 <p>其中 $\boldsymbol{Q}$ 是 $\boldsymbol{A}$ 的特征向量组成的正交矩阵， $\boldsymbol{\Lambda}$ 是对角矩阵。特征值 $\Lambda_{i,i}$ 对应的特征向量是矩阵 $\boldsymbol{Q}$ 的第 $i$ 列，记作 $\boldsymbol{Q}_{:,i}$。因为 $\boldsymbol{Q}$ 是正交矩阵，可以将 $\boldsymbol{A}$ 看作是沿方向 $\boldsymbol{v}^{(i)}$ 延展 $\lambda_i$ 倍的空间。</p>
-<p><img src="%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F%E5%92%8C%E7%89%B9%E5%BE%81%E5%80%BC%E7%9A%84%E4%BD%9C%E7%94%A8%E6%95%88%E6%9E%9C.png" alt="特征向量和特征值的作用效果"></p>
+<p><img src="/images/%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F%E5%92%8C%E7%89%B9%E5%BE%81%E5%80%BC%E7%9A%84%E4%BD%9C%E7%94%A8%E6%95%88%E6%9E%9C.png" alt="特征向量和特征值的作用效果"></p>
 ]]></content>
       <tags>
         <tag>学习</tag>
