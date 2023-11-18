@@ -1,0 +1,307 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>线性代数 | Hexo</title><meta name="author" content="YouHui"><meta name="copyright" content="YouHui"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="不作全面介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性代数">
+<meta property="og:url" content="https://youhui1.github.io/2022/09/01/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="不作全面介绍">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2022-09-01T11:45:34.000Z">
+<meta property="article:modified_time" content="2023-11-18T12:11:41.198Z">
+<meta property="article:author" content="YouHui">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="数学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://youhui1.github.io/2022/09/01/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":100},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '线性代数',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-18 20:11:41'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/fonts/font.css"><meta name="generator" content="Hexo 7.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Hexo"><span class="site-name">Hexo</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">线性代数</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-09-01T11:45:34.000Z" title="Created 2022-09-01 19:45:34">2022-09-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-11-18T12:11:41.198Z" title="Updated 2023-11-18 20:11:41">2023-11-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="线性代数"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><span id="more"></span>
+<h2 id="0-简要">0. 简要</h2>
+<p>参考资料：《深度学习》（花书）。<br>
+此模板仅作知识的查漏补缺，因此不作全面具体介绍。</p>
+<h2 id="1-矩阵相关">1. 矩阵相关</h2>
+<h3 id="1-1-矩阵转置">1.1. 矩阵转置</h3>
+<p>$$<br>
+\begin{equation}<br>
+(\boldsymbol{A}^\top)<em>{i,j} = A</em>{j,i}<br>
+\end{equation}<br>
+$$</p>
+<ul>
+<li>标量的转置等于它本身。</li>
+</ul>
+<h3 id="1-2-单位矩阵和逆矩阵">1.2. 单位矩阵和逆矩阵</h3>
+<p><strong>单位矩阵：</strong>$\boldsymbol{I}_n(\boldsymbol{I}_n \in \mathbb{R}^{n*n})$<br>
+$$ \begin{equation}<br>
+\forall\boldsymbol{x} \in \mathbb{R}^{n},\boldsymbol{I}_n\boldsymbol{x}=\boldsymbol{x}<br>
+\end{equation} $$</p>
+<p>矩阵 $\boldsymbol{A}$ 的<strong>矩阵逆</strong>记作 $\boldsymbol{A}^{-1}$ ，其定义的矩阵满足如下条件：<br>
+$$<br>
+\begin{equation}<br>
+\boldsymbol{A}^{-1}\boldsymbol{A}=\boldsymbol{I}_n<br>
+\end{equation}<br>
+$$</p>
+<p>可通过下式求解（当逆矩阵存在时）：<br>
+$$<br>
+\begin{equation}<br>
+\boldsymbol{Ax}=\boldsymbol{b}<br>
+\end{equation}<br>
+$$</p>
+<p>$$<br>
+\begin{equation}<br>
+\boldsymbol{A}^{-1}\boldsymbol{Ax}=\boldsymbol{A^{-1}b}<br>
+\end{equation}<br>
+$$</p>
+<p>$$<br>
+\begin{equation}<br>
+\boldsymbol{I_nx}=\boldsymbol{A^{-1}b}<br>
+\end{equation}<br>
+$$</p>
+<p>$$<br>
+\begin{equation}<br>
+\boldsymbol{x}=\boldsymbol{A^{-1}b}<br>
+\end{equation}<br>
+$$</p>
+<h3 id="1-3-线性相关和生成子空间">1.3. 线性相关和生成子空间</h3>
+<p>若 $\boldsymbol{x}$ 和 $\boldsymbol{y}$ 都是某方程组的解，则<br>
+$$<br>
+\begin{equation}<br>
+\boldsymbol{z} = \alpha\boldsymbol{x} + (1 - \alpha)\boldsymbol{y}<br>
+\end{equation}<br>
+$$</p>
+<p>也是该方程组的解（ $\alpha$ 取任意实数）</p>
+<p>为分析方程 $\boldsymbol{Ax}=\boldsymbol{b}$ 有多少个解，可以将 $\boldsymbol{A}$ 的列向量看作是从原点（元素为0的向量）出发的不同方向，确定有多少种方法可以到达向量 $\boldsymbol{b}$ 。此时，向量 $\boldsymbol{x}$ 中的每个元素表示我们应该沿着这些方向走多远，即 $x_i$ 表示需要沿着第i个向量的方向走多远<br>
+$$<br>
+\begin{equation}<br>
+\boldsymbol{Ax} = \sum_ix_i\boldsymbol{A}_{:,i}<br>
+\end{equation}<br>
+$$</p>
+<p>这种操作被称为 <strong>线性组合</strong>。</p>
+<p>形式上，一组向量的线性组合，是指每个向量乘以对应标量系数之后的和。<br>
+$$<br>
+\begin{equation}<br>
+\sum_ic_i\boldsymbol{v}^{(i)}<br>
+\end{equation}<br>
+$$</p>
+<p><strong>生成子空间：</strong> 原始向量线性组合后所能抵达的点的集合</p>
+<p>假设有一个 $\mathbb{R}^{2*2}$ 的矩阵，两个列向量相同，列向量冗余，其列空间为一条线，不能覆盖整个 $\mathbb{R}^{2}$ 空间。</p>
+<p>这种冗余被称为 <strong>线性相关</strong>。</p>
+<h3 id="1-4-范数">1.4. 范数</h3>
+<p><strong>范数：</strong> 衡量向量大小的函数，定义如下，其中 $p \in \mathbb{R},p\ge1$ 。<br>
+$$<br>
+\begin{equation}<br>
+\left|\boldsymbol{x}\right|_p=(\sum_i{\left|\boldsymbol{x}\right|}^p)^{\frac{1}{p}}<br>
+\end{equation}<br>
+$$</p>
+<h3 id="1-5-特殊类型的矩阵和向量">1.5. 特殊类型的矩阵和向量</h3>
+<p><strong>对角矩阵：</strong> 只在主对角线上含有非零元素的矩阵。 $i \ne j,D_{i,j}=0$</p>
+<p><strong>对称矩阵：</strong> 转置和自己相等的矩阵。 $\boldsymbol{A}=\boldsymbol{A}^\top $</p>
+<p><strong>单位向量：</strong> 具有 <strong>单位范数</strong> 的向量。 $\left|\boldsymbol{x}\right|_2=1$</p>
+<p>若 $\boldsymbol{x^\top y}=0$，那么向量 $\boldsymbol{x}$ 和 $\boldsymbol{y}$ 互相 <strong>正交</strong>。如果两个向量都有非零范数，那么这两个向量之间的夹角是90度。在 $\mathbb{R}^n$ 中，至多有 $n$ 个范数非零向量互相正交。如果这些向量不仅互相正交，并且范数都为1，那么称它们为标准正交。</p>
+<p><strong>正交矩阵：</strong> 行向量和列向量是分别标准正交的矩阵。 $\boldsymbol{A}^\top\boldsymbol{A}=\boldsymbol{A}\boldsymbol{A}^\top=\boldsymbol{I}$， $\boldsymbol{A}^{-1}=\boldsymbol{A}^\top$</p>
+<h3 id="1-6-特征分解">1.6. 特征分解</h3>
+<p><strong>特征分解：</strong> 将矩阵分解成一组特征向量和特征值。</p>
+<p>方阵 $\boldsymbol{A}$ 的特征向量是指与 $\boldsymbol{A}$ 相乘后相当于对该向量进行缩放的非零向量  $\boldsymbol{v}$：</p>
+<p>$$<br>
+\begin{equation}<br>
+\boldsymbol{Av}=\lambda\boldsymbol{v}<br>
+\end{equation}<br>
+$$</p>
+<p>标量 $\lambda$ 被称为这个特征向量对应的 <strong>特征值</strong>。（类似地，我们也可以定义 <strong>左特征向量</strong> $\boldsymbol{v^\top A}=\lambda\boldsymbol{v^\top}$，但是通常更关注 <strong>右特征向量</strong>）。</p>
+<p>如果 $\boldsymbol{v}$ 是 $\boldsymbol{A}$ 的特征向量，那么任何缩放后的向量 $s\boldsymbol{v}(s \in \mathbb{R},s\ne 0)$ 也是 $\boldsymbol{A}$ 的特征向量。此外，$s\boldsymbol{v}$ 和 $\boldsymbol{v}$ 有相同的特征值。基于此原因，通常只考虑单位特征向量。</p>
+<p>假设矩阵 $\boldsymbol{A}$ 有 $n$ 个线性无关的特征向量 ${\boldsymbol{v}^{(1)},\dots,\boldsymbol{v}^{(n)}}$，对应着特征值 ${\lambda_{1},\dots,\lambda_{n}}$。将特征向量连接成一个矩阵，使得每一列是一个特征向量：$\boldsymbol{V}=[\boldsymbol{v}^{(1)},\dots,\boldsymbol{v}^{(n)}]$，类似地，可以将特征值连成一个向量 $\boldsymbol{\lambda}=[\lambda_{1},\dots,\lambda_{n}]^\top$。因此 $\boldsymbol{A}$ 的 <strong>特征分解</strong> 可以记作</p>
+<p>$$<br>
+\begin{equation}<br>
+\boldsymbol{A}=\boldsymbol{V}diag(\boldsymbol{\lambda})\boldsymbol{V^{-1}}<br>
+\end{equation}<br>
+$$</p>
+<ul>
+<li>不是每一个矩阵都可以分解成特征值和特征向量。</li>
+<li>每个实对称矩阵都可以分解成实特征向量和实特征值：</li>
+</ul>
+<p>$$<br>
+\begin{equation}<br>
+\boldsymbol{A}=\boldsymbol{Q\Lambda Q^\top}<br>
+\end{equation}<br>
+$$</p>
+<p>其中 $\boldsymbol{Q}$ 是 $\boldsymbol{A}$ 的特征向量组成的正交矩阵， $\boldsymbol{\Lambda}$ 是对角矩阵。特征值 $\Lambda_{i,i}$ 对应的特征向量是矩阵 $\boldsymbol{Q}$ 的第 $i$ 列，记作 $\boldsymbol{Q}_{:,i}$。因为 $\boldsymbol{Q}$ 是正交矩阵，可以将 $\boldsymbol{A}$ 看作是沿方向 $\boldsymbol{v}^{(i)}$ 延展 $\lambda_i$ 倍的空间。</p>
+<p><img src="%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F%E5%92%8C%E7%89%B9%E5%BE%81%E5%80%BC%E7%9A%84%E4%BD%9C%E7%94%A8%E6%95%88%E6%9E%9C.png" alt="特征向量和特征值的作用效果"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://youhui1.github.io">YouHui</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://youhui1.github.io/2022/09/01/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">https://youhui1.github.io/2022/09/01/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a><a class="post-meta__tags" href="/tags/%E6%95%B0%E5%AD%A6/">数学</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">YouHui</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E7%AE%80%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">0. 简要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%9F%A9%E9%98%B5%E7%9B%B8%E5%85%B3"><span class="toc-number">2.</span> <span class="toc-text">1. 矩阵相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E7%9F%A9%E9%98%B5%E8%BD%AC%E7%BD%AE"><span class="toc-number">2.1.</span> <span class="toc-text">1.1. 矩阵转置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%8D%95%E4%BD%8D%E7%9F%A9%E9%98%B5%E5%92%8C%E9%80%86%E7%9F%A9%E9%98%B5"><span class="toc-number">2.2.</span> <span class="toc-text">1.2. 单位矩阵和逆矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E7%BA%BF%E6%80%A7%E7%9B%B8%E5%85%B3%E5%92%8C%E7%94%9F%E6%88%90%E5%AD%90%E7%A9%BA%E9%97%B4"><span class="toc-number">2.3.</span> <span class="toc-text">1.3. 线性相关和生成子空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E8%8C%83%E6%95%B0"><span class="toc-number">2.4.</span> <span class="toc-text">1.4. 范数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%9F%A9%E9%98%B5%E5%92%8C%E5%90%91%E9%87%8F"><span class="toc-number">2.5.</span> <span class="toc-text">1.5. 特殊类型的矩阵和向量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-%E7%89%B9%E5%BE%81%E5%88%86%E8%A7%A3"><span class="toc-number">2.6.</span> <span class="toc-text">1.6. 特征分解</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/01/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" title="线性代数">线性代数</a><time datetime="2022-09-01T11:45:34.000Z" title="Created 2022-09-01 19:45:34">2022-09-01</time></div></div></div></div></div></div></main><footer id="footer" style="background: rgb(181, 167, 242)"><div id="footer-wrap"><div class="copyright">&copy;2023 By YouHui</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Toggle Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

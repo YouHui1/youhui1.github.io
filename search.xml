@@ -1,3 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
+  <entry>
+    <title>线性代数</title>
+    <url>/2022/09/01/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</url>
+    <content><![CDATA[<span id="more"></span>
+<h2 id="0-简要">0. 简要</h2>
+<p>参考资料：《深度学习》（花书）。<br>
+此模板仅作知识的查漏补缺，因此不作全面具体介绍。</p>
+<h2 id="1-矩阵相关">1. 矩阵相关</h2>
+<h3 id="1-1-矩阵转置">1.1. 矩阵转置</h3>
+<p>$$<br>
+\begin{equation}<br>
+(\boldsymbol{A}^\top)<em>{i,j} = A</em>{j,i}<br>
+\end{equation}<br>
+$$</p>
+<ul>
+<li>标量的转置等于它本身。</li>
+</ul>
+<h3 id="1-2-单位矩阵和逆矩阵">1.2. 单位矩阵和逆矩阵</h3>
+<p><strong>单位矩阵：</strong>$\boldsymbol{I}_n(\boldsymbol{I}_n \in \mathbb{R}^{n*n})$<br>
+$$ \begin{equation}<br>
+\forall\boldsymbol{x} \in \mathbb{R}^{n},\boldsymbol{I}_n\boldsymbol{x}=\boldsymbol{x}<br>
+\end{equation} $$</p>
+<p>矩阵 $\boldsymbol{A}$ 的<strong>矩阵逆</strong>记作 $\boldsymbol{A}^{-1}$ ，其定义的矩阵满足如下条件：<br>
+$$<br>
+\begin{equation}<br>
+\boldsymbol{A}^{-1}\boldsymbol{A}=\boldsymbol{I}_n<br>
+\end{equation}<br>
+$$</p>
+<p>可通过下式求解（当逆矩阵存在时）：<br>
+$$<br>
+\begin{equation}<br>
+\boldsymbol{Ax}=\boldsymbol{b}<br>
+\end{equation}<br>
+$$</p>
+<p>$$<br>
+\begin{equation}<br>
+\boldsymbol{A}^{-1}\boldsymbol{Ax}=\boldsymbol{A^{-1}b}<br>
+\end{equation}<br>
+$$</p>
+<p>$$<br>
+\begin{equation}<br>
+\boldsymbol{I_nx}=\boldsymbol{A^{-1}b}<br>
+\end{equation}<br>
+$$</p>
+<p>$$<br>
+\begin{equation}<br>
+\boldsymbol{x}=\boldsymbol{A^{-1}b}<br>
+\end{equation}<br>
+$$</p>
+<h3 id="1-3-线性相关和生成子空间">1.3. 线性相关和生成子空间</h3>
+<p>若 $\boldsymbol{x}$ 和 $\boldsymbol{y}$ 都是某方程组的解，则<br>
+$$<br>
+\begin{equation}<br>
+\boldsymbol{z} = \alpha\boldsymbol{x} + (1 - \alpha)\boldsymbol{y}<br>
+\end{equation}<br>
+$$</p>
+<p>也是该方程组的解（ $\alpha$ 取任意实数）</p>
+<p>为分析方程 $\boldsymbol{Ax}=\boldsymbol{b}$ 有多少个解，可以将 $\boldsymbol{A}$ 的列向量看作是从原点（元素为0的向量）出发的不同方向，确定有多少种方法可以到达向量 $\boldsymbol{b}$ 。此时，向量 $\boldsymbol{x}$ 中的每个元素表示我们应该沿着这些方向走多远，即 $x_i$ 表示需要沿着第i个向量的方向走多远<br>
+$$<br>
+\begin{equation}<br>
+\boldsymbol{Ax} = \sum_ix_i\boldsymbol{A}_{:,i}<br>
+\end{equation}<br>
+$$</p>
+<p>这种操作被称为 <strong>线性组合</strong>。</p>
+<p>形式上，一组向量的线性组合，是指每个向量乘以对应标量系数之后的和。<br>
+$$<br>
+\begin{equation}<br>
+\sum_ic_i\boldsymbol{v}^{(i)}<br>
+\end{equation}<br>
+$$</p>
+<p><strong>生成子空间：</strong> 原始向量线性组合后所能抵达的点的集合</p>
+<p>假设有一个 $\mathbb{R}^{2*2}$ 的矩阵，两个列向量相同，列向量冗余，其列空间为一条线，不能覆盖整个 $\mathbb{R}^{2}$ 空间。</p>
+<p>这种冗余被称为 <strong>线性相关</strong>。</p>
+<h3 id="1-4-范数">1.4. 范数</h3>
+<p><strong>范数：</strong> 衡量向量大小的函数，定义如下，其中 $p \in \mathbb{R},p\ge1$ 。<br>
+$$<br>
+\begin{equation}<br>
+\left|\boldsymbol{x}\right|_p=(\sum_i{\left|\boldsymbol{x}\right|}^p)^{\frac{1}{p}}<br>
+\end{equation}<br>
+$$</p>
+<h3 id="1-5-特殊类型的矩阵和向量">1.5. 特殊类型的矩阵和向量</h3>
+<p><strong>对角矩阵：</strong> 只在主对角线上含有非零元素的矩阵。 $i \ne j,D_{i,j}=0$</p>
+<p><strong>对称矩阵：</strong> 转置和自己相等的矩阵。 $\boldsymbol{A}=\boldsymbol{A}^\top $</p>
+<p><strong>单位向量：</strong> 具有 <strong>单位范数</strong> 的向量。 $\left|\boldsymbol{x}\right|_2=1$</p>
+<p>若 $\boldsymbol{x^\top y}=0$，那么向量 $\boldsymbol{x}$ 和 $\boldsymbol{y}$ 互相 <strong>正交</strong>。如果两个向量都有非零范数，那么这两个向量之间的夹角是90度。在 $\mathbb{R}^n$ 中，至多有 $n$ 个范数非零向量互相正交。如果这些向量不仅互相正交，并且范数都为1，那么称它们为标准正交。</p>
+<p><strong>正交矩阵：</strong> 行向量和列向量是分别标准正交的矩阵。 $\boldsymbol{A}^\top\boldsymbol{A}=\boldsymbol{A}\boldsymbol{A}^\top=\boldsymbol{I}$， $\boldsymbol{A}^{-1}=\boldsymbol{A}^\top$</p>
+<h3 id="1-6-特征分解">1.6. 特征分解</h3>
+<p><strong>特征分解：</strong> 将矩阵分解成一组特征向量和特征值。</p>
+<p>方阵 $\boldsymbol{A}$ 的特征向量是指与 $\boldsymbol{A}$ 相乘后相当于对该向量进行缩放的非零向量  $\boldsymbol{v}$：</p>
+<p>$$<br>
+\begin{equation}<br>
+\boldsymbol{Av}=\lambda\boldsymbol{v}<br>
+\end{equation}<br>
+$$</p>
+<p>标量 $\lambda$ 被称为这个特征向量对应的 <strong>特征值</strong>。（类似地，我们也可以定义 <strong>左特征向量</strong> $\boldsymbol{v^\top A}=\lambda\boldsymbol{v^\top}$，但是通常更关注 <strong>右特征向量</strong>）。</p>
+<p>如果 $\boldsymbol{v}$ 是 $\boldsymbol{A}$ 的特征向量，那么任何缩放后的向量 $s\boldsymbol{v}(s \in \mathbb{R},s\ne 0)$ 也是 $\boldsymbol{A}$ 的特征向量。此外，$s\boldsymbol{v}$ 和 $\boldsymbol{v}$ 有相同的特征值。基于此原因，通常只考虑单位特征向量。</p>
+<p>假设矩阵 $\boldsymbol{A}$ 有 $n$ 个线性无关的特征向量 ${\boldsymbol{v}^{(1)},\dots,\boldsymbol{v}^{(n)}}$，对应着特征值 ${\lambda_{1},\dots,\lambda_{n}}$。将特征向量连接成一个矩阵，使得每一列是一个特征向量：$\boldsymbol{V}=[\boldsymbol{v}^{(1)},\dots,\boldsymbol{v}^{(n)}]$，类似地，可以将特征值连成一个向量 $\boldsymbol{\lambda}=[\lambda_{1},\dots,\lambda_{n}]^\top$。因此 $\boldsymbol{A}$ 的 <strong>特征分解</strong> 可以记作</p>
+<p>$$<br>
+\begin{equation}<br>
+\boldsymbol{A}=\boldsymbol{V}diag(\boldsymbol{\lambda})\boldsymbol{V^{-1}}<br>
+\end{equation}<br>
+$$</p>
+<ul>
+<li>不是每一个矩阵都可以分解成特征值和特征向量。</li>
+<li>每个实对称矩阵都可以分解成实特征向量和实特征值：</li>
+</ul>
+<p>$$<br>
+\begin{equation}<br>
+\boldsymbol{A}=\boldsymbol{Q\Lambda Q^\top}<br>
+\end{equation}<br>
+$$</p>
+<p>其中 $\boldsymbol{Q}$ 是 $\boldsymbol{A}$ 的特征向量组成的正交矩阵， $\boldsymbol{\Lambda}$ 是对角矩阵。特征值 $\Lambda_{i,i}$ 对应的特征向量是矩阵 $\boldsymbol{Q}$ 的第 $i$ 列，记作 $\boldsymbol{Q}_{:,i}$。因为 $\boldsymbol{Q}$ 是正交矩阵，可以将 $\boldsymbol{A}$ 看作是沿方向 $\boldsymbol{v}^{(i)}$ 延展 $\lambda_i$ 倍的空间。</p>
+<p><img src="%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F%E5%92%8C%E7%89%B9%E5%BE%81%E5%80%BC%E7%9A%84%E4%BD%9C%E7%94%A8%E6%95%88%E6%9E%9C.png" alt="特征向量和特征值的作用效果"></p>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+        <tag>数学</tag>
+      </tags>
+  </entry>
 </search>
