@@ -388,6 +388,71 @@ hr:nth-of-type(2) {
       </tags>
   </entry>
   <entry>
+    <title>字典树</title>
+    <url>/2024/03/27/%E5%AD%97%E5%85%B8%E6%A0%91/</url>
+    <content><![CDATA[<span id="more"></span>
+<blockquote>
+<p>声明：以下介绍均基于本人理解</p>
+</blockquote>
+<h1>概述</h1>
+<ul>
+<li>字典树(Trie)，像字典一样的树</li>
+</ul>
+<h1>属性</h1>
+<ul>
+<li>树：一棵<strong>有根</strong>的树</li>
+<li>结点：一般以类似键值对的形式存在，即包含两个成员信息：字符(key)作为结点标识，数值(value)作为标识出现的频率</li>
+<li>应用：检索字符串（例如字符串本身或其前缀、后缀等）</li>
+</ul>
+<h1>模板</h1>
+<h2 id="数组-结点-版">数组（结点）版</h2>
+<h3 id="示例图">示例图</h3>
+<p><img src="/source/images/trie/Trie%E6%95%B0%E7%BB%84.png" alt="数组结构示例"></p>
+<h3 id="代码">代码</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> nex[<span class="number">100000</span>][<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">bool</span> exist[<span class="number">100000</span>] = &#123;<span class="literal">false</span>&#125;;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">Trie</span>() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> p = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; word.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> c = word[i] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (!nex[p][c]) nex[p][c] = ++cnt;  <span class="comment">// 如果没有，就添加结点</span></span><br><span class="line">            p = nex[p][c];</span><br><span class="line">        &#125;</span><br><span class="line">        exist[p] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">26</span>; ++j) &#123;</span><br><span class="line">                cout &lt;&lt; nex[i][j] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            cout &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">search</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> p = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; word.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> c = word[i] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (!nex[p][c]) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            p = nex[p][c];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> exist[p];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="结构体-结点-版">结构体（结点）版</h2>
+<h3 id="示例图">示例图</h3>
+<p><img src="/source/images/trie/Trie%E7%BB%93%E6%9E%84%E4%BD%93.png" alt="结构体示例"></p>
+<h3 id="代码">代码</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">        Node* next[<span class="number">26</span>];</span><br><span class="line">        <span class="type">int</span> freq;</span><br><span class="line">        <span class="type">bool</span> exist = <span class="literal">false</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    Node* root;</span><br><span class="line">    <span class="built_in">Trie</span>() &#123;</span><br><span class="line">        root = <span class="keyword">new</span> <span class="built_in">Node</span>();</span><br><span class="line">        root-&gt;freq = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; ++i) &#123;</span><br><span class="line">            root-&gt;next[i] = <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> cur = root;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c: word) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>] == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">                cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>] = <span class="keyword">new</span> <span class="built_in">Node</span>();</span><br><span class="line">                cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>]-&gt;freq = <span class="number">1</span>;</span><br><span class="line">                cur = cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>]-&gt;freq++;</span><br><span class="line">                cur = cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cur-&gt;exist = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">search</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> cur = root;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c: word) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>] == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            cur = cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cur-&gt;exist;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1>复杂度分析</h1>
+<p>预设所有字符串总长度为n</p>
+<ul>
+<li>构造字典树
+<ul>
+<li>空间: O(nK)(对于结构体而言K为结点大小，对于数组而言K = 26)</li>
+<li>时间: O(n)</li>
+</ul>
+</li>
+<li>检索
+<ul>
+<li>时间：O(n)</li>
+</ul>
+</li>
+</ul>
+<h1>题单</h1>
+<blockquote>
+<p>参考来源：<a href="https://leetcode.cn/u/endlesscheng/">灵茶山艾府</a></p>
+</blockquote>
+<ul>
+<li>[x] <a href="https://leetcode.cn/problems/implement-trie-prefix-tree/">208 实现 Trie (前缀树)</a></li>
+<li>[x] <a href="https://leetcode.cn/problems/sum-of-prefix-scores-of-strings/">2416 字符串的前缀分数和</a></li>
+<li>[ ] <a href="https://leetcode.cn/problems/palindrome-pairs/">336 回文对</a></li>
+<li>[ ] <a href="https://leetcode.cn/problems/prefix-and-suffix-search/">745 前缀和后缀搜索</a></li>
+<li>[ ] <a href="https://leetcode.cn/problems/count-prefix-and-suffix-pairs-ii/">3045 统计前后缀下标对 II</a></li>
+<li>[x] <a href="https://leetcode.cn/problems/longest-common-suffix-queries/">3093 最长公共后缀查询</a></li>
+</ul>
+<h1>发散/随想/自身理解(?)</h1>
+<ul>
+<li>字典树突出<strong>有序匹配</strong>，对<strong>前后缀</strong>有特效</li>
+<li>应用方面，以结构体示例，若标识不限字符，那么检索的目标即从字符串扩展到某种序列。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>线性代数</title>
     <url>/2022/09/01/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</url>
     <content><![CDATA[<span id="more"></span>
@@ -492,71 +557,6 @@ hr:nth-of-type(2) {
       <tags>
         <tag>学习</tag>
         <tag>数学</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>字典树</title>
-    <url>/2024/03/27/%E5%AD%97%E5%85%B8%E6%A0%91/</url>
-    <content><![CDATA[<span id="more"></span>
-<blockquote>
-<p>声明：以下介绍均基于本人理解</p>
-</blockquote>
-<h1>概述</h1>
-<ul>
-<li>字典树(Trie)，像字典一样的树</li>
-</ul>
-<h1>属性</h1>
-<ul>
-<li>树：一棵<strong>有根</strong>的树</li>
-<li>结点：一般以类似键值对的形式存在，即包含两个成员信息：字符(key)作为结点标识，数值(value)作为标识出现的频率</li>
-<li>应用：检索字符串（例如字符串本身或其前缀、后缀等）</li>
-</ul>
-<h1>模板</h1>
-<h2 id="数组（结点）版">数组（结点）版</h2>
-<h3 id="示例图">示例图</h3>
-<p><img src="/source/images/trie/Trie%E6%95%B0%E7%BB%84.png" alt="数组结构示例"></p>
-<h3 id="代码">代码</h3>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> nex[<span class="number">100000</span>][<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">bool</span> exist[<span class="number">100000</span>] = &#123;<span class="literal">false</span>&#125;;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">Trie</span>() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> p = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; word.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> c = word[i] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (!nex[p][c]) nex[p][c] = ++cnt;  <span class="comment">// 如果没有，就添加结点</span></span><br><span class="line">            p = nex[p][c];</span><br><span class="line">        &#125;</span><br><span class="line">        exist[p] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">26</span>; ++j) &#123;</span><br><span class="line">                cout &lt;&lt; nex[i][j] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            cout &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">search</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> p = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; word.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> c = word[i] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (!nex[p][c]) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            p = nex[p][c];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> exist[p];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="结构体（结点）版">结构体（结点）版</h2>
-<h3 id="示例图-2">示例图</h3>
-<p><img src="/source/images/trie/Trie%E7%BB%93%E6%9E%84%E4%BD%93.png" alt="结构体示例"></p>
-<h3 id="代码-2">代码</h3>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">        Node* next[<span class="number">26</span>];</span><br><span class="line">        <span class="type">int</span> freq;</span><br><span class="line">        <span class="type">bool</span> exist = <span class="literal">false</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    Node* root;</span><br><span class="line">    <span class="built_in">Trie</span>() &#123;</span><br><span class="line">        root = <span class="keyword">new</span> <span class="built_in">Node</span>();</span><br><span class="line">        root-&gt;freq = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; ++i) &#123;</span><br><span class="line">            root-&gt;next[i] = <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> cur = root;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c: word) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>] == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">                cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>] = <span class="keyword">new</span> <span class="built_in">Node</span>();</span><br><span class="line">                cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>]-&gt;freq = <span class="number">1</span>;</span><br><span class="line">                cur = cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>]-&gt;freq++;</span><br><span class="line">                cur = cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cur-&gt;exist = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">search</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> cur = root;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c: word) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>] == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            cur = cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cur-&gt;exist;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1>复杂度分析</h1>
-<p>预设所有字符串总长度为n</p>
-<ul>
-<li>构造字典树
-<ul>
-<li>空间: O(nK)(对于结构体而言K为结点大小，对于数组而言K = 26)</li>
-<li>时间: O(n)</li>
-</ul>
-</li>
-<li>检索
-<ul>
-<li>时间：O(n)</li>
-</ul>
-</li>
-</ul>
-<h1>题单</h1>
-<blockquote>
-<p>参考来源：<a href="https://leetcode.cn/u/endlesscheng/">灵茶山艾府</a></p>
-</blockquote>
-<ul>
-<li>[x] <a href="https://leetcode.cn/problems/implement-trie-prefix-tree/">208 实现 Trie (前缀树)</a></li>
-<li>[x] <a href="https://leetcode.cn/problems/sum-of-prefix-scores-of-strings/">2416 字符串的前缀分数和</a></li>
-<li>[ ] <a href="https://leetcode.cn/problems/palindrome-pairs/">336 回文对</a></li>
-<li>[ ] <a href="https://leetcode.cn/problems/prefix-and-suffix-search/">745 前缀和后缀搜索</a></li>
-<li>[ ] <a href="https://leetcode.cn/problems/count-prefix-and-suffix-pairs-ii/">3045 统计前后缀下标对 II</a></li>
-<li>[x] <a href="https://leetcode.cn/problems/longest-common-suffix-queries/">3093 最长公共后缀查询</a></li>
-</ul>
-<h1>发散/随想/自身理解(?)</h1>
-<ul>
-<li>字典树突出<strong>有序匹配</strong>，对<strong>前后缀</strong>有特效</li>
-<li>应用方面，以结构体示例，若标识不限字符，那么检索的目标即从字符串扩展到某种序列。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>数据结构</tag>
       </tags>
   </entry>
 </search>
