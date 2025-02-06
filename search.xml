@@ -574,8 +574,8 @@ hr:nth-of-type(2) {
       </tags>
   </entry>
   <entry>
-    <title>计算机系统基础归纳</title>
-    <url>/2025/02/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E5%BD%92%E7%BA%B3/</url>
+    <title>计算机系统知识大纲</title>
+    <url>/2025/02/05/outline_of_computer_system_knowledge/</url>
     <content><![CDATA[<span id="more"></span>
 <h2 id="简要介绍">简要介绍</h2>
 <h3 id="编写目的">编写目的</h3>
@@ -586,6 +586,10 @@ hr:nth-of-type(2) {
 <li><span class='heimu'>化解(延缓?)自身的一个小(?)危机(?)</span></li>
 </ul>
 <h3 id="内容">内容</h3>
+<ul>
+<li>本质上学习笔记，主要记录自身对相关概念的理解，或是搬运其它资料，整体可能缺乏<strong>实践</strong>，内容较为随意</li>
+<li>整个计算机体系内容较为庞杂，在此不会进行全面介绍，只针对自身学习内容（感兴趣的）讲述，内容当前暂定为：<strong>计算机组成原理</strong>，<strong>数据结构与算法</strong>，<strong>操作系统</strong>，<strong>计算机网络</strong></li>
+</ul>
 ]]></content>
       <categories>
         <category>计算机系统</category>
