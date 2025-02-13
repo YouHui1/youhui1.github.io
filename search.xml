@@ -14,7 +14,7 @@
 </ul>
 <h3 id="内容">内容</h3>
 <ul>
-<li>本质上学习笔记，主要记录自身对相关概念的理解，或是搬运其它资料，整体可能缺乏<strong>实践</strong>，内容较为随意</li>
+<li>本质上学习笔记，主要记录自身对相关概念的理解，或是搬运其它资料，整体可能缺乏<strong>实践</strong>，内容较为随意，十分主观</li>
 <li>整个计算机体系内容较为庞杂，在此不会进行全面介绍，只针对自身学习内容(感兴趣的)讲述，内容当前暂定为：<strong>计算机组成原理</strong>，<strong>数据结构与算法</strong>，<strong>操作系统</strong>，<strong>计算机网络</strong></li>
 </ul>
 <h2 id="个人见解">个人见解</h2>
@@ -53,6 +53,8 @@
 <li>功能模块化便于后续定位问题，迭代优化更新等<br>
 <img src="/images/computer_system/modularization.png" alt="模块化"></li>
 </ol>
+<h2 id="目录">目录</h2>
+<p>待补充</p>
 ]]></content>
       <categories>
         <category>计算机系统</category>
@@ -632,6 +634,228 @@ hr:nth-of-type(2) {
       </categories>
       <tags>
         <tag>linker-script</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数</title>
+    <url>/2025/02/10/number/</url>
+    <content><![CDATA[<h2 id="简介">简介</h2>
+<p>在计算机系统中，各种各样的信息内容(文字、图像、音频等)均是以<strong>数</strong>的形式被存储、计算与传输；<br>
+实际上，所有的信息均依赖<strong>电</strong>作为介质完成运转</p>
+<ul>
+<li>数是对底层复杂电信号变化运转的简化抽象</li>
+</ul>
+<h2 id="数的表示形式-数制">数的表示形式(数制)</h2>
+<h3 id="二进制">二进制</h3>
+<h4 id="介绍">介绍</h4>
+<p>计算机的信息数据均采用二进制来表示</p>
+<ul>
+<li>二进制的数由‘0’和‘1’表示，逢二进一，通过位数的堆叠表示任意数字，前/后缀&quot;0b&quot;、“0B”、”b/B“</li>
+<li>从数学上看，从右往左数第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 位表示 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 次幂</li>
+</ul>
+<blockquote>
+<p>例: 0b10101100 --&gt; <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>7</mn></msup><mo>+</mo><msup><mn>2</mn><mn>5</mn></msup><mo>+</mo><msup><mn>2</mn><mn>3</mn></msup><mo>+</mo><msup><mn>2</mn><mn>2</mn></msup><mo>=</mo><mn>172</mn></mrow><annotation encoding="application/x-tex">2^7 + 2^5 + 2^3 + 2^2 = 172</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">7</span><span class="mord">2</span></span></span></span></p>
+</blockquote>
+<ul>
+<li><strong>位(bit，b，比特)</strong> 是数据存储的最小单位，8位二进制数字(8bit)形成一个 <strong>字节(byte，B)</strong></li>
+<li><strong>字</strong>: 计算机进行数据存储、数据处理的单位；<strong>字长</strong>: 一个字的长度/位数，不同平台和处理器提供的字长不同</li>
+</ul>
+<h3 id="八进制-十进制-十六进制">八进制, 十进制, 十六进制</h3>
+<p>本质为二进制数字的简化，便于查看与使用</p>
+<ul>
+<li>八进制前/后缀：”0o“、”0O“、”o/O“</li>
+<li>十进制后缀：”d/D“</li>
+<li>十六进制前/后缀：”0x“、”0X“、”h/H“</li>
+</ul>
+<h2 id="数的类型表示">数的类型表示</h2>
+<blockquote>
+<p>该节使用在无说明的情况下默认使用 <strong>8位</strong> 二进制数字举例</p>
+</blockquote>
+<p>以符号作为基准，分为 <strong>无符号数</strong> 和 <strong>有符号数</strong></p>
+<h3 id="无符号数">无符号数</h3>
+<p>无符号数所有位表示数值，所表示的数字为非负数，表示的范围是 0 ~ 256 (<code>00000000</code> ~ <code>11111111</code>)</p>
+<h3 id="有符号数">有符号数</h3>
+<p>有符号数的最高位表示正(0)负(1)(<strong>符号位</strong>)，其余位数表示数值(<strong>数位</strong>)，引入三种表示方法: <strong>原码</strong> 、<strong>反码</strong> 和 <strong>补码</strong></p>
+<h4 id="原码">原码</h4>
+<ul>
+<li>最简单的表示方法，字面意思上的最高位表示符号，其余位表示数字。
+<blockquote>
+<p><code>00000001</code> 表示 <code>+1</code>，<code>10000001</code> 表示 <code>-1</code>，诸如此类</p>
+</blockquote>
+</li>
+<li>表示范围
+<ul>
+<li>正数区域: 1 ~ 127 (<code>00000001</code> ~ <code>01111111</code>)</li>
+<li>负数区域: -127 ~ -1 (<code>11111111</code> ~ <code>10000001</code>)</li>
+<li>0: (<code>0000000</code>,<code>10000000</code>)</li>
+</ul>
+</li>
+<li>缺点:
+<ol>
+<li>0 有两种表示方法(<code>0000000</code>(+0)和<code>10000000</code>(-0))</li>
+<li>直接用于运算时可能导致数值错误(例如正负数相加时，1 + (-1) = 0，但二进制计算 00000001 + 10000001 = 10000010(-2))</li>
+</ol>
+</li>
+</ul>
+<h4 id="反码">反码</h4>
+<ul>
+<li>符号位为0时(正数)，反码 == 原码；符号位为1时(负数)，数位在原码数位表示的基础上全部取反
+<blockquote>
+<p><code>-1</code>在原码表示为<code>10000001</code>, 其反码则为<code>11111110</code></p>
+</blockquote>
+</li>
+<li>表示范围
+<ul>
+<li>正数区域: 1 ~ 127 (<code>00000001</code> ~ <code>01111111</code>)</li>
+<li>负数区域: -127 ~ -1 (<code>10000000</code> ~ <code>11111110</code>)</li>
+<li>0: (<code>0000000</code>,<code>11111111</code>)</li>
+</ul>
+</li>
+<li>缺点:
+<ol>
+<li>0 有两种表示方法(<code>0000000</code>(+0)和<code>11111111</code>(-0))</li>
+<li>部分运算可能导致数值错误(11111010(-5) + 11111010(-5) = 11110100(-11))</li>
+</ol>
+</li>
+</ul>
+<h4 id="补码">补码</h4>
+<ul>
+<li><strong>当今的计算机系统中，普遍使用补码表示和存储数据</strong></li>
+<li>符号位为0时(正数)，补码 == 原码；符号位为1时(负数)，数位最低位的1保持不变，比该位高的位全部取反(数位在反码数位表示的基础上加1)
+<blockquote>
+<p><code>-1</code>在反码表示为<code>11111110</code>, 其补码则为<code>11111111</code></p>
+</blockquote>
+</li>
+<li>表示范围
+<ul>
+<li>正数区域: 1 ~ 127 (<code>00000001</code> ~ <code>01111111</code>)</li>
+<li>负数区域: -128 ~ -1 (<code>10000000</code> ~ <code>11111110</code>)</li>
+<li>0: (<code>0000000</code>)</li>
+</ul>
+</li>
+</ul>
+<h2 id="数的运算">数的运算</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>运算类型</strong></th>
+<th style="text-align:left"><strong>运算符</strong></th>
+<th style="text-align:left"><strong>运算描述</strong></th>
+<th style="text-align:left"><strong>硬件实现</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>算术运算</strong></td>
+<td style="text-align:left">+</td>
+<td style="text-align:left">加法</td>
+<td style="text-align:left">使用加法器（如半加器、全加器）</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">-</td>
+<td style="text-align:left">减法</td>
+<td style="text-align:left">通过加法器实现（被减数 + 负数的补码）</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">*</td>
+<td style="text-align:left">乘法</td>
+<td style="text-align:left">使用乘法器（如串行乘法器、并行乘法器）</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">/</td>
+<td style="text-align:left">除法</td>
+<td style="text-align:left">使用除法器（如串行除法器、并行除法器）</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">%</td>
+<td style="text-align:left">取模</td>
+<td style="text-align:left">通过除法器的余数部分实现</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>逻辑运算</strong></td>
+<td style="text-align:left">&amp;</td>
+<td style="text-align:left">按位与</td>
+<td style="text-align:left">通过逻辑门（AND门）实现</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">|</td>
+<td style="text-align:left">按位或</td>
+<td style="text-align:left">通过逻辑门（OR门）实现</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">^</td>
+<td style="text-align:left">按位异或</td>
+<td style="text-align:left">通过逻辑门（XOR门）实现</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">~</td>
+<td style="text-align:left">按位取反</td>
+<td style="text-align:left">通过逻辑门（NOT门）实现</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>位移运算</strong></td>
+<td style="text-align:left">&lt;&lt;</td>
+<td style="text-align:left">左移</td>
+<td style="text-align:left">通过移位寄存器实现</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">&gt;&gt;</td>
+<td style="text-align:left">右移</td>
+<td style="text-align:left">通过移位寄存器实现</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>比较运算</strong></td>
+<td style="text-align:left">==</td>
+<td style="text-align:left">等于</td>
+<td style="text-align:left">通过比较器实现</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">!=</td>
+<td style="text-align:left">不等于</td>
+<td style="text-align:left">通过比较器实现</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">&gt;</td>
+<td style="text-align:left">大于</td>
+<td style="text-align:left">通过比较器实现</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">&lt;</td>
+<td style="text-align:left">小于</td>
+<td style="text-align:left">通过比较器实现</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">&gt;=</td>
+<td style="text-align:left">大于等于</td>
+<td style="text-align:left">通过比较器实现</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">&lt;=</td>
+<td style="text-align:left">小于等于</td>
+<td style="text-align:left">通过比较器实现</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      <categories>
+        <category>计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>计算机系统</tag>
+        <tag>计算机组成原理</tag>
       </tags>
   </entry>
 </search>
