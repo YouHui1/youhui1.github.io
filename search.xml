@@ -650,7 +650,7 @@ hr:nth-of-type(2) {
 <h4 id="介绍">介绍</h4>
 <p>计算机的信息数据均采用二进制来表示</p>
 <ul>
-<li>二进制的数由‘0’和‘1’表示，逢二进一，通过位数的堆叠表示任意数字，前/后缀&quot;0b&quot;、“0B”、”b/B“</li>
+<li>二进制的数由’0’和’1’表示，逢二进一，通过位数的堆叠表示任意数字，前/后缀&quot;0b&quot;、“0B”、“b/B”</li>
 <li>从数学上看，从右往左数第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 位表示 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 次幂</li>
 </ul>
 <blockquote>
@@ -663,9 +663,9 @@ hr:nth-of-type(2) {
 <h3 id="八进制-十进制-十六进制">八进制, 十进制, 十六进制</h3>
 <p>本质为二进制数字的简化，便于查看与使用</p>
 <ul>
-<li>八进制前/后缀：”0o“、”0O“、”o/O“</li>
-<li>十进制后缀：”d/D“</li>
-<li>十六进制前/后缀：”0x“、”0X“、”h/H“</li>
+<li>八进制前/后缀：“0o”、“0O”、“o/O”</li>
+<li>十进制后缀：“d/D”</li>
+<li>十六进制前/后缀：“0x”、“0X”、“h/H”</li>
 </ul>
 <h2 id="数的类型表示">数的类型表示</h2>
 <blockquote>
