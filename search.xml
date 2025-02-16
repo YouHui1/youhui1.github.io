@@ -651,10 +651,10 @@ hr:nth-of-type(2) {
 <p>计算机的信息数据均采用二进制来表示</p>
 <ul>
 <li>二进制的数由’0’和’1’表示，逢二进一，通过位数的堆叠表示任意数字，前/后缀&quot;0b&quot;、“0B”、“b/B”</li>
-<li>从数学上看，从右往左数第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 位表示 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 次幂</li>
+<li>从数学上看，从右往左数第 $x$ 位表示 $2$ 的 $x-1$ 次幂</li>
 </ul>
 <blockquote>
-<p>例: 0b10101100 --&gt; <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>7</mn></msup><mo>+</mo><msup><mn>2</mn><mn>5</mn></msup><mo>+</mo><msup><mn>2</mn><mn>3</mn></msup><mo>+</mo><msup><mn>2</mn><mn>2</mn></msup><mo>=</mo><mn>172</mn></mrow><annotation encoding="application/x-tex">2^7 + 2^5 + 2^3 + 2^2 = 172</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">7</span><span class="mord">2</span></span></span></span></p>
+<p>例: 0b10101100 --&gt; $2^7 + 2^5 + 2^3 + 2^2 = 172$</p>
 </blockquote>
 <ul>
 <li><strong>位(bit，b，比特)</strong> 是数据存储的最小单位，8位二进制数字(8bit)形成一个 <strong>字节(byte，B)</strong></li>
@@ -669,16 +669,19 @@ hr:nth-of-type(2) {
 </ul>
 <h2 id="数的类型表示">数的类型表示</h2>
 <blockquote>
-<p>该节使用在无说明的情况下默认使用 <strong>8位</strong> 二进制数字举例</p>
+<p>该节使用在无特殊说明的情况下默认使用 <strong>8位</strong> 二进制数字举例</p>
 </blockquote>
-<p>以符号作为基准，分为 <strong>无符号数</strong> 和 <strong>有符号数</strong></p>
-<h3 id="无符号数">无符号数</h3>
-<p>无符号数所有位表示数值，所表示的数字为非负数，表示的范围是 0 ~ 256 (<code>00000000</code> ~ <code>11111111</code>)</p>
-<h3 id="有符号数">有符号数</h3>
+<h3 id="以符号划分类型">以符号划分类型</h3>
+<p>以符号作为划分基准，分为 <strong>无符号数</strong> 和 <strong>有符号数</strong></p>
+<h4 id="无符号数">无符号数</h4>
+<p>无符号数所有位表示数值，所表示的数字为非负数，表示的范围是 0 ~ 255 (<code>00000000</code> ~ <code>11111111</code>)</p>
+<h4 id="有符号数">有符号数</h4>
 <p>有符号数的最高位表示正(0)负(1)(<strong>符号位</strong>)，其余位数表示数值(<strong>数位</strong>)，引入三种表示方法: <strong>原码</strong> 、<strong>反码</strong> 和 <strong>补码</strong></p>
-<h4 id="原码">原码</h4>
+<ol>
+<li><strong>原码</strong></li>
+</ol>
 <ul>
-<li>最简单的表示方法，字面意思上的最高位表示符号，其余位表示数字。
+<li>最简单的表示方法，字面意思上的最高位表示符号，其余位表示数字
 <blockquote>
 <p><code>00000001</code> 表示 <code>+1</code>，<code>10000001</code> 表示 <code>-1</code>，诸如此类</p>
 </blockquote>
@@ -697,7 +700,9 @@ hr:nth-of-type(2) {
 </ol>
 </li>
 </ul>
-<h4 id="反码">反码</h4>
+<ol start="2">
+<li><strong>反码</strong></li>
+</ol>
 <ul>
 <li>符号位为0时(正数)，反码 == 原码；符号位为1时(负数)，数位在原码数位表示的基础上全部取反
 <blockquote>
@@ -718,7 +723,9 @@ hr:nth-of-type(2) {
 </ol>
 </li>
 </ul>
-<h4 id="补码">补码</h4>
+<ol start="3">
+<li><strong>补码</strong></li>
+</ol>
 <ul>
 <li><strong>当今的计算机系统中，普遍使用补码表示和存储数据</strong></li>
 <li>符号位为0时(正数)，补码 == 原码；符号位为1时(负数)，数位最低位的1保持不变，比该位高的位全部取反(数位在反码数位表示的基础上加1)
@@ -731,6 +738,68 @@ hr:nth-of-type(2) {
 <li>正数区域: 1 ~ 127 (<code>00000001</code> ~ <code>01111111</code>)</li>
 <li>负数区域: -128 ~ -1 (<code>10000000</code> ~ <code>11111110</code>)</li>
 <li>0: (<code>0000000</code>)</li>
+</ul>
+</li>
+</ul>
+<h3 id="以小数点的位置是否变化划分类型">以小数点的位置是否变化划分类型</h3>
+<p>以小数点的位置是否变化作为划分基准，分为 <strong>定点数</strong> 和 <strong>浮点数</strong></p>
+<h4 id="定点数">定点数</h4>
+<ul>
+<li>定点表示法: 约定数值的小数点隐含/固定在某个位置上
+<blockquote>
+<p>举例: 25.125，整数部分简单表示为 11001，小数部分简单表示为 001(2^-3)，合起来为11001001 --&gt; 11001.001(小数点位置显示)<br>
+对于8位<strong>纯小数</strong>而言，最高位为符号位，小数点在最高位之后，其余表示数值</p>
+</blockquote>
+</li>
+<li>定点表示的数值范围较小</li>
+</ul>
+<h4 id="浮点数">浮点数</h4>
+<ul>
+<li>表示形式类似科学计数法，浮点数 = 尾数 * 基数 ^ 指数</li>
+<li>其表示的数值小数点位置是不固定的，称为浮点(floating point)</li>
+<li>IEEE-754 二进制浮点数算术标准
+<ul>
+<li>四种表示浮点数值方式
+<ul>
+<li><strong>单精确度(32位)</strong></li>
+<li><strong>双精确度(64位)</strong></li>
+<li><em>延伸单精确度(43位以上)</em></li>
+<li><em>延伸双精确度(79位以上)</em></li>
+</ul>
+</li>
+<li>公式: $Value = (-1)^S * (1 + M) * 2^{(E - B)}$
+<ul>
+<li>S: 符号位</li>
+<li>M: 尾数(纯小数)</li>
+<li>E: 指数</li>
+<li>B: 偏移量</li>
+</ul>
+</li>
+<li>单精确浮点数
+<ul>
+<li>组成
+<ul>
+<li>符号位: 1bit</li>
+<li>指数: 8bit</li>
+<li>尾数: 23bit</li>
+<li>偏移量: 127</li>
+</ul>
+</li>
+<li>表示范围约: $1.2 * 10^{-38}$ ~ $3.4 * 10^{38}$</li>
+</ul>
+</li>
+<li>双精确浮点数
+<ul>
+<li>组成
+<ul>
+<li>符号位: 1bit</li>
+<li>指数: 8bit</li>
+<li>尾数: 23bit</li>
+<li>偏移量: 1023</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
