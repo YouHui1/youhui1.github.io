@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>决策树</title>
-    <url>/2022/04/14/%E5%86%B3%E7%AD%96%E6%A0%91/</url>
+    <url>/2022/04/14/8ddc7426/</url>
     <content><![CDATA[<span id="more"></span>
 <style>
 hr:nth-of-type(1) {
@@ -199,7 +199,7 @@ hr:nth-of-type(2) {
   </entry>
   <entry>
     <title>线性代数</title>
-    <url>/2022/09/01/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</url>
+    <url>/2022/09/01/c23efd5b/</url>
     <content><![CDATA[<span id="more"></span>
 <h2 id="简要">简要</h2>
 <p>参考资料：《深度学习》（花书）。<br>
@@ -310,7 +310,7 @@ hr:nth-of-type(2) {
   </entry>
   <entry>
     <title>字典树</title>
-    <url>/2024/03/27/%E5%AD%97%E5%85%B8%E6%A0%91/</url>
+    <url>/2024/03/27/eea60a6a/</url>
     <content><![CDATA[<span id="more"></span>
 <blockquote>
 <p>声明：以下介绍均基于本人理解</p>
@@ -381,7 +381,7 @@ hr:nth-of-type(2) {
   </entry>
   <entry>
     <title>链接脚本(linker script)学习</title>
-    <url>/2023/12/03/%E9%93%BE%E6%8E%A5%E8%84%9A%E6%9C%AC(linker%20script)%E5%AD%A6%E4%B9%A0/</url>
+    <url>/2023/12/03/2677b11b/</url>
     <content><![CDATA[<span id="more"></span>
 <h2 id="程序编译阶段">程序编译阶段</h2>
 <p>以C程序为例：</p>
@@ -575,7 +575,7 @@ hr:nth-of-type(2) {
   </entry>
   <entry>
     <title>计算机体系架构简述</title>
-    <url>/2025/02/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84%E7%AE%80%E8%BF%B0/</url>
+    <url>/2025/02/25/fc022f0f/</url>
     <content><![CDATA[<h2 id="简介">简介</h2>
 <ul>
 <li>计算机系统 = 硬件 + 软件<br>
@@ -744,7 +744,7 @@ hr:nth-of-type(2) {
   </entry>
   <entry>
     <title>数</title>
-    <url>/2025/02/10/%E6%95%B0/</url>
+    <url>/2025/02/10/9579b8d3/</url>
     <content><![CDATA[<h2 id="简介">简介</h2>
 <p>在计算机系统中，各种各样的信息内容(文字、图像、音频等)均是以<strong>数</strong>的形式被存储、计算与传输；<br>
 实际上，所有的信息均依赖<strong>电</strong>作为介质完成运转</p>
@@ -1021,7 +1021,7 @@ hr:nth-of-type(2) {
   </entry>
   <entry>
     <title>计算机系统知识大纲</title>
-    <url>/2025/02/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E5%A4%A7%E7%BA%B2/</url>
+    <url>/2025/02/05/51221df9/</url>
     <content><![CDATA[<span id="more"></span>
 <h2 id="简要介绍">简要介绍</h2>
 <h3 id="编写目的">编写目的</h3>
