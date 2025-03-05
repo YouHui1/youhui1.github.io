@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>决策树</title>
-    <url>/2022/04/14/8ddc7426/</url>
+    <url>/8ddc7426/</url>
     <content><![CDATA[<span id="more"></span>
 <style>
 hr:nth-of-type(1) {
@@ -199,7 +199,7 @@ hr:nth-of-type(2) {
   </entry>
   <entry>
     <title>计算机系统知识大纲</title>
-    <url>/2025/02/05/51221df9/</url>
+    <url>/51221df9/</url>
     <content><![CDATA[<span id="more"></span>
 <h2 id="简要介绍">简要介绍</h2>
 <h3 id="编写目的">编写目的</h3>
@@ -252,7 +252,7 @@ hr:nth-of-type(2) {
 </ol>
 <h2 id="目录">目录</h2>
 <ol>
-<li><a href="/2025/02/25/fc022f0f">计算机组成原理</a></li>
+<li><a href="/fc022f0f">计算机组成原理</a></li>
 </ol>
 ]]></content>
       <categories>
@@ -264,7 +264,7 @@ hr:nth-of-type(2) {
   </entry>
   <entry>
     <title>字典树</title>
-    <url>/2024/03/27/eea60a6a/</url>
+    <url>/eea60a6a/</url>
     <content><![CDATA[<span id="more"></span>
 <blockquote>
 <p>声明：以下介绍均基于本人理解</p>
@@ -335,7 +335,7 @@ hr:nth-of-type(2) {
   </entry>
   <entry>
     <title>线性代数</title>
-    <url>/2022/09/01/c23efd5b/</url>
+    <url>/c23efd5b/</url>
     <content><![CDATA[<span id="more"></span>
 <h2 id="简要">简要</h2>
 <p>参考资料：《深度学习》（花书）。<br>
@@ -446,7 +446,7 @@ hr:nth-of-type(2) {
   </entry>
   <entry>
     <title>链接脚本(linker script)学习</title>
-    <url>/2023/12/03/2677b11b/</url>
+    <url>/2677b11b/</url>
     <content><![CDATA[<span id="more"></span>
 <h2 id="程序编译阶段">程序编译阶段</h2>
 <p>以C程序为例：</p>
@@ -640,7 +640,7 @@ hr:nth-of-type(2) {
   </entry>
   <entry>
     <title>梦日记</title>
-    <url>/2025/02/27/e6aca331/</url>
+    <url>/e6aca331/</url>
     <content><![CDATA[<h2 id="简介">简介</h2>
 <p>记录自己记忆较深的梦，以供后续分析等等</p>
 <h2 id="序">序</h2>
@@ -659,7 +659,7 @@ hr:nth-of-type(2) {
   </entry>
   <entry>
     <title>数</title>
-    <url>/2025/02/10/9579b8d3/</url>
+    <url>/9579b8d3/</url>
     <content><![CDATA[<h2 id="简介">简介</h2>
 <p>在计算机系统中，各种各样的信息内容(文字、图像、音频等)均是以<strong>数</strong>的形式被存储、计算与传输；<br>
 实际上，所有的信息均依赖<strong>电</strong>作为介质完成运转</p>
@@ -973,7 +973,7 @@ hr:nth-of-type(2) {
   </entry>
   <entry>
     <title>计算机体系架构简述</title>
-    <url>/2025/02/25/fc022f0f/</url>
+    <url>/fc022f0f/</url>
     <content><![CDATA[<h2 id="简介">简介</h2>
 <ul>
 <li>计算机系统 = 硬件 + 软件<br>
@@ -1129,7 +1129,7 @@ hr:nth-of-type(2) {
 </ul>
 <h2 id="目录">目录</h2>
 <ol>
-<li><a href="/2025/02/10/9579b8d3/">数</a></li>
+<li><a href="/9579b8d3/">数</a></li>
 </ol>
 ]]></content>
       <categories>
@@ -1142,7 +1142,7 @@ hr:nth-of-type(2) {
   </entry>
   <entry>
     <title>[梦日记]-回溯</title>
-    <url>/2025/02/27/7ce427c0/</url>
+    <url>/7ce427c0/</url>
     <content><![CDATA[<h2 id="特殊属性补充">特殊属性补充</h2>
 <ul>
 <li>梦境特性: 回溯
@@ -1184,7 +1184,7 @@ hr:nth-of-type(2) {
   </entry>
   <entry>
     <title>运算器</title>
-    <url>/2025/03/03/b49f5e78/</url>
+    <url>/b49f5e78/</url>
     <content><![CDATA[<h2 id="逻辑运算">逻辑运算</h2>
 <h3 id="门电路">门电路</h3>
 <p><img src="/images/computer_system/gate.png" alt="门电路"><br>
