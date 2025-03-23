@@ -1115,7 +1115,7 @@ $$</p>
 </li>
 </ul>
 <h2 id="计算机体系结构">计算机体系结构</h2>
-<h3 id="冯·诺依曼结构">冯·诺依曼结构</h3>
+<h3 id="冯-诺依曼结构">冯·诺依曼结构</h3>
 <ul>
 <li>特点
 <ul>
@@ -1151,46 +1151,59 @@ $$</p>
 </blockquote>
 <h2 id="性能指标">性能指标</h2>
 <ul>
-<li>吞吐量: 表征一台计算机在某一时间间隔/单位时间内能够处理的信息量</li>
-<li>响应时间: 表征从输入有效到系统产生响应并得到结果之间的时间度量，用时间单位来度量</li>
-<li>利用率: 在给定的时间间隔内，系统被实际使用的时间所占的比率，用百分比表示</li>
-<li>处理器字长: 处理机运算器中一次能够完成二进制数运算的位数(通常是8的倍数，字长标志着机器表示数的精度。字长越长，精度越高)</li>
-<li>总线宽度: 一般指 CPU 中运算器与存储器之间进行互连的内部总线二进制位数(总线宽度一般为处理机字长的1、2、4倍)</li>
-<li>存储器容量: 存储器中所有存储单元的总数目,通常用 KB, MB, GB, TB 表示(B=8位，1个字节)，其中 $K=2^{10}$, $M=2^{20}$, $G=2^{30}$, $T=2^{40}$
-<ul>
-<li>总容量 = 存储单元个数 * 存储器字长 (bit) 或 总容量 = 存储单元个数 * 存储器字长 / 8 (Byte)</li>
-</ul>
+<li>
+<p>吞吐量: 表征一台计算机在某一时间间隔/单位时间内能够处理的信息量</p>
 </li>
-<li>存储器带宽: 单位时间内从存储器读出的二进制数信息量，一般用 B/S(字节/秒)或 b/S(位/秒)表示</li>
-<li>CPU 主频(时钟频率) = 1 / CPU 时钟周期
+<li>
+<p>响应时间: 表征从输入有效到系统产生响应并得到结果之间的时间度量，用时间单位来度量</p>
+</li>
+<li>
+<p>利用率: 在给定的时间间隔内，系统被实际使用的时间所占的比率，用百分比表示</p>
+</li>
+<li>
+<p>处理器字长: 处理机运算器中一次能够完成二进制数运算的位数(通常是8的倍数，字长标志着机器表示数的精度。字长越长，精度越高)</p>
+</li>
+<li>
+<p>总线宽度: 一般指 CPU 中运算器与存储器之间进行互连的内部总线二进制位数(总线宽度一般为处理机字长的1、2、4倍)</p>
+</li>
+<li>
+<p>CPU 主频(时钟频率) = 1 / CPU 时钟周期</p>
 <ul>
 <li>主频度量单位是 MHZ(兆赫兹)、GHZ(吉赫兹)</li>
-<li>时钟周期度量单位 $\mu s$(微秒), $ns$(纳秒)</li>
+<li>时钟周期度量单位 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">\mu s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">μ</span><span class="mord mathdefault">s</span></span></span></span>(微秒), <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">ns</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">s</span></span></span></span>(纳秒)</li>
 </ul>
 </li>
-<li>CPU 执行时间: 表示 CPU 执行一段程序所占用的 CPU 时间
+<li>
+<p>CPU 执行时间: 表示 CPU 执行一段程序所占用的 CPU 时间</p>
 <ul>
-<li>CPU 执行时间 = CPU 时钟周期数 * CPU 时钟周期长 = 指令条数 / (MIPS * $10^6$)</li>
+<li>CPU 执行时间 = CPU 时钟周期数 * CPU 时钟周期长 = 指令条数 / (MIPS * <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">10^6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span>)</li>
 <li>CPU 执行时间 = CPU 时钟周期数 / 主频 = (指令条数 * CPI) / 主频</li>
 </ul>
 </li>
-<li>CPI: 表示每条指令的周期数。即执行一条指令所需的平均时钟周期数
+<li>
+<p>CPI: 表示每条指令的周期数。即执行一条指令所需的平均时钟周期数</p>
 <ul>
 <li>执行一条指令的耗时 = CPI * CPU 时钟周期</li>
 </ul>
 </li>
-<li>IPS: 每秒执行指令数
+<li>
+<p>IPS: 每秒执行指令数</p>
 <ul>
 <li>IPS  = 1 / (平均 CPI * CPU 时钟周期) = 主频 / 平均 CPI</li>
 </ul>
 </li>
-<li>MIPS: 每秒百万条指令数，即单位时间内执行的指令数
+<li>
+<p>MIPS: 每秒百万条指令数，即单位时间内执行的指令数</p>
 <ul>
-<li>MIPS = 指令条数 / (CPU 执行时间 * $10^6$) = 主频 / (CPI * $10^6$)</li>
+<li>MIPS = 指令条数 / (CPU 执行时间 * <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">10^6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span>) = 主频 / (CPI * <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">10^6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span>)</li>
 </ul>
 </li>
-<li>FLOPS: 每秒浮点操作次数(K/M/G/TFLOPS)</li>
-<li>MFLOPS: 每秒百万次浮点操作次数</li>
+<li>
+<p>FLOPS: 每秒浮点操作次数(K/M/G/TFLOPS)</p>
+</li>
+<li>
+<p>MFLOPS: 每秒百万次浮点操作次数</p>
+</li>
 </ul>
 <h2 id="目录">目录</h2>
 <ol>
@@ -1856,6 +1869,140 @@ $$ Y = AB + \overline{A} \overline{B} $$</li>
       <tags>
         <tag>随记</tag>
         <tag>梦日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>存储器</title>
+    <url>/a9104ae7/</url>
+    <content><![CDATA[<h2 id="局部性原理">局部性原理</h2>
+<p>一个编写良好的计算机程序常常具有良好的局部性(locality)。也就是，它们倾向于引用邻近于其他最近引用过的数据项的数据项，或者最近引用过的数据项本身。</p>
+<ul>
+<li><strong>时间局部性</strong>(temporal locality): 在一个具有良好时间局部性的程序中，被引用过一次的内存位置很可能在不远的将来再被多次引用</li>
+<li><strong>空间局部性</strong>(spatial locality): 在一个具有良好空间局部性的程序中，如果一个内存位置被引用了一次，那么程序很可能在不远的将来引用附近的一个内存位置。</li>
+</ul>
+<h2 id="分类">分类</h2>
+<p><img src="/images/computer_system/memory_classification.png" alt="存储器分类"></p>
+<h3 id="计算机系统中的作用">计算机系统中的作用</h3>
+<ul>
+<li>主存储器/内存: 主机的一部分，用于存放系统当前正在执行的数据和程序(临时存储器)</li>
+<li>辅助存储器/外存: 为外部设备，用于存放不用的数据和程序(永久存储器)<br>
+<img src="/images/computer_system/memory_cpu_interative.png" alt="CPU与存储器的交互"></li>
+</ul>
+<h3 id="存储介质">存储介质</h3>
+<ul>
+<li>半导体器件: 半导体存储器(RAM，ROM，主存)</li>
+<li>磁性材料: 磁表面存储器(磁盘，磁带，辅存)</li>
+<li>光介质: 光盘存储器(辅存)</li>
+</ul>
+<h3 id="存取方式">存取方式</h3>
+<ul>
+<li>随机存取: 按地址访问，存取时间与存储单元的位置无关(主存)</li>
+<li>顺序存取: 按地址访问，存取时间与存储单元的位置有关(磁盘，磁带)</li>
+<li>相联存取: 可以按内容(Content)或标签(Tag)访问存储单元</li>
+</ul>
+<h3 id="读写方式">读写方式</h3>
+<ul>
+<li>只读存储器(ROM，Read-Only Memory)</li>
+<li>随机存取存储器(RAM，Random-Access Memory)</li>
+</ul>
+<h3 id="信息的可保存性">信息的可保存性</h3>
+<ul>
+<li>永久记忆存储器/非易失性存储器: 断电后仍能保存信息(ROM，辅存)</li>
+<li>非永久记忆存储器/易失性存储器: 断电后信息丢失(主存中的RAM)</li>
+</ul>
+<h2 id="性能指标">性能指标</h2>
+<ul>
+<li><strong>存储器容量</strong>: 存储器中所有存储单元的总数目(存储器可容纳的二进制信息量)，描述单位通常为 <strong>字节</strong> 或 <strong>位</strong>
+<ul>
+<li><strong>位</strong>是构成存储器的最小单位，<strong>字节</strong>是数据存储的基本单位</li>
+<li>单元<strong>地址</strong>是内存单元的<strong>唯一标志</strong></li>
+<li>量化单位: 通常用 KB, MB, GB, TB 表示(B=8位，1个字节)，其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>=</mo><msup><mn>2</mn><mn>10</mn></msup></mrow><annotation encoding="application/x-tex">K=2^{10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><msup><mn>2</mn><mn>20</mn></msup></mrow><annotation encoding="application/x-tex">M=2^{20}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>=</mo><msup><mn>2</mn><mn>30</mn></msup></mrow><annotation encoding="application/x-tex">G=2^{30}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>=</mo><msup><mn>2</mn><mn>40</mn></msup></mrow><annotation encoding="application/x-tex">T=2^{40}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span></li>
+<li>总容量 = 存储单元个数 * 存储单元字长 (bit) 或 总容量 = 存储单元个数 * 存储单元字长 / 8 (Byte)</li>
+</ul>
+</li>
+<li><strong>存储速度</strong>
+<ul>
+<li>存取时间(Memory Access Time): 启动一次存储器操作到完成该操作所需的全部时间，时间越短，性能越好(单位: ns)</li>
+<li>存取周期(Memory Cycle Time): 存储器进行连续两次独立存储器操作所需的最小间隔时间(通常存储周期不小于存取时间)</li>
+<li>存储器带宽: 单位时间内从存储器读出的二进制数信息量，一般用 B/S(字节/秒)或 b/S(位/秒)表示</li>
+</ul>
+</li>
+<li><strong>存储器价格</strong>: 以每个数据位的价格来衡量
+<ul>
+<li>设存储器的容量为S，价格为C，则位价为C/S</li>
+<li>包含存储元件以及为该存储器操作服务的外围电路的价格</li>
+</ul>
+</li>
+<li><strong>可靠性</strong>: 表示存储器正常工作(正确存取)的性能</li>
+</ul>
+<h2 id="层次结构">层次结构</h2>
+<h3 id="背景">背景</h3>
+<ul>
+<li>存储技术: 不同存储技术的访问时间差异很大。速度较快的技术每字节的成本要比速度较慢的技术高，而且容量较小。CPU 和主存之间的速度差距在增大</li>
+<li>计算机软件: 一个编写良好的计算机程序常常具有良好的局部性</li>
+</ul>
+<h3 id="层次结构图">层次结构图</h3>
+<p><img src="/images/computer_system/memory_level.png" alt="层次结构"></p>
+<ul>
+<li>L0 - L4 在主机内，往下的存储器位于主机外部</li>
+<li>存储器层次结构的本质是，每一层存储设备都是较低一层的<strong>缓存</strong></li>
+<li>缓存和主存之间主要需要解决<strong>速度</strong>不匹配问题, 主存和辅存之间主要需要解决<strong>容量</strong>不匹配问题</li>
+<li>缓存和主存使用的是实地址(物理地址), 主存和辅存之间使用虚地址(逻辑地址)</li>
+</ul>
+<h3 id="性能特性比较">性能特性比较</h3>
+<table>
+<thead>
+<tr>
+<th>存储器层次</th>
+<th>通用寄存器</th>
+<th>Cache</th>
+<th>主存储器</th>
+<th>磁盘存储器</th>
+<th>脱机存储器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>存储周期</td>
+<td>&lt;10ns</td>
+<td>10 ~ 60 ns</td>
+<td>60 ~ 300ns</td>
+<td>10 ~ 30 ms</td>
+<td>2 ~ 20 min</td>
+</tr>
+<tr>
+<td>存储容量</td>
+<td>&lt;512B</td>
+<td>8KB ~ 2MB</td>
+<td>32MB ~ 1GB</td>
+<td>1GB ~ 1TB</td>
+<td>5GB ~ 10TB</td>
+</tr>
+<tr>
+<td>价格</td>
+<td>很高</td>
+<td>较高</td>
+<td>高</td>
+<td>较低</td>
+<td>低</td>
+</tr>
+<tr>
+<td>材料工艺</td>
+<td>ECL</td>
+<td>SRAM</td>
+<td>DRAM</td>
+<td>磁表面</td>
+<td>磁、光等</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      <categories>
+        <category>计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>计算机系统</tag>
+        <tag>计算机组成原理</tag>
       </tags>
   </entry>
 </search>
