@@ -83,6 +83,10 @@
 <li>在编写内容的过程中观察、总结自身的<strong>思想方法</strong>，争取运用到<strong>其它领域</strong>中(发展)</li>
 <li><span class='heimu'>化解(延缓?)自身的一个小(?)危机(?)</span></li>
 </ul>
+<h3 id="参考书籍">参考书籍</h3>
+<ul>
+<li>《深入理解计算机系统》</li>
+</ul>
 <h3 id="内容">内容</h3>
 <ul>
 <li>本质上学习笔记，主要记录自身对相关概念的理解，或是搬运其它资料，整体可能缺乏<strong>实践</strong>，内容较为随意，十分主观</li>
@@ -94,29 +98,31 @@
 </ul>
 <h3 id="函数模型">函数模型</h3>
 <ol>
-<li>将计算机系统抽象简化成一个函数:<br>
-$$y = f(x)$$<br>
-其中：
+<li>将计算机系统抽象简化成一个函数:</li>
+</ol>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y = f(x)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span></span></p>
+<p>其中：</p>
 <ul>
-<li>$x$ 表示输入，内容<strong>有限</strong></li>
-<li>$f$ 表示一个函数/功能模型，在实现把输入内容变成输出内容的前提下，里面可以是<strong>任意</strong>的内容</li>
-<li>$y$ 表示输出，内容同样是<strong>有限</strong>的</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 表示输入，内容<strong>有限</strong></li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> 表示一个函数/功能模型，在实现把输入内容变成输出内容的前提下，里面可以是<strong>任意</strong>的内容</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 表示输出，内容同样是<strong>有限</strong>的</li>
 </ul>
-</li>
-<li><strong>使用者/用户</strong>仅了解 $f$ 处提供了输入 $x$ 和输出 $y$ 的地方，但对于 $f$ 内部的构造原理一无所知(黑盒)；</li>
-<li><strong>开发者</strong>需要实现 $f$ 内部，对外提供输入 $x$ 和输出 $y$ 的地方或规范(接口)</li>
+<ol start="2">
+<li><strong>使用者/用户</strong>仅了解 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> 处提供了输入 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 和输出 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 的地方，但对于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> 内部的构造原理一无所知(黑盒)；</li>
+<li><strong>开发者</strong>需要实现 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> 内部，对外提供输入 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 和输出 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 的地方或规范(接口)</li>
 </ol>
 <blockquote>
-<p>举个例子，当集合 ${11,12,13}$ 内的数以此作为输入 $x$ 时，要求输出 $y$ 的结果分别是 $1,2,3$ ,此时 $f$ 可以是下图的实现(绿色部分)：<br>
+<p>举个例子，当集合 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mn>11</mn><mo separator="true">,</mo><mn>12</mn><mo separator="true">,</mo><mn>13</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{11,12,13\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">1</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">3</span><span class="mclose">}</span></span></span></span> 内的数以此作为输入 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 时，要求输出 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 的结果分别是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">1,2,3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span></span></span></span> ,此时 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> 可以是下图的实现(绿色部分)：<br>
 <img src="/images/computer_system/function_implement.png" alt="函数实现(绿色部分)"><br>
-绿色部分实现对用户是未知的，内部的实现可能有点奇怪（例如 $f4$ ,已经和输入内容无关），但算是能够“正常”运转</p>
+绿色部分实现对用户是未知的，内部的实现可能有点奇怪（例如 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mn>4</mn></mrow><annotation encoding="application/x-tex">f4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord">4</span></span></span></span> ,已经和输入内容无关），但算是能够“正常”运转</p>
 </blockquote>
 <ul>
-<li>$f$ 的内容是任意的，该函数在计算机系统内部多种领域均可套用</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> 的内容是任意的，该函数在计算机系统内部多种领域均可套用</li>
 </ul>
 <h3 id="模块化">模块化</h3>
 <ol>
-<li>对于 $f$ 内部而言，一个复杂的系统会被拆分成多个模块，执行特定任务。每个模块相连接，使整个系统得以运转</li>
+<li>对于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> 内部而言，一个复杂的系统会被拆分成多个模块，执行特定任务。每个模块相连接，使整个系统得以运转</li>
 <li>模块是有限个的，模块的功能在有限步骤内完成</li>
 <li>同样，每个模块也可以是一个函数模型，对于负责完成模块的开发者是可见的，其他人不可见</li>
 <li>功能模块化便于后续定位问题，迭代优化更新等<br>
@@ -1996,6 +2002,270 @@ $$ Y = AB + \overline{A} \overline{B} $$</li>
 </tr>
 </tbody>
 </table>
+]]></content>
+      <categories>
+        <category>计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>计算机系统</tag>
+        <tag>计算机组成原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>主存</title>
+    <url>/9c87b9e0/</url>
+    <content><![CDATA[<h2 id="存储技术">存储技术</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>每位晶体管数</th>
+<th>相对访问时间</th>
+<th>持续的?</th>
+<th>敏感的?</th>
+<th>相对花费</th>
+<th>应用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SRAM</td>
+<td>6</td>
+<td>1×</td>
+<td>是</td>
+<td>否</td>
+<td>1000×</td>
+<td>高速缓存存储器</td>
+</tr>
+<tr>
+<td>DRAM</td>
+<td>1</td>
+<td>10×</td>
+<td>否</td>
+<td>是</td>
+<td>1×</td>
+<td>主存，帧缓冲区</td>
+</tr>
+</tbody>
+</table>
+<h2 id="地址译码方式">地址译码方式</h2>
+<h3 id="一维地址译码">一维地址译码</h3>
+<ul>
+<li>n 位地址，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">2^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span> 条选择线</li>
+<li>芯片容量增大时，译码器复杂度按指数规律增加</li>
+</ul>
+<h3 id="二维地址译码">二维地址译码</h3>
+<ul>
+<li>m 位行地址，n 位列地址，共 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mi>m</mi><mo>+</mo><mi>n</mi></mrow></msup></mrow><annotation encoding="application/x-tex">2^{m+n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.771331em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mbin mtight">+</span><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span></span> 条选择线</li>
+<li>相比一维地址编码更节省驱动器和译码线</li>
+</ul>
+<h2 id="随机访问存储器">随机访问存储器</h2>
+<ul>
+<li>静态RAM(SRAM)</li>
+<li>动态RAM(DRAM)</li>
+</ul>
+<h3 id="静态ram-sram">静态RAM(SRAM)</h3>
+<h4 id="特点">特点</h4>
+<ul>
+<li>使用<strong>双稳态</strong>触发器存储位数据(六管 MOS 静态存储器)</li>
+<li>只要有电，就永远保持其值(静态)(存在干扰时，当干扰消除时，电路会恢复到稳定值)</li>
+<li>存取速度快，集成度低(容量小)，价格高</li>
+<li>常用作高速缓冲存储器 Cache</li>
+</ul>
+<h3 id="动态ram-dram">动态RAM(DRAM)</h3>
+<h4 id="特点">特点</h4>
+<ul>
+<li>使用半导体器件中分布电容上有无电荷来存储位数据(单管 MOS 静态存储器)</li>
+<li>电源不掉电的情况下，信息也会丢失，因此需要不断刷新(存储单元大约在10~100ms内失去电荷，通过周期性读出、重写完成刷新)(当电压被扰乱后，就不会恢复了)</li>
+<li>部分系统使用纠错码，对计算机的字多编几个位，来发现并纠正一个字中的存在的错误位</li>
+<li>存取速度慢，集成度高(容量大)，价格低</li>
+<li>常用作内存条/图形系统的帧缓冲区</li>
+</ul>
+<h4 id="刷新机制">刷新机制</h4>
+<ul>
+<li>刷新周期: 从上一次刷新结束到下一次对整个DRAM全部刷新一遍为止的时间间隔</li>
+<li>刷新操作: 按行执行内部的读写操作，刷新一行的所需时间为一个存取周期</li>
+<li>单元刷新的间隔时间: DRAM 允许的最大信息保持时间，一般为2ms</li>
+<li>刷新方式: 集中式刷新、分散式刷新和异步式刷新</li>
+</ul>
+<h2 id="只读存储器">只读存储器</h2>
+<ul>
+<li>只读存储器(Read-Only Memory)是一种只能读取指令和数据的存储器，即使是在关电后，仍然保存信息，属于非易失性存储器</li>
+<li>在制造过程中，由存储器厂商或用户将指令和数据以一特制软件流程写入(烧录)到存储体中，该写入方法称为“编程”</li>
+<li>存储在 ROM 设备中的程序通常被称为固件(firmware)。当一个计算机系统通电以后，它会运行存储在 ROM 中的固件(例如 BIOS 程序)</li>
+</ul>
+<h3 id="分类">分类</h3>
+<p>ROM 是以它们能够被重编程(写)的次数和对它们进行重编程所用的机制来区分的</p>
+<table>
+<thead>
+<tr>
+<th>存储器</th>
+<th>类别</th>
+<th>擦除方式</th>
+<th>能否单字节修改</th>
+<th>写机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MROM</td>
+<td>只读</td>
+<td>不允许</td>
+<td>否</td>
+<td>掩膜位写</td>
+</tr>
+<tr>
+<td>PROM</td>
+<td>写一次读多次</td>
+<td>不允许</td>
+<td>否</td>
+<td>电信号</td>
+</tr>
+<tr>
+<td>EPROM</td>
+<td>写多次读多次</td>
+<td>紫外线擦除，脱机改写</td>
+<td>否</td>
+<td>电信号</td>
+</tr>
+<tr>
+<td>E²PROM</td>
+<td>写多次读多次</td>
+<td>电擦除，在线改写</td>
+<td>能</td>
+<td>电信号</td>
+</tr>
+<tr>
+<td>Flash Memory</td>
+<td>写多次读多次</td>
+<td>电擦除，在线改写</td>
+<td>否</td>
+<td>电信号</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>掩膜式 ROM MROM(Masked ROM)
+<ul>
+<li>存储的信息由生产厂家在掩膜工艺过程&quot;写入&quot;，用户无法修改</li>
+<li>信息可靠性高，集成度高，适合大批量生产，价格便宜</li>
+</ul>
+</li>
+<li>可编程 ROM PROM(Programmable ROM)
+<ul>
+<li>芯片出厂时所有位为0，用户通过编程器熔断单元熔丝，即写入1</li>
+<li>只能用高电流熔断一次(写入一次)</li>
+</ul>
+</li>
+<li>可擦写可编程 ROM EPROM(Erasable Programmable ROM)
+<ul>
+<li>紫外线照射“石英窗口”，使得浮栅内积存电子，管子内有导电沟道，所在位清零</li>
+<li>通过特殊设备写入1</li>
+<li>擦除和重编程次数数量级达1000次</li>
+</ul>
+</li>
+<li>电子可擦写可编程 ROM EEPROM(Electrically Erasable Programmable ROM)
+<ul>
+<li>类似 EPROM，但不需要物理上一个独立的编程设备，可直接在印制电路板上编程</li>
+<li>编程次数数量级达 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup></mrow><annotation encoding="application/x-tex">10^5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span> 次</li>
+</ul>
+</li>
+<li>闪速存储器，闪存 Flash Memory
+<ul>
+<li><strong>高密度非易失性</strong>的读/写存储器(存储容量大，可长期保存)</li>
+<li>基于 EEPROM</li>
+</ul>
+</li>
+</ul>
+<h2 id="主存扩展">主存扩展</h2>
+<h3 id="前提知识">前提知识</h3>
+<p>芯片信号线组简要分类:</p>
+<ol>
+<li>地址线</li>
+<li>数据线</li>
+<li>控制线</li>
+</ol>
+<p><img src="/images/computer_system/memory_simple_chip.png" alt="存储器简化引脚图"></p>
+<ul>
+<li>控制线组
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mrow><mi>c</mi><mi>c</mi></mrow></msub></mrow><annotation encoding="application/x-tex">V_{cc}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>: 电路电源电压(高电平)</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mrow><mi>p</mi><mi>p</mi></mrow></msub></mrow><annotation encoding="application/x-tex">V_{pp}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>: 擦除电压</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mi>N</mi><mi>D</mi></mrow><annotation encoding="application/x-tex">GND</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span></span></span></span>: 地线(低电平)</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mrow><mi>C</mi><mi>S</mi></mrow><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{CS}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833300000000001em;vertical-align:0em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span>: 片选信号(低电平有效)</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mrow><mi>W</mi><mi>E</mi></mrow><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{WE}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833300000000001em;vertical-align:0em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span>: 写使能信号(低电平有效)</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mrow><mi>O</mi><mi>E</mi></mrow><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{OE}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833300000000001em;vertical-align:0em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span>: 读使能信号(低电平有效)</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mrow><mi>R</mi><mi>A</mi><mi>S</mi></mrow><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{RAS}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833300000000001em;vertical-align:0em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span>: 行地址选通信号(低电平有效)</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mrow><mi>C</mi><mi>A</mi><mi>S</mi></mrow><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{CAS}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833300000000001em;vertical-align:0em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span>: 列地址选通信号(低电平有效)</li>
+<li>其它(例如 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mi>L</mi><mi>K</mi></mrow><annotation encoding="application/x-tex">CLK</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span></span></span></span> 时钟信号，图中没有列出来)</li>
+</ul>
+</li>
+<li>地址线组
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mi>x</mi></msub></mrow><annotation encoding="application/x-tex">A_{x}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>: 图中是简化的描述，地址线组可被描述为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mn>0</mn></msub><mo>…</mo><msub><mi>A</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">A_{0} \dots A_{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，占n个引脚</li>
+<li>当数据地址有20位，但引脚不足20个时，需要复用地址引脚</li>
+<li>地址线一般只用作输入</li>
+</ul>
+</li>
+<li>数据线组
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi><mi>x</mi></msub></mrow><annotation encoding="application/x-tex">D_{x}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>: 图中是简化的描述，地址线组可被描述为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi><mn>0</mn></msub><mo>…</mo><msub><mi>D</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">D_{0} \dots D_{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，占n个引脚</li>
+<li>对于 RAM 而言，数据线可为输入和输出</li>
+<li>对于 ROM 而言，数据线一般只作为输出，无法作为输入</li>
+</ul>
+</li>
+</ul>
+<h3 id="扩展方式">扩展方式</h3>
+<ol>
+<li>位扩展: 增加字长来扩展容量</li>
+<li>字扩展: 增加字的数量来扩展容量</li>
+<li>字位扩展: 增加字长和字的数量来扩展容量</li>
+</ol>
+<h4 id="位扩展">位扩展</h4>
+<ul>
+<li>要点
+<ul>
+<li>芯片的地址线，片选信号和读写信号与存储器相连</li>
+<li>芯片的数据线分成多组，按一定次序分别连接在各个存储器上</li>
+</ul>
+</li>
+<li>例
+<ul>
+<li>问题: 用 1K * 4 位的SRAM芯片扩展成 1K * 8 位的SRAM存储器</li>
+<li>分析: 芯片的地址线有10条(1K)，数据线8条(8bit)</li>
+<li>解答:<br>
+<img src="/images/computer_system/memory_bit_extend.png" alt="位扩展"></li>
+</ul>
+</li>
+</ul>
+<h4 id="字扩展">字扩展</h4>
+<ul>
+<li>要点
+<ul>
+<li>芯片的数据线，读写信号与存储器相连</li>
+<li>芯片的地址线若干低位分成多组，按一定次序分别连接在各个存储器上</li>
+<li>芯片的地址线若干高位连接片选信号</li>
+</ul>
+</li>
+<li>例
+<ul>
+<li>问题: 用 1K * 8 位的SRAM芯片扩展成 2K * 8 位的SRAM存储器</li>
+<li>分析: 芯片的地址线有11条(2K)，数据线8条(8bit)</li>
+<li>解答:<br>
+<img src="/images/computer_system/memory_word_extend.png" alt="字扩展"></li>
+</ul>
+</li>
+</ul>
+<h4 id="字位扩展">字位扩展</h4>
+<ul>
+<li>预设: 需要扩展的存储器容量为 m * n 位，已有存储器芯片容量为 x * y (x &lt; m, y &lt; n)</li>
+<li>要点
+<ul>
+<li>m / x 组芯片进行字扩展</li>
+<li>每组内 n / y 个芯片进行位扩展</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>计算机组成原理</category>
