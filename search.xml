@@ -198,77 +198,6 @@ hr:nth-of-type(2) {
       </tags>
   </entry>
   <entry>
-    <title>字典树</title>
-    <url>/eea60a6a/</url>
-    <content><![CDATA[<span id="more"></span>
-<blockquote>
-<p>声明：以下介绍均基于本人理解</p>
-</blockquote>
-<h2 id="概述">概述</h2>
-<ul>
-<li>字典树(Trie)，像字典一样的树</li>
-</ul>
-<h2 id="属性">属性</h2>
-<ul>
-<li>树：一棵<strong>有根</strong>的树</li>
-<li>结点：一般以类似键值对的形式存在，即包含两个成员信息：字符(key)作为结点标识，数值(value)作为标识出现的频率</li>
-<li>应用：检索字符串(例如字符串本身或其前缀、后缀等)</li>
-</ul>
-<h2 id="模板">模板</h2>
-<h3 id="数组结构存储">数组结构存储</h3>
-<h4 id="数组结构示例图">数组结构示例图</h4>
-<p><img src="/images/datastructure/trie/Trie%E6%95%B0%E7%BB%84.png" alt="数组结构示例"></p>
-<h4 id="代码-数组树">代码(数组树)</h4>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> nex[<span class="number">100000</span>][<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">bool</span> exist[<span class="number">100000</span>] = &#123;<span class="literal">false</span>&#125;;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">Trie</span>() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> p = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; word.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> c = word[i] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (!nex[p][c]) nex[p][c] = ++cnt;  <span class="comment">// 如果没有，就添加结点</span></span><br><span class="line">            p = nex[p][c];</span><br><span class="line">        &#125;</span><br><span class="line">        exist[p] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">search</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> p = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; word.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> c = word[i] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (!nex[p][c]) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            p = nex[p][c];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> exist[p];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="链表结构存储">链表结构存储</h3>
-<h4 id="结点结构示例图">结点结构示例图</h4>
-<p><img src="/images/datastructure/trie/trie%E7%BB%93%E6%9E%84%E4%BD%93.png" alt="结构体示例"></p>
-<h4 id="代码-链表树">代码(链表树)</h4>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">        Node* next[<span class="number">26</span>];</span><br><span class="line">        <span class="type">int</span> freq;</span><br><span class="line">        <span class="type">bool</span> exist = <span class="literal">false</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    Node* root;</span><br><span class="line">    <span class="built_in">Trie</span>() &#123;</span><br><span class="line">        root = <span class="keyword">new</span> <span class="built_in">Node</span>();</span><br><span class="line">        root-&gt;freq = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; ++i) &#123;</span><br><span class="line">            root-&gt;next[i] = <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> cur = root;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c: word) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>] == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">                cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>] = <span class="keyword">new</span> <span class="built_in">Node</span>();</span><br><span class="line">                cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>]-&gt;freq = <span class="number">1</span>;</span><br><span class="line">                cur = cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>]-&gt;freq++;</span><br><span class="line">                cur = cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cur-&gt;exist = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">search</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> cur = root;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c: word) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>] == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            cur = cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cur-&gt;exist;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="复杂度分析">复杂度分析</h2>
-<p>预设所有字符串总长度为n</p>
-<ul>
-<li>构造字典树
-<ul>
-<li>空间: O(nK)(对于结构体而言K为结点大小，对于数组而言K = 26)</li>
-<li>时间: O(n)</li>
-</ul>
-</li>
-<li>检索
-<ul>
-<li>时间：O(n)</li>
-</ul>
-</li>
-</ul>
-<h2 id="题单">题单</h2>
-<blockquote>
-<p>参考来源：<a href="https://leetcode.cn/u/endlesscheng/">灵茶山艾府</a></p>
-</blockquote>
-<ul>
-<li>[x] <a href="https://leetcode.cn/problems/implement-trie-prefix-tree/">208 实现 Trie (前缀树)</a></li>
-<li>[x] <a href="https://leetcode.cn/problems/sum-of-prefix-scores-of-strings/">2416 字符串的前缀分数和</a></li>
-<li>[ ] <a href="https://leetcode.cn/problems/palindrome-pairs/">336 回文对</a></li>
-<li>[ ] <a href="https://leetcode.cn/problems/prefix-and-suffix-search/">745 前缀和后缀搜索</a></li>
-<li>[ ] <a href="https://leetcode.cn/problems/count-prefix-and-suffix-pairs-ii/">3045 统计前后缀下标对 II</a></li>
-<li>[x] <a href="https://leetcode.cn/problems/longest-common-suffix-queries/">3093 最长公共后缀查询</a></li>
-</ul>
-<h2 id="发散-随想-自身理解">发散/随想/自身理解(?)</h2>
-<ul>
-<li>字典树突出<strong>有序匹配</strong>，对<strong>前后缀</strong>有特效</li>
-<li>应用方面，以结构体示例，若标识不限字符，那么检索的目标即从字符串扩展到某种序列。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>数据结构与算法分析</category>
-      </categories>
-      <tags>
-        <tag>树</tag>
-        <tag>字符串</tag>
-        <tag>前缀</tag>
-        <tag>后缀</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>计算机系统知识大纲</title>
     <url>/51221df9/</url>
     <content><![CDATA[<span id="more"></span>
@@ -311,7 +240,7 @@ hr:nth-of-type(2) {
 </ol>
 <blockquote>
 <p>举个例子，当集合 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mn>11</mn><mo separator="true">,</mo><mn>12</mn><mo separator="true">,</mo><mn>13</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{11,12,13\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">1</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">3</span><span class="mclose">}</span></span></span></span> 内的数以此作为输入 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 时，要求输出 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 的结果分别是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">1,2,3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span></span></span></span> ,此时 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> 可以是下图的实现(绿色部分)：<br>
-<img src="/images/computer_system/function_implement.png" alt="函数实现(绿色部分)"><br>
+<img src="/images/computer_system/intro/function_implement.png" alt="函数实现(绿色部分)"><br>
 绿色部分实现对用户是未知的，内部的实现可能有点奇怪（例如 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mn>4</mn></mrow><annotation encoding="application/x-tex">f4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord">4</span></span></span></span> ,已经和输入内容无关），但算是能够“正常”运转</p>
 </blockquote>
 <ul>
@@ -323,7 +252,7 @@ hr:nth-of-type(2) {
 <li>模块是有限个的，模块的功能在有限步骤内完成</li>
 <li>同样，每个模块也可以是一个函数模型，对于负责完成模块的开发者是可见的，其他人不可见</li>
 <li>功能模块化便于后续定位问题，迭代优化更新等<br>
-<img src="/images/computer_system/modularization.png" alt="模块化"></li>
+<img src="/images/computer_system/intro/modularization.png" alt="模块化"></li>
 </ol>
 <h2 id="目录">目录</h2>
 <ol>
@@ -643,6 +572,77 @@ hr:nth-of-type(2) {
       </tags>
   </entry>
   <entry>
+    <title>字典树</title>
+    <url>/eea60a6a/</url>
+    <content><![CDATA[<span id="more"></span>
+<blockquote>
+<p>声明：以下介绍均基于本人理解</p>
+</blockquote>
+<h2 id="概述">概述</h2>
+<ul>
+<li>字典树(Trie)，像字典一样的树</li>
+</ul>
+<h2 id="属性">属性</h2>
+<ul>
+<li>树：一棵<strong>有根</strong>的树</li>
+<li>结点：一般以类似键值对的形式存在，即包含两个成员信息：字符(key)作为结点标识，数值(value)作为标识出现的频率</li>
+<li>应用：检索字符串(例如字符串本身或其前缀、后缀等)</li>
+</ul>
+<h2 id="模板">模板</h2>
+<h3 id="数组结构存储">数组结构存储</h3>
+<h4 id="数组结构示例图">数组结构示例图</h4>
+<p><img src="/images/datastructure/trie/Trie%E6%95%B0%E7%BB%84.png" alt="数组结构示例"></p>
+<h4 id="代码-数组树">代码(数组树)</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> nex[<span class="number">100000</span>][<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">bool</span> exist[<span class="number">100000</span>] = &#123;<span class="literal">false</span>&#125;;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">Trie</span>() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> p = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; word.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> c = word[i] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (!nex[p][c]) nex[p][c] = ++cnt;  <span class="comment">// 如果没有，就添加结点</span></span><br><span class="line">            p = nex[p][c];</span><br><span class="line">        &#125;</span><br><span class="line">        exist[p] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">search</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> p = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; word.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> c = word[i] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (!nex[p][c]) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            p = nex[p][c];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> exist[p];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="链表结构存储">链表结构存储</h3>
+<h4 id="结点结构示例图">结点结构示例图</h4>
+<p><img src="/images/datastructure/trie/trie%E7%BB%93%E6%9E%84%E4%BD%93.png" alt="结构体示例"></p>
+<h4 id="代码-链表树">代码(链表树)</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">        Node* next[<span class="number">26</span>];</span><br><span class="line">        <span class="type">int</span> freq;</span><br><span class="line">        <span class="type">bool</span> exist = <span class="literal">false</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    Node* root;</span><br><span class="line">    <span class="built_in">Trie</span>() &#123;</span><br><span class="line">        root = <span class="keyword">new</span> <span class="built_in">Node</span>();</span><br><span class="line">        root-&gt;freq = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; ++i) &#123;</span><br><span class="line">            root-&gt;next[i] = <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> cur = root;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c: word) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>] == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">                cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>] = <span class="keyword">new</span> <span class="built_in">Node</span>();</span><br><span class="line">                cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>]-&gt;freq = <span class="number">1</span>;</span><br><span class="line">                cur = cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>]-&gt;freq++;</span><br><span class="line">                cur = cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cur-&gt;exist = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">search</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> cur = root;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c: word) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>] == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            cur = cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cur-&gt;exist;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="复杂度分析">复杂度分析</h2>
+<p>预设所有字符串总长度为n</p>
+<ul>
+<li>构造字典树
+<ul>
+<li>空间: O(nK)(对于结构体而言K为结点大小，对于数组而言K = 26)</li>
+<li>时间: O(n)</li>
+</ul>
+</li>
+<li>检索
+<ul>
+<li>时间：O(n)</li>
+</ul>
+</li>
+</ul>
+<h2 id="题单">题单</h2>
+<blockquote>
+<p>参考来源：<a href="https://leetcode.cn/u/endlesscheng/">灵茶山艾府</a></p>
+</blockquote>
+<ul>
+<li>[x] <a href="https://leetcode.cn/problems/implement-trie-prefix-tree/">208 实现 Trie (前缀树)</a></li>
+<li>[x] <a href="https://leetcode.cn/problems/sum-of-prefix-scores-of-strings/">2416 字符串的前缀分数和</a></li>
+<li>[ ] <a href="https://leetcode.cn/problems/palindrome-pairs/">336 回文对</a></li>
+<li>[ ] <a href="https://leetcode.cn/problems/prefix-and-suffix-search/">745 前缀和后缀搜索</a></li>
+<li>[ ] <a href="https://leetcode.cn/problems/count-prefix-and-suffix-pairs-ii/">3045 统计前后缀下标对 II</a></li>
+<li>[x] <a href="https://leetcode.cn/problems/longest-common-suffix-queries/">3093 最长公共后缀查询</a></li>
+</ul>
+<h2 id="发散-随想-自身理解">发散/随想/自身理解(?)</h2>
+<ul>
+<li>字典树突出<strong>有序匹配</strong>，对<strong>前后缀</strong>有特效</li>
+<li>应用方面，以结构体示例，若标识不限字符，那么检索的目标即从字符串扩展到某种序列。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数据结构与算法分析</category>
+      </categories>
+      <tags>
+        <tag>树</tag>
+        <tag>字符串</tag>
+        <tag>前缀</tag>
+        <tag>后缀</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[梦日记]-回溯</title>
     <url>/7ce427c0/</url>
     <content><![CDATA[<h2 id="特殊属性补充">特殊属性补充</h2>
@@ -679,6 +679,25 @@ hr:nth-of-type(2) {
 <li><strong>回溯前自己会感觉到要开始回溯</strong>，在出生前被拉去当龙套时，我感觉到自己又要回溯了，这时候就醒了</li>
 </ul>
 <h3 id="分析">分析?</h3>
+]]></content>
+      <categories>
+        <category>随记</category>
+      </categories>
+      <tags>
+        <tag>随记</tag>
+        <tag>梦日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>梦日记</title>
+    <url>/e6aca331/</url>
+    <content><![CDATA[<h2 id="简介">简介</h2>
+<p>记录自己记忆较深的梦，以供后续分析等等</p>
+<h2 id="序">序</h2>
+<ul>
+<li><strong>清醒时依靠幻象将支离破碎的内容构筑成完整的现实，那么脱离了符号约束的梦境，所展现的可能比现实还要现实</strong></li>
+</ul>
+<h2 id="目录">目录</h2>
 ]]></content>
       <categories>
         <category>随记</category>
@@ -762,25 +781,6 @@ hr:nth-of-type(2) {
 <li>似乎是快要意识到红色按钮的秘密，于是醒来了</li>
 </ul>
 <h2 id="分析">分析?</h2>
-]]></content>
-      <categories>
-        <category>随记</category>
-      </categories>
-      <tags>
-        <tag>随记</tag>
-        <tag>梦日记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>梦日记</title>
-    <url>/e6aca331/</url>
-    <content><![CDATA[<h2 id="简介">简介</h2>
-<p>记录自己记忆较深的梦，以供后续分析等等</p>
-<h2 id="序">序</h2>
-<ul>
-<li><strong>清醒时依靠幻象将支离破碎的内容构筑成完整的现实，那么脱离了符号约束的梦境，所展现的可能比现实还要现实</strong></li>
-</ul>
-<h2 id="目录">目录</h2>
 ]]></content>
       <categories>
         <category>随记</category>
@@ -964,7 +964,7 @@ hr:nth-of-type(2) {
 <li>数据线</li>
 <li>控制线</li>
 </ol>
-<p><img src="/images/computer_system/memory_simple_chip.png" alt="存储器简化引脚图"></p>
+<p><img src="/images/computer_system/memory/memory_simple_chip.png" alt="存储器简化引脚图"></p>
 <ul>
 <li>控制线组
 <ul>
@@ -1013,7 +1013,7 @@ hr:nth-of-type(2) {
 <li>问题: 用 1K * 4 位的SRAM芯片扩展成 1K * 8 位的SRAM存储器</li>
 <li>分析: 芯片的地址线有10条(1K)，数据线8条(8bit)</li>
 <li>解答:<br>
-<img src="/images/computer_system/memory_bit_extend.png" alt="位扩展"></li>
+<img src="/images/computer_system/memory/memory_bit_extend.png" alt="位扩展"></li>
 </ul>
 </li>
 </ul>
@@ -1031,7 +1031,7 @@ hr:nth-of-type(2) {
 <li>问题: 用 1K * 8 位的SRAM芯片扩展成 2K * 8 位的SRAM存储器</li>
 <li>分析: 芯片的地址线有11条(2K)，数据线8条(8bit)</li>
 <li>解答:<br>
-<img src="/images/computer_system/memory_word_extend.png" alt="字扩展"></li>
+<img src="/images/computer_system/memory/memory_word_extend.png" alt="字扩展"></li>
 </ul>
 </li>
 </ul>
@@ -1096,7 +1096,7 @@ hr:nth-of-type(2) {
 </ul>
 </li>
 <li>连接<br>
-<img src="/images/computer_system/memory_example.png" alt="主存实例"></li>
+<img src="/images/computer_system/memory/memory_example.png" alt="主存实例"></li>
 </ol>
 ]]></content>
       <categories>
@@ -1180,140 +1180,6 @@ hr:nth-of-type(2) {
 <blockquote>
 <p><a href="https://ljs-organization.gitbook.io/ji-suan-ji-zu-cheng-yuan-li-bi-ji/di-san-zhang-cun-chu-xi-tong/3.5-shuang-duan-kou-ram-he-duo-mo-kuai-cun-chu-qi">双端口RAM和多模块存储器</a></p>
 </blockquote>
-]]></content>
-      <categories>
-        <category>计算机组成原理</category>
-      </categories>
-      <tags>
-        <tag>计算机系统</tag>
-        <tag>计算机组成原理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>存储器</title>
-    <url>/a9104ae7/</url>
-    <content><![CDATA[<h2 id="局部性原理">局部性原理</h2>
-<p>一个编写良好的计算机程序常常具有良好的局部性(locality)。也就是，它们倾向于引用邻近于其他最近引用过的数据项的数据项，或者最近引用过的数据项本身。</p>
-<ul>
-<li><strong>时间局部性</strong>(temporal locality): 在一个具有良好时间局部性的程序中，被引用过一次的内存位置很可能在不远的将来再被多次引用</li>
-<li><strong>空间局部性</strong>(spatial locality): 在一个具有良好空间局部性的程序中，如果一个内存位置被引用了一次，那么程序很可能在不远的将来引用附近的一个内存位置。</li>
-</ul>
-<h2 id="分类">分类</h2>
-<p><img src="/images/computer_system/memory_classification.png" alt="存储器分类"></p>
-<h3 id="计算机系统中的作用">计算机系统中的作用</h3>
-<ul>
-<li>主存储器/内存: 主机的一部分，用于存放系统当前正在执行的数据和程序(临时存储器)</li>
-<li>辅助存储器/外存: 为外部设备，用于存放不用的数据和程序(永久存储器)<br>
-<img src="/images/computer_system/memory_cpu_interactive.png" alt="CPU与存储器的交互"></li>
-</ul>
-<h3 id="存储介质">存储介质</h3>
-<ul>
-<li>半导体器件: 半导体存储器(RAM，ROM，主存)</li>
-<li>磁性材料: 磁表面存储器(磁盘，磁带，辅存)</li>
-<li>光介质: 光盘存储器(辅存)</li>
-</ul>
-<h3 id="存取方式">存取方式</h3>
-<ul>
-<li>随机存取: 按地址访问，存取时间与存储单元的位置无关(主存)</li>
-<li>顺序存取: 按地址访问，存取时间与存储单元的位置有关(磁盘，磁带)</li>
-<li>相联存取: 可以按内容(Content)或标签(Tag)访问存储单元</li>
-</ul>
-<h3 id="读写方式">读写方式</h3>
-<ul>
-<li>只读存储器(ROM，Read-Only Memory)</li>
-<li>随机存取存储器(RAM，Random-Access Memory)</li>
-</ul>
-<h3 id="信息的可保存性">信息的可保存性</h3>
-<ul>
-<li>永久记忆存储器/非易失性存储器: 断电后仍能保存信息(ROM，辅存)</li>
-<li>非永久记忆存储器/易失性存储器: 断电后信息丢失(主存中的RAM)</li>
-</ul>
-<h2 id="性能指标">性能指标</h2>
-<ul>
-<li><strong>存储器容量</strong>: 存储器中所有存储单元的总数目(存储器可容纳的二进制信息量)，描述单位通常为 <strong>字节</strong> 或 <strong>位</strong>
-<ul>
-<li><strong>位</strong>是构成存储器的最小单位，<strong>字节</strong>是数据存储的基本单位</li>
-<li>单元<strong>地址</strong>是内存单元的<strong>唯一标志</strong></li>
-<li>量化单位: 通常用 KB, MB, GB, TB 表示(B=8位，1个字节)，其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>=</mo><msup><mn>2</mn><mn>10</mn></msup></mrow><annotation encoding="application/x-tex">K=2^{10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><msup><mn>2</mn><mn>20</mn></msup></mrow><annotation encoding="application/x-tex">M=2^{20}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>=</mo><msup><mn>2</mn><mn>30</mn></msup></mrow><annotation encoding="application/x-tex">G=2^{30}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>=</mo><msup><mn>2</mn><mn>40</mn></msup></mrow><annotation encoding="application/x-tex">T=2^{40}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span></li>
-<li>总容量 = 存储单元个数 * 存储单元字长 (bit) 或 总容量 = 存储单元个数 * 存储单元字长 / 8 (Byte)</li>
-</ul>
-</li>
-<li><strong>存储速度</strong>
-<ul>
-<li>存取时间(Memory Access Time): 启动一次存储器操作到完成该操作所需的全部时间，时间越短，性能越好(单位: ns)</li>
-<li>存取周期(Memory Cycle Time): 存储器进行连续两次独立存储器操作所需的最小间隔时间(通常存储周期不小于存取时间)</li>
-<li>存储器带宽: 单位时间内从存储器读出的二进制数信息量，一般用 B/S(字节/秒)或 b/S(位/秒)表示</li>
-</ul>
-</li>
-<li><strong>存储器价格</strong>: 以每个数据位的价格来衡量
-<ul>
-<li>设存储器的容量为S，价格为C，则位价为C/S</li>
-<li>包含存储元件以及为该存储器操作服务的外围电路的价格</li>
-</ul>
-</li>
-<li><strong>可靠性</strong>: 表示存储器正常工作(正确存取)的性能</li>
-</ul>
-<h2 id="层次结构">层次结构</h2>
-<h3 id="背景">背景</h3>
-<ul>
-<li>存储技术: 不同存储技术的访问时间差异很大。速度较快的技术每字节的成本要比速度较慢的技术高，而且容量较小。CPU 和主存之间的速度差距在增大</li>
-<li>计算机软件: 一个编写良好的计算机程序常常具有良好的局部性</li>
-</ul>
-<h3 id="层次结构图">层次结构图</h3>
-<p><img src="/images/computer_system/memory_level.png" alt="层次结构"></p>
-<ul>
-<li>L0 - L4 在主机内，往下的存储器位于主机外部</li>
-<li>存储器层次结构的本质是，每一层存储设备都是较低一层的<strong>缓存</strong></li>
-<li>缓存和主存之间主要需要解决<strong>速度</strong>不匹配问题, 主存和辅存之间主要需要解决<strong>容量</strong>不匹配问题</li>
-<li>缓存和主存使用的是<strong>实地址</strong>(物理地址), 主存和辅存之间使用<strong>虚地址</strong>(逻辑地址)</li>
-</ul>
-<h3 id="性能特性比较">性能特性比较</h3>
-<table>
-<thead>
-<tr>
-<th>存储器层次</th>
-<th>通用寄存器</th>
-<th>Cache</th>
-<th>主存储器</th>
-<th>磁盘存储器</th>
-<th>脱机存储器</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>存储周期</td>
-<td>&lt;10ns</td>
-<td>10 ~ 60 ns</td>
-<td>60 ~ 300ns</td>
-<td>10 ~ 30 ms</td>
-<td>2 ~ 20 min</td>
-</tr>
-<tr>
-<td>存储容量</td>
-<td>&lt;512B</td>
-<td>8KB ~ 2MB</td>
-<td>32MB ~ 1GB</td>
-<td>1GB ~ 1TB</td>
-<td>5GB ~ 10TB</td>
-</tr>
-<tr>
-<td>价格</td>
-<td>很高</td>
-<td>较高</td>
-<td>高</td>
-<td>较低</td>
-<td>低</td>
-</tr>
-<tr>
-<td>材料工艺</td>
-<td>ECL</td>
-<td>SRAM</td>
-<td>DRAM</td>
-<td>磁表面</td>
-<td>磁、光等</td>
-</tr>
-</tbody>
-</table>
 ]]></content>
       <categories>
         <category>计算机组成原理</category>
@@ -1638,12 +1504,146 @@ hr:nth-of-type(2) {
       </tags>
   </entry>
   <entry>
+    <title>存储器</title>
+    <url>/a9104ae7/</url>
+    <content><![CDATA[<h2 id="局部性原理">局部性原理</h2>
+<p>一个编写良好的计算机程序常常具有良好的局部性(locality)。也就是，它们倾向于引用邻近于其他最近引用过的数据项的数据项，或者最近引用过的数据项本身。</p>
+<ul>
+<li><strong>时间局部性</strong>(temporal locality): 在一个具有良好时间局部性的程序中，被引用过一次的内存位置很可能在不远的将来再被多次引用</li>
+<li><strong>空间局部性</strong>(spatial locality): 在一个具有良好空间局部性的程序中，如果一个内存位置被引用了一次，那么程序很可能在不远的将来引用附近的一个内存位置。</li>
+</ul>
+<h2 id="分类">分类</h2>
+<p><img src="/images/computer_system/memory/memory_classification.png" alt="存储器分类"></p>
+<h3 id="计算机系统中的作用">计算机系统中的作用</h3>
+<ul>
+<li>主存储器/内存: 主机的一部分，用于存放系统当前正在执行的数据和程序(临时存储器)</li>
+<li>辅助存储器/外存: 为外部设备，用于存放不用的数据和程序(永久存储器)<br>
+<img src="/images/computer_system/memory/memory_cpu_interactive.png" alt="CPU与存储器的交互"></li>
+</ul>
+<h3 id="存储介质">存储介质</h3>
+<ul>
+<li>半导体器件: 半导体存储器(RAM，ROM，主存)</li>
+<li>磁性材料: 磁表面存储器(磁盘，磁带，辅存)</li>
+<li>光介质: 光盘存储器(辅存)</li>
+</ul>
+<h3 id="存取方式">存取方式</h3>
+<ul>
+<li>随机存取: 按地址访问，存取时间与存储单元的位置无关(主存)</li>
+<li>顺序存取: 按地址访问，存取时间与存储单元的位置有关(磁盘，磁带)</li>
+<li>相联存取: 可以按内容(Content)或标签(Tag)访问存储单元</li>
+</ul>
+<h3 id="读写方式">读写方式</h3>
+<ul>
+<li>只读存储器(ROM，Read-Only Memory)</li>
+<li>随机存取存储器(RAM，Random-Access Memory)</li>
+</ul>
+<h3 id="信息的可保存性">信息的可保存性</h3>
+<ul>
+<li>永久记忆存储器/非易失性存储器: 断电后仍能保存信息(ROM，辅存)</li>
+<li>非永久记忆存储器/易失性存储器: 断电后信息丢失(主存中的RAM)</li>
+</ul>
+<h2 id="性能指标">性能指标</h2>
+<ul>
+<li><strong>存储器容量</strong>: 存储器中所有存储单元的总数目(存储器可容纳的二进制信息量)，描述单位通常为 <strong>字节</strong> 或 <strong>位</strong>
+<ul>
+<li><strong>位</strong>是构成存储器的最小单位，<strong>字节</strong>是数据存储的基本单位</li>
+<li>单元<strong>地址</strong>是内存单元的<strong>唯一标志</strong></li>
+<li>量化单位: 通常用 KB, MB, GB, TB 表示(B=8位，1个字节)，其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>=</mo><msup><mn>2</mn><mn>10</mn></msup></mrow><annotation encoding="application/x-tex">K=2^{10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><msup><mn>2</mn><mn>20</mn></msup></mrow><annotation encoding="application/x-tex">M=2^{20}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>=</mo><msup><mn>2</mn><mn>30</mn></msup></mrow><annotation encoding="application/x-tex">G=2^{30}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>=</mo><msup><mn>2</mn><mn>40</mn></msup></mrow><annotation encoding="application/x-tex">T=2^{40}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span></li>
+<li>总容量 = 存储单元个数 * 存储单元字长 (bit) 或 总容量 = 存储单元个数 * 存储单元字长 / 8 (Byte)</li>
+</ul>
+</li>
+<li><strong>存储速度</strong>
+<ul>
+<li>存取时间(Memory Access Time): 启动一次存储器操作到完成该操作所需的全部时间，时间越短，性能越好(单位: ns)</li>
+<li>存取周期(Memory Cycle Time): 存储器进行连续两次独立存储器操作所需的最小间隔时间(通常存储周期不小于存取时间)</li>
+<li>存储器带宽: 单位时间内从存储器读出的二进制数信息量，一般用 B/S(字节/秒)或 b/S(位/秒)表示</li>
+</ul>
+</li>
+<li><strong>存储器价格</strong>: 以每个数据位的价格来衡量
+<ul>
+<li>设存储器的容量为S，价格为C，则位价为C/S</li>
+<li>包含存储元件以及为该存储器操作服务的外围电路的价格</li>
+</ul>
+</li>
+<li><strong>可靠性</strong>: 表示存储器正常工作(正确存取)的性能</li>
+</ul>
+<h2 id="层次结构">层次结构</h2>
+<h3 id="背景">背景</h3>
+<ul>
+<li>存储技术: 不同存储技术的访问时间差异很大。速度较快的技术每字节的成本要比速度较慢的技术高，而且容量较小。CPU 和主存之间的速度差距在增大</li>
+<li>计算机软件: 一个编写良好的计算机程序常常具有良好的局部性</li>
+</ul>
+<h3 id="层次结构图">层次结构图</h3>
+<p><img src="/images/computer_system/memory/memory_level.png" alt="层次结构"></p>
+<ul>
+<li>L0 - L4 在主机内，往下的存储器位于主机外部</li>
+<li>存储器层次结构的本质是，每一层存储设备都是较低一层的<strong>缓存</strong></li>
+<li>缓存和主存之间主要需要解决<strong>速度</strong>不匹配问题, 主存和辅存之间主要需要解决<strong>容量</strong>不匹配问题</li>
+<li>缓存和主存使用的是<strong>实地址</strong>(物理地址), 主存和辅存之间使用<strong>虚地址</strong>(逻辑地址)</li>
+</ul>
+<h3 id="性能特性比较">性能特性比较</h3>
+<table>
+<thead>
+<tr>
+<th>存储器层次</th>
+<th>通用寄存器</th>
+<th>Cache</th>
+<th>主存储器</th>
+<th>磁盘存储器</th>
+<th>脱机存储器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>存储周期</td>
+<td>&lt;10ns</td>
+<td>10 ~ 60 ns</td>
+<td>60 ~ 300ns</td>
+<td>10 ~ 30 ms</td>
+<td>2 ~ 20 min</td>
+</tr>
+<tr>
+<td>存储容量</td>
+<td>&lt;512B</td>
+<td>8KB ~ 2MB</td>
+<td>32MB ~ 1GB</td>
+<td>1GB ~ 1TB</td>
+<td>5GB ~ 10TB</td>
+</tr>
+<tr>
+<td>价格</td>
+<td>很高</td>
+<td>较高</td>
+<td>高</td>
+<td>较低</td>
+<td>低</td>
+</tr>
+<tr>
+<td>材料工艺</td>
+<td>ECL</td>
+<td>SRAM</td>
+<td>DRAM</td>
+<td>磁表面</td>
+<td>磁、光等</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      <categories>
+        <category>计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>计算机系统</tag>
+        <tag>计算机组成原理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>计算机体系架构简述</title>
     <url>/fc022f0f/</url>
     <content><![CDATA[<h2 id="简介">简介</h2>
 <ul>
 <li>计算机系统 = 硬件 + 软件<br>
-<img src="/images/computer_system/computer_architecture.png" alt="计算机系统"></li>
+<img src="/images/computer_system/architecture/computer_architecture.png" alt="计算机系统"></li>
 </ul>
 <h2 id="计算机硬件系统组成">计算机硬件系统组成</h2>
 <ul>
@@ -1724,11 +1724,11 @@ hr:nth-of-type(2) {
 <li>使用二进制表示数据</li>
 <li>以运算器为中心</li>
 <li>指令顺序执行<br>
-<img src="/images/computer_system/base_on_arithmetic.png" alt="以存储器为中心的体系结构"></li>
+<img src="/images/computer_system/architecture/base_on_arithmetic.png" alt="以存储器为中心的体系结构"></li>
 </ul>
 </li>
 <li>改进后的冯·诺依曼计算机使其从原来的 <strong>以运算器为中心</strong> 演变为 <strong>以存储器为中心</strong> 。从系统结构上讲，主要是通过各种并行处理手段提高计算机系统性能<br>
-<img src="/images/computer_system/base_on_memory.png" alt="以存储器为中心的体系结构"></li>
+<img src="/images/computer_system/architecture/base_on_memory.png" alt="以存储器为中心的体系结构"></li>
 </ul>
 <h3 id="哈佛结构">哈佛结构</h3>
 <ul>
@@ -1824,7 +1824,7 @@ hr:nth-of-type(2) {
     <url>/b49f5e78/</url>
     <content><![CDATA[<h2 id="逻辑运算">逻辑运算</h2>
 <h3 id="门电路">门电路</h3>
-<p><img src="/images/computer_system/gate.png" alt="门电路"><br>
+<p><img src="/images/computer_system/alu/gate.png" alt="门电路"><br>
 上图展示的是一些较常见门电路，符号上方为常见的表示符号，下方为国标<br>
 其中，A 和 B 是输入(实际的门电路输入可能不局限于1到2个，可能更多)，Y 是输出(同输入，可能不止1个输出)</p>
 <p>具体表示的逻辑关系运算等知识参考: <a href="/d990e14a/">逻辑代数运算知识小结</a></p>
@@ -2384,11 +2384,11 @@ hr:nth-of-type(2) {
 <ul>
 <li>变量的最小项对应的按一定规则排列的方格图，每个方格代表一个最小项<br>
 例: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>=</mo><mover accent="true"><mi>A</mi><mo stretchy="true">‾</mo></mover><mo>+</mo><mover accent="true"><mi>A</mi><mo stretchy="true">‾</mo></mover><mover accent="true"><mi>B</mi><mo stretchy="true">‾</mo></mover><mo>+</mo><mi>B</mi><mi>C</mi><mi>D</mi><mo>+</mo><mi>B</mi><mover accent="true"><mi>D</mi><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">Y = \overline{A} + \overline{A}\overline{B} + BCD + B\overline{D}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.9666600000000001em;vertical-align:-0.08333em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">A</span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.9666600000000001em;vertical-align:-0.08333em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">A</span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8833300000000001em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span>, 卡诺图如下:<br>
-<img src="/images/computer_system/karnaughmap.png" alt="卡诺图"></li>
+<img src="/images/computer_system/number/karnaughmap.png" alt="卡诺图"></li>
 <li>化简
 <ul>
 <li>取值为1的相邻最小项画圈，个数必须为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup><mo separator="true">,</mo><mo stretchy="false">(</mo><mi>n</mi><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>2...</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">2^{n}, (n = 0, 1, 2...)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mclose">)</span></span></span></span><br>
-<img src="/images/computer_system/simplification.png" alt="卡诺图化简"></li>
+<img src="/images/computer_system/number/simplification.png" alt="卡诺图化简"></li>
 <li>合并最小项
 <ul>
 <li>蓝圈表示 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>A</mi><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{A}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833300000000001em;vertical-align:0em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">A</span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span></li>
