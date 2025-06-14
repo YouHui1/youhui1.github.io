@@ -2173,7 +2173,7 @@ hr:nth-of-type(2) {
 <li>组匹配: 组索引中定位组</li>
 <li>行匹配: 有效位判断 -&gt; 标记位匹配(只有一行，对应的数据块在哪一行是固定的)</li>
 <li>块偏移匹配<br>
-<img src="/images/computer_system/cache/cache_direct_mapping.png.png" alt="直接映射行匹配"></li>
+<img src="/images/computer_system/cache/cache_direct_mapping.png" alt="直接映射行匹配"></li>
 </ol>
 </li>
 <li>特点
