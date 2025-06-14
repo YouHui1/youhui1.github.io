@@ -198,6 +198,77 @@ hr:nth-of-type(2) {
       </tags>
   </entry>
   <entry>
+    <title>字典树</title>
+    <url>/eea60a6a/</url>
+    <content><![CDATA[<span id="more"></span>
+<blockquote>
+<p>声明：以下介绍均基于本人理解</p>
+</blockquote>
+<h2 id="概述">概述</h2>
+<ul>
+<li>字典树(Trie)，像字典一样的树</li>
+</ul>
+<h2 id="属性">属性</h2>
+<ul>
+<li>树：一棵<strong>有根</strong>的树</li>
+<li>结点：一般以类似键值对的形式存在，即包含两个成员信息：字符(key)作为结点标识，数值(value)作为标识出现的频率</li>
+<li>应用：检索字符串(例如字符串本身或其前缀、后缀等)</li>
+</ul>
+<h2 id="模板">模板</h2>
+<h3 id="数组结构存储">数组结构存储</h3>
+<h4 id="数组结构示例图">数组结构示例图</h4>
+<p><img src="/images/datastructure/trie/Trie%E6%95%B0%E7%BB%84.png" alt="数组结构示例"></p>
+<h4 id="代码-数组树">代码(数组树)</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> nex[<span class="number">100000</span>][<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">bool</span> exist[<span class="number">100000</span>] = &#123;<span class="literal">false</span>&#125;;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">Trie</span>() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> p = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; word.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> c = word[i] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (!nex[p][c]) nex[p][c] = ++cnt;  <span class="comment">// 如果没有，就添加结点</span></span><br><span class="line">            p = nex[p][c];</span><br><span class="line">        &#125;</span><br><span class="line">        exist[p] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">search</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> p = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; word.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> c = word[i] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (!nex[p][c]) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            p = nex[p][c];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> exist[p];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="链表结构存储">链表结构存储</h3>
+<h4 id="结点结构示例图">结点结构示例图</h4>
+<p><img src="/images/datastructure/trie/trie%E7%BB%93%E6%9E%84%E4%BD%93.png" alt="结构体示例"></p>
+<h4 id="代码-链表树">代码(链表树)</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">        Node* next[<span class="number">26</span>];</span><br><span class="line">        <span class="type">int</span> freq;</span><br><span class="line">        <span class="type">bool</span> exist = <span class="literal">false</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    Node* root;</span><br><span class="line">    <span class="built_in">Trie</span>() &#123;</span><br><span class="line">        root = <span class="keyword">new</span> <span class="built_in">Node</span>();</span><br><span class="line">        root-&gt;freq = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; ++i) &#123;</span><br><span class="line">            root-&gt;next[i] = <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> cur = root;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c: word) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>] == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">                cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>] = <span class="keyword">new</span> <span class="built_in">Node</span>();</span><br><span class="line">                cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>]-&gt;freq = <span class="number">1</span>;</span><br><span class="line">                cur = cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>]-&gt;freq++;</span><br><span class="line">                cur = cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cur-&gt;exist = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">search</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> cur = root;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c: word) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>] == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            cur = cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cur-&gt;exist;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="复杂度分析">复杂度分析</h2>
+<p>预设所有字符串总长度为n</p>
+<ul>
+<li>构造字典树
+<ul>
+<li>空间: O(nK)(对于结构体而言K为结点大小，对于数组而言K = 26)</li>
+<li>时间: O(n)</li>
+</ul>
+</li>
+<li>检索
+<ul>
+<li>时间：O(n)</li>
+</ul>
+</li>
+</ul>
+<h2 id="题单">题单</h2>
+<blockquote>
+<p>参考来源：<a href="https://leetcode.cn/u/endlesscheng/">灵茶山艾府</a></p>
+</blockquote>
+<ul>
+<li>[x] <a href="https://leetcode.cn/problems/implement-trie-prefix-tree/">208 实现 Trie (前缀树)</a></li>
+<li>[x] <a href="https://leetcode.cn/problems/sum-of-prefix-scores-of-strings/">2416 字符串的前缀分数和</a></li>
+<li>[ ] <a href="https://leetcode.cn/problems/palindrome-pairs/">336 回文对</a></li>
+<li>[ ] <a href="https://leetcode.cn/problems/prefix-and-suffix-search/">745 前缀和后缀搜索</a></li>
+<li>[ ] <a href="https://leetcode.cn/problems/count-prefix-and-suffix-pairs-ii/">3045 统计前后缀下标对 II</a></li>
+<li>[x] <a href="https://leetcode.cn/problems/longest-common-suffix-queries/">3093 最长公共后缀查询</a></li>
+</ul>
+<h2 id="发散-随想-自身理解">发散/随想/自身理解(?)</h2>
+<ul>
+<li>字典树突出<strong>有序匹配</strong>，对<strong>前后缀</strong>有特效</li>
+<li>应用方面，以结构体示例，若标识不限字符，那么检索的目标即从字符串扩展到某种序列。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数据结构与算法分析</category>
+      </categories>
+      <tags>
+        <tag>树</tag>
+        <tag>字符串</tag>
+        <tag>前缀</tag>
+        <tag>后缀</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>计算机系统知识大纲</title>
     <url>/51221df9/</url>
     <content><![CDATA[<span id="more"></span>
@@ -572,225 +643,6 @@ hr:nth-of-type(2) {
       </tags>
   </entry>
   <entry>
-    <title>字典树</title>
-    <url>/eea60a6a/</url>
-    <content><![CDATA[<span id="more"></span>
-<blockquote>
-<p>声明：以下介绍均基于本人理解</p>
-</blockquote>
-<h2 id="概述">概述</h2>
-<ul>
-<li>字典树(Trie)，像字典一样的树</li>
-</ul>
-<h2 id="属性">属性</h2>
-<ul>
-<li>树：一棵<strong>有根</strong>的树</li>
-<li>结点：一般以类似键值对的形式存在，即包含两个成员信息：字符(key)作为结点标识，数值(value)作为标识出现的频率</li>
-<li>应用：检索字符串(例如字符串本身或其前缀、后缀等)</li>
-</ul>
-<h2 id="模板">模板</h2>
-<h3 id="数组结构存储">数组结构存储</h3>
-<h4 id="数组结构示例图">数组结构示例图</h4>
-<p><img src="/images/datastructure/trie/Trie%E6%95%B0%E7%BB%84.png" alt="数组结构示例"></p>
-<h4 id="代码-数组树">代码(数组树)</h4>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> nex[<span class="number">100000</span>][<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">bool</span> exist[<span class="number">100000</span>] = &#123;<span class="literal">false</span>&#125;;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">Trie</span>() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> p = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; word.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> c = word[i] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (!nex[p][c]) nex[p][c] = ++cnt;  <span class="comment">// 如果没有，就添加结点</span></span><br><span class="line">            p = nex[p][c];</span><br><span class="line">        &#125;</span><br><span class="line">        exist[p] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">search</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> p = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; word.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> c = word[i] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (!nex[p][c]) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            p = nex[p][c];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> exist[p];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="链表结构存储">链表结构存储</h3>
-<h4 id="结点结构示例图">结点结构示例图</h4>
-<p><img src="/images/datastructure/trie/trie%E7%BB%93%E6%9E%84%E4%BD%93.png" alt="结构体示例"></p>
-<h4 id="代码-链表树">代码(链表树)</h4>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">        Node* next[<span class="number">26</span>];</span><br><span class="line">        <span class="type">int</span> freq;</span><br><span class="line">        <span class="type">bool</span> exist = <span class="literal">false</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    Node* root;</span><br><span class="line">    <span class="built_in">Trie</span>() &#123;</span><br><span class="line">        root = <span class="keyword">new</span> <span class="built_in">Node</span>();</span><br><span class="line">        root-&gt;freq = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; ++i) &#123;</span><br><span class="line">            root-&gt;next[i] = <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> cur = root;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c: word) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>] == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">                cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>] = <span class="keyword">new</span> <span class="built_in">Node</span>();</span><br><span class="line">                cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>]-&gt;freq = <span class="number">1</span>;</span><br><span class="line">                cur = cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>]-&gt;freq++;</span><br><span class="line">                cur = cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cur-&gt;exist = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">search</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> cur = root;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> c: word) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>] == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            cur = cur-&gt;next[c - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cur-&gt;exist;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="复杂度分析">复杂度分析</h2>
-<p>预设所有字符串总长度为n</p>
-<ul>
-<li>构造字典树
-<ul>
-<li>空间: O(nK)(对于结构体而言K为结点大小，对于数组而言K = 26)</li>
-<li>时间: O(n)</li>
-</ul>
-</li>
-<li>检索
-<ul>
-<li>时间：O(n)</li>
-</ul>
-</li>
-</ul>
-<h2 id="题单">题单</h2>
-<blockquote>
-<p>参考来源：<a href="https://leetcode.cn/u/endlesscheng/">灵茶山艾府</a></p>
-</blockquote>
-<ul>
-<li>[x] <a href="https://leetcode.cn/problems/implement-trie-prefix-tree/">208 实现 Trie (前缀树)</a></li>
-<li>[x] <a href="https://leetcode.cn/problems/sum-of-prefix-scores-of-strings/">2416 字符串的前缀分数和</a></li>
-<li>[ ] <a href="https://leetcode.cn/problems/palindrome-pairs/">336 回文对</a></li>
-<li>[ ] <a href="https://leetcode.cn/problems/prefix-and-suffix-search/">745 前缀和后缀搜索</a></li>
-<li>[ ] <a href="https://leetcode.cn/problems/count-prefix-and-suffix-pairs-ii/">3045 统计前后缀下标对 II</a></li>
-<li>[x] <a href="https://leetcode.cn/problems/longest-common-suffix-queries/">3093 最长公共后缀查询</a></li>
-</ul>
-<h2 id="发散-随想-自身理解">发散/随想/自身理解(?)</h2>
-<ul>
-<li>字典树突出<strong>有序匹配</strong>，对<strong>前后缀</strong>有特效</li>
-<li>应用方面，以结构体示例，若标识不限字符，那么检索的目标即从字符串扩展到某种序列。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>数据结构与算法分析</category>
-      </categories>
-      <tags>
-        <tag>树</tag>
-        <tag>字符串</tag>
-        <tag>前缀</tag>
-        <tag>后缀</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[梦日记]-回溯</title>
-    <url>/7ce427c0/</url>
-    <content><![CDATA[<h2 id="特殊属性补充">特殊属性补充</h2>
-<ul>
-<li>梦境特性: 回溯
-<ul>
-<li>回溯: 每过特定的时间后会回溯到先前的时间段中，保留个人身体和记忆状态</li>
-</ul>
-</li>
-</ul>
-<h2 id="内容">内容</h2>
-<h3 id="回溯时间段">回溯时间段</h3>
-<p>大三 -&gt; 大二 -&gt; 大一 -&gt; 高中 -&gt; 小时候(?) -&gt; 出生前(这里特指年代，大概八九十年代)</p>
-<h3 id="画面">画面</h3>
-<ol>
-<li><strong>大学时期</strong>: 主要的是上课和自学的画面</li>
-<li><strong>高中时期</strong>:
-<ul>
-<li>上课</li>
-<li>和同桌聊天</li>
-</ul>
-</li>
-<li><strong>小时候</strong>: 不记得了</li>
-<li><strong>出生前</strong>: 自己在一堵白墙边走，突然被某个导演拉去演港片龙套(只有拉住的画面)</li>
-</ol>
-<h3 id="细节补充-闲聊">细节补充(闲聊)</h3>
-<ul>
-<li>回溯从大四(当时读大四)开始，刚开始只回溯小的时间段(几天)，随后不断扩增，以学期、年等为单位回溯，且越来越快，越来越频繁</li>
-<li>大学回溯按学期回溯，当时有一种恐惧感，一方面是又得经历那些不愉快乃至痛苦的事情(好像包括考试)，另一方面是自己<strong>取得的成果全都化为乌有</strong>(主要的来源，但与提到的<strong>特殊属性</strong>有些矛盾)。</li>
-<li><strong>因此在大学时期刻意回忆当时所发生的事情，然后刻意模仿当时的动作或选择</strong></li>
-<li><strong>高中</strong>课堂黑板上展示的是计算机组成原理(?)(或者是编译原理?)的内容，展示了好像是 CPU 的内部电路(但好像有提到编译原理)</li>
-<li>聊天主要和同桌表达了我已经<strong>释怀</strong>了，那些<strong>消失的成果</strong>也没必要通过<strong>模仿当时</strong>重新获取了，重要的是做好当下(?)。同桌一脸疑惑</li>
-<li>好像还和同桌聊了会 CPU 的内部电路组成</li>
-<li><strong>回溯前自己会感觉到要开始回溯</strong>，在出生前被拉去当龙套时，我感觉到自己又要回溯了，这时候就醒了</li>
-</ul>
-<h3 id="分析">分析?</h3>
-]]></content>
-      <categories>
-        <category>随记</category>
-      </categories>
-      <tags>
-        <tag>随记</tag>
-        <tag>梦日记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>梦日记</title>
-    <url>/e6aca331/</url>
-    <content><![CDATA[<h2 id="简介">简介</h2>
-<p>记录自己记忆较深的梦，以供后续分析等等</p>
-<h2 id="序">序</h2>
-<ul>
-<li><strong>清醒时依靠幻象将支离破碎的内容构筑成完整的现实，那么脱离了符号约束的梦境，所展现的可能比现实还要现实</strong></li>
-</ul>
-<h2 id="目录">目录</h2>
-]]></content>
-      <categories>
-        <category>随记</category>
-      </categories>
-      <tags>
-        <tag>随记</tag>
-        <tag>梦日记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[梦日记]-神奇按钮</title>
-    <url>/d12e4c81/</url>
-    <content><![CDATA[<h2 id="特殊属性补充">特殊属性补充</h2>
-<ul>
-<li>梦境特性/特殊物品:
-<ul>
-<li>神奇按钮: 一个显眼的可携带的红色按钮，按下之后会带来巨额的财富，但财富不是凭空产生的</li>
-<li>反转：将当前个人所处的环境状态与选定个人进行置换</li>
-</ul>
-</li>
-</ul>
-<h2 id="人物">人物</h2>
-<ul>
-<li>“我”(大概是初中生那么大)</li>
-<li>U (在&quot;我&quot;的认知里是亲属，长辈，在现实中对应的形象是大学老师 E)</li>
-<li>C (在&quot;我&quot;的认知里是亲属，与 U 没有亲属关系，同龄人，在现实中并不存在，形象相近的大概是在一、二年级认识的一个稍微比我大的小孩)</li>
-<li>S (现实认识的人)</li>
-</ul>
-<h2 id="场景-画面">场景/画面</h2>
-<ol>
-<li>U住在C的上层。U很富有，C很贫穷，U层装饰十分华丽，C层破烂不堪，我去过U层，一般去C层</li>
-<li>有一次与C偶然发现了U富有的秘密：拥有一个红色按钮，且有意识到该按钮带来的财富不是凭空产生的，使用后必将承受后果(认为按钮是夺取其它地方的财富)，但想要把按钮拿过来</li>
-<li>C向我展示了其特殊<strong>反转</strong>能力，将当前的处境与U的处境进行置换，处境反转，居住环境改变</li>
-<li>反转的过程中U正好带着其他人参观居住环境，然后像是经历地震一样，装饰变破烂了，客人吓跑了。得知是我们造成的后果之后很愤怒，扬言要追杀我们，现在我和C也回不去了</li>
-<li>反转过后红色按钮消失了，为探索红色按钮的源头以及全部秘密，来到了一个提供奢侈产品的商店</li>
-<li>C由于看上去很穷(实际也是)被拦在商店门口，被拿去与S作对比(S是该店的会员)；最低消费为一支唇膏，63块</li>
-<li>我带C进去，代价是花钱搞了一个购买服务，买到一个废物透镜（镜片很脏，但以奢侈品为由吹嘘抬高了价格）</li>
-<li>终止, 醒来了</li>
-</ol>
-<h2 id="细节补充-闲聊">细节补充(闲聊)</h2>
-<h3 id="场景1">场景1</h3>
-<ul>
-<li>U和C的家境只体现在他们居住的环境(准确来说是装饰)上</li>
-<li>U和C居住地方的现实原型是厂房，每人各住一层，在&quot;我&quot;的视角上看，感觉每一层都很宽敞，但每一层都很矮，每层高度目测顶多两米二或两米三?</li>
-<li>U层装饰基本上都是粉色(像是全部涂成粉色一样)的，有一张粉色长沙发，<strong>红色按钮</strong>放在茶几上，其余没看清</li>
-<li>C层没装饰，毛坯层，某处地上堆积着建筑废料水泥等等，整体色调为灰白色，C外表比较黝黑</li>
-<li>&quot;我&quot;好像只去过一两次U层；因为总是去找C玩，所以一直去C层</li>
-</ul>
-<h3 id="场景2">场景2</h3>
-<ul>
-<li><strong>红色按钮</strong> 大概有手掌那么大，现实原型应该是游戏 <em>Please, Don’t Touch Anything</em> 的按钮</li>
-<li>&quot;我&quot;和C谈论U富有这件事时，&quot;我&quot;把看到红色按钮的事情说出来，然后就意识到财富是由按钮带来的，随后意识到红色按钮有副作用(此时有点害怕)</li>
-<li>想把按钮拿过来并非是想使用，而是想拿来保管，更多像是那种好奇闹着玩的心态想拿来把玩</li>
-</ul>
-<h3 id="场景3">场景3</h3>
-<ul>
-<li>我们在想办法把按钮拿过来，C告诉我他有反转的能力，然后就施展能力</li>
-<li>然后像是发生地震一样，墙灰脱落，U层变成C层样子，C层装饰变成粉色</li>
-</ul>
-<h3 id="场景4">场景4</h3>
-<ul>
-<li>U像是在带客户参观?</li>
-<li>U说要追杀我们之后，我们立刻逃跑了，最终U懊恼地坐在台阶上(守着门口，所以我们回不去)</li>
-</ul>
-<h3 id="场景5">场景5</h3>
-<ul>
-<li>红色按钮消失(不在茶几上)，此时 <strong>有要醒来的迹象</strong> (没有画面)，但突然想到要探索红色按钮的秘密，我就拉着C在大街上走(大街场景在现实原型有点像上海租界的大街)，走到拐角路口的商店门口</li>
-</ul>
-<h3 id="场景6">场景6</h3>
-<ul>
-<li>C灰头土脸，S坐在店内椅子上，做指甲?</li>
-<li>店员说要进店必须消费，里面最便宜的东西是63块的唇膏</li>
-</ul>
-<h3 id="场景7">场景7</h3>
-<ul>
-<li>废物透镜的现实原型是一个镜面被刮得很花的放大镜，搞了这个购买服务后我的心在滴血，内心疯狂吐槽</li>
-<li>&quot;我&quot;竟然能带C进去???</li>
-</ul>
-<h3 id="场景8">场景8</h3>
-<ul>
-<li>似乎是快要意识到红色按钮的秘密，于是醒来了</li>
-</ul>
-<h2 id="分析">分析?</h2>
-]]></content>
-      <categories>
-        <category>随记</category>
-      </categories>
-      <tags>
-        <tag>随记</tag>
-        <tag>梦日记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>主存</title>
     <url>/9c87b9e0/</url>
     <content><![CDATA[<h2 id="存储技术">存储技术</h2>
@@ -1108,6 +960,159 @@ hr:nth-of-type(2) {
       </tags>
   </entry>
   <entry>
+    <title>梦日记</title>
+    <url>/e6aca331/</url>
+    <content><![CDATA[<h2 id="简介">简介</h2>
+<p>记录自己记忆较深的梦，以供后续分析等等</p>
+<h2 id="序">序</h2>
+<ul>
+<li><strong>清醒时依靠幻象将支离破碎的内容构筑成完整的现实，那么脱离了符号约束的梦境，所展现的可能比现实还要现实</strong></li>
+</ul>
+<h2 id="目录">目录</h2>
+]]></content>
+      <categories>
+        <category>随记</category>
+      </categories>
+      <tags>
+        <tag>随记</tag>
+        <tag>梦日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>存储器</title>
+    <url>/a9104ae7/</url>
+    <content><![CDATA[<h2 id="局部性原理">局部性原理</h2>
+<p>一个编写良好的计算机程序常常具有良好的局部性(locality)。也就是，它们倾向于引用邻近于其他最近引用过的数据项的数据项，或者最近引用过的数据项本身。</p>
+<ul>
+<li><strong>时间局部性</strong>(temporal locality): 在一个具有良好时间局部性的程序中，被引用过一次的内存位置很可能在不远的将来再被多次引用</li>
+<li><strong>空间局部性</strong>(spatial locality): 在一个具有良好空间局部性的程序中，如果一个内存位置被引用了一次，那么程序很可能在不远的将来引用附近的一个内存位置。</li>
+</ul>
+<h2 id="分类">分类</h2>
+<p><img src="/images/computer_system/memory/memory_classification.png" alt="存储器分类"></p>
+<h3 id="计算机系统中的作用">计算机系统中的作用</h3>
+<ul>
+<li>主存储器/内存: 主机的一部分，用于存放系统当前正在执行的数据和程序(临时存储器)</li>
+<li>辅助存储器/外存: 为外部设备，用于存放不用的数据和程序(永久存储器)<br>
+<img src="/images/computer_system/memory/memory_cpu_interactive.png" alt="CPU与存储器的交互"></li>
+</ul>
+<h3 id="存储介质">存储介质</h3>
+<ul>
+<li>半导体器件: 半导体存储器(RAM，ROM，主存)</li>
+<li>磁性材料: 磁表面存储器(磁盘，磁带，辅存)</li>
+<li>光介质: 光盘存储器(辅存)</li>
+</ul>
+<h3 id="存取方式">存取方式</h3>
+<ul>
+<li>随机存取: 按地址访问，存取时间与存储单元的位置无关(主存)</li>
+<li>顺序存取: 按地址访问，存取时间与存储单元的位置有关(磁盘，磁带)</li>
+<li>相联存取: 可以按内容(Content)或标签(Tag)访问存储单元</li>
+</ul>
+<h3 id="读写方式">读写方式</h3>
+<ul>
+<li>只读存储器(ROM，Read-Only Memory)</li>
+<li>随机存取存储器(RAM，Random-Access Memory)</li>
+</ul>
+<h3 id="信息的可保存性">信息的可保存性</h3>
+<ul>
+<li>永久记忆存储器/非易失性存储器: 断电后仍能保存信息(ROM，辅存)</li>
+<li>非永久记忆存储器/易失性存储器: 断电后信息丢失(主存中的RAM)</li>
+</ul>
+<h2 id="性能指标">性能指标</h2>
+<ul>
+<li><strong>存储器容量</strong>: 存储器中所有存储单元的总数目(存储器可容纳的二进制信息量)，描述单位通常为 <strong>字节</strong> 或 <strong>位</strong>
+<ul>
+<li><strong>位</strong>是构成存储器的最小单位，<strong>字节</strong>是数据存储的基本单位</li>
+<li>单元<strong>地址</strong>是内存单元的<strong>唯一标志</strong></li>
+<li>量化单位: 通常用 KB, MB, GB, TB 表示(B=8位，1个字节)，其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>=</mo><msup><mn>2</mn><mn>10</mn></msup></mrow><annotation encoding="application/x-tex">K=2^{10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><msup><mn>2</mn><mn>20</mn></msup></mrow><annotation encoding="application/x-tex">M=2^{20}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>=</mo><msup><mn>2</mn><mn>30</mn></msup></mrow><annotation encoding="application/x-tex">G=2^{30}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>=</mo><msup><mn>2</mn><mn>40</mn></msup></mrow><annotation encoding="application/x-tex">T=2^{40}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span></li>
+<li>总容量 = 存储单元个数 * 存储单元字长 (bit) 或 总容量 = 存储单元个数 * 存储单元字长 / 8 (Byte)</li>
+</ul>
+</li>
+<li><strong>存储速度</strong>
+<ul>
+<li>存取时间(Memory Access Time): 启动一次存储器操作到完成该操作所需的全部时间，时间越短，性能越好(单位: ns)</li>
+<li>存取周期(Memory Cycle Time): 存储器进行连续两次独立存储器操作所需的最小间隔时间(通常存储周期不小于存取时间)</li>
+<li>存储器带宽: 单位时间内从存储器读出的二进制数信息量，一般用 B/S(字节/秒)或 b/S(位/秒)表示</li>
+</ul>
+</li>
+<li><strong>存储器价格</strong>: 以每个数据位的价格来衡量
+<ul>
+<li>设存储器的容量为S，价格为C，则位价为C/S</li>
+<li>包含存储元件以及为该存储器操作服务的外围电路的价格</li>
+</ul>
+</li>
+<li><strong>可靠性</strong>: 表示存储器正常工作(正确存取)的性能</li>
+</ul>
+<h2 id="层次结构">层次结构</h2>
+<h3 id="背景">背景</h3>
+<ul>
+<li>存储技术: 不同存储技术的访问时间差异很大。速度较快的技术每字节的成本要比速度较慢的技术高，而且容量较小。CPU 和主存之间的速度差距在增大</li>
+<li>计算机软件: 一个编写良好的计算机程序常常具有良好的局部性</li>
+</ul>
+<h3 id="层次结构图">层次结构图</h3>
+<p><img src="/images/computer_system/memory/memory_level.png" alt="层次结构"></p>
+<ul>
+<li>L0 - L4 在主机内，往下的存储器位于主机外部</li>
+<li>存储器层次结构的本质是，每一层存储设备都是较低一层的<strong>缓存</strong></li>
+<li>缓存和主存之间主要需要解决<strong>速度</strong>不匹配问题, 主存和辅存之间主要需要解决<strong>容量</strong>不匹配问题</li>
+<li>缓存和主存使用的是<strong>实地址</strong>(物理地址), 主存和辅存之间使用<strong>虚地址</strong>(逻辑地址)</li>
+</ul>
+<h3 id="性能特性比较">性能特性比较</h3>
+<table>
+<thead>
+<tr>
+<th>存储器层次</th>
+<th>通用寄存器</th>
+<th>Cache</th>
+<th>主存储器</th>
+<th>磁盘存储器</th>
+<th>脱机存储器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>存储周期</td>
+<td>&lt;10ns</td>
+<td>10 ~ 60 ns</td>
+<td>60 ~ 300ns</td>
+<td>10 ~ 30 ms</td>
+<td>2 ~ 20 min</td>
+</tr>
+<tr>
+<td>存储容量</td>
+<td>&lt;512B</td>
+<td>8KB ~ 2MB</td>
+<td>32MB ~ 1GB</td>
+<td>1GB ~ 1TB</td>
+<td>5GB ~ 10TB</td>
+</tr>
+<tr>
+<td>价格</td>
+<td>很高</td>
+<td>较高</td>
+<td>高</td>
+<td>较低</td>
+<td>低</td>
+</tr>
+<tr>
+<td>材料工艺</td>
+<td>ECL</td>
+<td>SRAM</td>
+<td>DRAM</td>
+<td>磁表面</td>
+<td>磁、光等</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      <categories>
+        <category>计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>计算机系统</tag>
+        <tag>计算机组成原理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>主存优化</title>
     <url>/3fb399e5/</url>
     <content><![CDATA[<h2 id="知识预备">知识预备</h2>
@@ -1180,6 +1185,322 @@ hr:nth-of-type(2) {
 <blockquote>
 <p><a href="https://ljs-organization.gitbook.io/ji-suan-ji-zu-cheng-yuan-li-bi-ji/di-san-zhang-cun-chu-xi-tong/3.5-shuang-duan-kou-ram-he-duo-mo-kuai-cun-chu-qi">双端口RAM和多模块存储器</a></p>
 </blockquote>
+]]></content>
+      <categories>
+        <category>计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>计算机系统</tag>
+        <tag>计算机组成原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[梦日记]-回溯</title>
+    <url>/7ce427c0/</url>
+    <content><![CDATA[<h2 id="特殊属性补充">特殊属性补充</h2>
+<ul>
+<li>梦境特性: 回溯
+<ul>
+<li>回溯: 每过特定的时间后会回溯到先前的时间段中，保留个人身体和记忆状态</li>
+</ul>
+</li>
+</ul>
+<h2 id="内容">内容</h2>
+<h3 id="回溯时间段">回溯时间段</h3>
+<p>大三 -&gt; 大二 -&gt; 大一 -&gt; 高中 -&gt; 小时候(?) -&gt; 出生前(这里特指年代，大概八九十年代)</p>
+<h3 id="画面">画面</h3>
+<ol>
+<li><strong>大学时期</strong>: 主要的是上课和自学的画面</li>
+<li><strong>高中时期</strong>:
+<ul>
+<li>上课</li>
+<li>和同桌聊天</li>
+</ul>
+</li>
+<li><strong>小时候</strong>: 不记得了</li>
+<li><strong>出生前</strong>: 自己在一堵白墙边走，突然被某个导演拉去演港片龙套(只有拉住的画面)</li>
+</ol>
+<h3 id="细节补充-闲聊">细节补充(闲聊)</h3>
+<ul>
+<li>回溯从大四(当时读大四)开始，刚开始只回溯小的时间段(几天)，随后不断扩增，以学期、年等为单位回溯，且越来越快，越来越频繁</li>
+<li>大学回溯按学期回溯，当时有一种恐惧感，一方面是又得经历那些不愉快乃至痛苦的事情(好像包括考试)，另一方面是自己<strong>取得的成果全都化为乌有</strong>(主要的来源，但与提到的<strong>特殊属性</strong>有些矛盾)。</li>
+<li><strong>因此在大学时期刻意回忆当时所发生的事情，然后刻意模仿当时的动作或选择</strong></li>
+<li><strong>高中</strong>课堂黑板上展示的是计算机组成原理(?)(或者是编译原理?)的内容，展示了好像是 CPU 的内部电路(但好像有提到编译原理)</li>
+<li>聊天主要和同桌表达了我已经<strong>释怀</strong>了，那些<strong>消失的成果</strong>也没必要通过<strong>模仿当时</strong>重新获取了，重要的是做好当下(?)。同桌一脸疑惑</li>
+<li>好像还和同桌聊了会 CPU 的内部电路组成</li>
+<li><strong>回溯前自己会感觉到要开始回溯</strong>，在出生前被拉去当龙套时，我感觉到自己又要回溯了，这时候就醒了</li>
+</ul>
+<h3 id="分析">分析?</h3>
+]]></content>
+      <categories>
+        <category>随记</category>
+      </categories>
+      <tags>
+        <tag>随记</tag>
+        <tag>梦日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[梦日记]-神奇按钮</title>
+    <url>/d12e4c81/</url>
+    <content><![CDATA[<h2 id="特殊属性补充">特殊属性补充</h2>
+<ul>
+<li>梦境特性/特殊物品:
+<ul>
+<li>神奇按钮: 一个显眼的可携带的红色按钮，按下之后会带来巨额的财富，但财富不是凭空产生的</li>
+<li>反转：将当前个人所处的环境状态与选定个人进行置换</li>
+</ul>
+</li>
+</ul>
+<h2 id="人物">人物</h2>
+<ul>
+<li>“我”(大概是初中生那么大)</li>
+<li>U (在&quot;我&quot;的认知里是亲属，长辈，在现实中对应的形象是大学老师 E)</li>
+<li>C (在&quot;我&quot;的认知里是亲属，与 U 没有亲属关系，同龄人，在现实中并不存在，形象相近的大概是在一、二年级认识的一个稍微比我大的小孩)</li>
+<li>S (现实认识的人)</li>
+</ul>
+<h2 id="场景-画面">场景/画面</h2>
+<ol>
+<li>U住在C的上层。U很富有，C很贫穷，U层装饰十分华丽，C层破烂不堪，我去过U层，一般去C层</li>
+<li>有一次与C偶然发现了U富有的秘密：拥有一个红色按钮，且有意识到该按钮带来的财富不是凭空产生的，使用后必将承受后果(认为按钮是夺取其它地方的财富)，但想要把按钮拿过来</li>
+<li>C向我展示了其特殊<strong>反转</strong>能力，将当前的处境与U的处境进行置换，处境反转，居住环境改变</li>
+<li>反转的过程中U正好带着其他人参观居住环境，然后像是经历地震一样，装饰变破烂了，客人吓跑了。得知是我们造成的后果之后很愤怒，扬言要追杀我们，现在我和C也回不去了</li>
+<li>反转过后红色按钮消失了，为探索红色按钮的源头以及全部秘密，来到了一个提供奢侈产品的商店</li>
+<li>C由于看上去很穷(实际也是)被拦在商店门口，被拿去与S作对比(S是该店的会员)；最低消费为一支唇膏，63块</li>
+<li>我带C进去，代价是花钱搞了一个购买服务，买到一个废物透镜（镜片很脏，但以奢侈品为由吹嘘抬高了价格）</li>
+<li>终止, 醒来了</li>
+</ol>
+<h2 id="细节补充-闲聊">细节补充(闲聊)</h2>
+<h3 id="场景1">场景1</h3>
+<ul>
+<li>U和C的家境只体现在他们居住的环境(准确来说是装饰)上</li>
+<li>U和C居住地方的现实原型是厂房，每人各住一层，在&quot;我&quot;的视角上看，感觉每一层都很宽敞，但每一层都很矮，每层高度目测顶多两米二或两米三?</li>
+<li>U层装饰基本上都是粉色(像是全部涂成粉色一样)的，有一张粉色长沙发，<strong>红色按钮</strong>放在茶几上，其余没看清</li>
+<li>C层没装饰，毛坯层，某处地上堆积着建筑废料水泥等等，整体色调为灰白色，C外表比较黝黑</li>
+<li>&quot;我&quot;好像只去过一两次U层；因为总是去找C玩，所以一直去C层</li>
+</ul>
+<h3 id="场景2">场景2</h3>
+<ul>
+<li><strong>红色按钮</strong> 大概有手掌那么大，现实原型应该是游戏 <em>Please, Don’t Touch Anything</em> 的按钮</li>
+<li>&quot;我&quot;和C谈论U富有这件事时，&quot;我&quot;把看到红色按钮的事情说出来，然后就意识到财富是由按钮带来的，随后意识到红色按钮有副作用(此时有点害怕)</li>
+<li>想把按钮拿过来并非是想使用，而是想拿来保管，更多像是那种好奇闹着玩的心态想拿来把玩</li>
+</ul>
+<h3 id="场景3">场景3</h3>
+<ul>
+<li>我们在想办法把按钮拿过来，C告诉我他有反转的能力，然后就施展能力</li>
+<li>然后像是发生地震一样，墙灰脱落，U层变成C层样子，C层装饰变成粉色</li>
+</ul>
+<h3 id="场景4">场景4</h3>
+<ul>
+<li>U像是在带客户参观?</li>
+<li>U说要追杀我们之后，我们立刻逃跑了，最终U懊恼地坐在台阶上(守着门口，所以我们回不去)</li>
+</ul>
+<h3 id="场景5">场景5</h3>
+<ul>
+<li>红色按钮消失(不在茶几上)，此时 <strong>有要醒来的迹象</strong> (没有画面)，但突然想到要探索红色按钮的秘密，我就拉着C在大街上走(大街场景在现实原型有点像上海租界的大街)，走到拐角路口的商店门口</li>
+</ul>
+<h3 id="场景6">场景6</h3>
+<ul>
+<li>C灰头土脸，S坐在店内椅子上，做指甲?</li>
+<li>店员说要进店必须消费，里面最便宜的东西是63块的唇膏</li>
+</ul>
+<h3 id="场景7">场景7</h3>
+<ul>
+<li>废物透镜的现实原型是一个镜面被刮得很花的放大镜，搞了这个购买服务后我的心在滴血，内心疯狂吐槽</li>
+<li>&quot;我&quot;竟然能带C进去???</li>
+</ul>
+<h3 id="场景8">场景8</h3>
+<ul>
+<li>似乎是快要意识到红色按钮的秘密，于是醒来了</li>
+</ul>
+<h2 id="分析">分析?</h2>
+]]></content>
+      <categories>
+        <category>随记</category>
+      </categories>
+      <tags>
+        <tag>随记</tag>
+        <tag>梦日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机体系架构简述</title>
+    <url>/fc022f0f/</url>
+    <content><![CDATA[<h2 id="简介">简介</h2>
+<ul>
+<li>计算机系统 = 硬件 + 软件<br>
+<img src="/images/computer_system/architecture/computer_architecture.png" alt="计算机系统"></li>
+</ul>
+<h2 id="计算机硬件系统组成">计算机硬件系统组成</h2>
+<ul>
+<li>
+<p>运算器(ALU, Arithmetic Logic Unit): 实现算术运算和逻辑运算的部件</p>
+<ul>
+<li>组成
+<ul>
+<li>算术单元: 处理加减乘除计算(全加器，乘法器等)</li>
+<li>逻辑单元: 处理逻辑运算(门电路等)</li>
+<li>移位器: 处理数据的移位</li>
+<li>寄存器组
+<ul>
+<li>通用寄存器: 存储数据、运算过程的中间/临时变量等</li>
+<li>状态寄存器: 记录运算过程的状态(溢出、负值、零值等)，可用于指令跳转的条件判断</li>
+</ul>
+</li>
+<li>多路选择器等</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>控制器: 向计算机各部件发出控制信息的部件</p>
+<ul>
+<li>组成
+<ul>
+<li>指令部件
+<ul>
+<li>程序计数器PC: 提供要执行的指令地址</li>
+<li>指令寄存器IR: 寄存现行指令</li>
+<li>指令译码器ID: 解释现行指令，产生相应的控制信号</li>
+</ul>
+</li>
+<li>时序部件: 产生计算机运行所需的时序信号</li>
+<li>微操作信号发生器: 产生执行指令的微操作控制信号</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>存储器: 存储程序的指令和数据信息</p>
+<ul>
+<li>层次结构(从上到下: 速度由快变慢，容量由低变高，价格由高变低)
+<ol>
+<li>寄存器</li>
+<li>Cache(高速缓冲存储器)</li>
+<li>主存(内存)</li>
+<li>辅存/外存(硬盘等)</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>总线: 连接各个部件，传输数据</p>
+<ul>
+<li>地址总线: 传输 CPU 需要操作的内存地址</li>
+<li>数据总线: 传输内存数据</li>
+<li>控制总线: 发送、接收信号并响应(中断、设备复位…)</li>
+</ul>
+</li>
+<li>
+<p>适配器: 连接输入/输出设备与I/O总线、传输数据</p>
+</li>
+<li>
+<p>输入设备: 将各种形式的输入信息转换为机器可接受的编码形式。例如键盘、鼠标等</p>
+</li>
+<li>
+<p>输出设备: 将计算机处理结果转换成人们或其他设备所能接收的形式。例如显示器、打印机等</p>
+</li>
+</ul>
+<h2 id="计算机体系结构">计算机体系结构</h2>
+<h3 id="冯-诺依曼结构">冯·诺依曼结构</h3>
+<p><img src="/images/computer_system/architecture/von_neumann_model.png" alt="冯诺依曼模型"></p>
+<ul>
+<li>特点
+<ul>
+<li>程序存储，按地址访问</li>
+<li>使用二进制表示数据</li>
+<li>以运算器为中心</li>
+<li>指令顺序执行<br>
+<img src="/images/computer_system/architecture/base_on_arithmetic.png" alt="以存储器为中心的体系结构"></li>
+</ul>
+</li>
+<li>改进后的冯·诺依曼计算机使其从原来的 <strong>以运算器为中心</strong> 演变为 <strong>以存储器为中心</strong> 。从系统结构上讲，主要是通过各种并行处理手段提高计算机系统性能<br>
+<img src="/images/computer_system/architecture/base_on_memory.png" alt="以存储器为中心的体系结构"></li>
+</ul>
+<h3 id="哈佛结构">哈佛结构</h3>
+<ul>
+<li>区别与冯·诺依曼结构的特点
+<ul>
+<li>指令和数据存储器、总线区分开(指令和数据可能有不同的数据宽度)</li>
+</ul>
+</li>
+<li>改进的哈佛结构
+<ul>
+<li>程序和数据地址空间隔离，但可以从程序地址空间读取数据(大部分MCU使用这种方式)</li>
+<li>程序和数据地址共享，将程序和数据的缓存分开</li>
+</ul>
+<blockquote>
+<p>参考：<a href="https://zhuanlan.zhihu.com/p/144345863">计算机体系结构(一) 三大体系结构浅析</a></p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>现今的处理器，从总线上看是冯·诺依曼结构，但 Cache 结构的设计使得其内部类似改进的哈佛结构(L1 Cache 分为 <strong>数据缓存</strong> 和 <strong>指令缓存</strong>, L2/L3 Cache 共享)</p>
+</blockquote>
+<h2 id="性能指标">性能指标</h2>
+<ul>
+<li>
+<p>吞吐量: 表征一台计算机在某一时间间隔/单位时间内能够处理的信息量</p>
+</li>
+<li>
+<p>响应时间: 表征从输入有效到系统产生响应并得到结果之间的时间度量，用时间单位来度量</p>
+</li>
+<li>
+<p>利用率: 在给定的时间间隔内，系统被实际使用的时间所占的比率，用百分比表示</p>
+</li>
+<li>
+<p>处理器字长: 处理机运算器中一次能够完成二进制数运算的位数(通常是8的倍数，字长标志着机器表示数的精度。字长越长，精度越高)</p>
+</li>
+<li>
+<p>总线宽度: 一般指 CPU 中运算器与存储器之间进行互连的内部总线二进制位数(总线宽度一般为处理机字长的1、2、4倍)</p>
+</li>
+<li>
+<p>CPU 主频(时钟频率) = 1 / CPU 时钟周期</p>
+<ul>
+<li>主频度量单位是 MHZ(兆赫兹)、GHZ(吉赫兹)</li>
+<li>时钟周期度量单位 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">\mu s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">μ</span><span class="mord mathdefault">s</span></span></span></span>(微秒), <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">ns</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">s</span></span></span></span>(纳秒)</li>
+</ul>
+</li>
+<li>
+<p>CPU 执行时间: 表示 CPU 执行一段程序所占用的 CPU 时间</p>
+<ul>
+<li>CPU 执行时间 = CPU 时钟周期数 * CPU 时钟周期长 = 指令条数 / (MIPS * <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">10^6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span>)</li>
+<li>CPU 执行时间 = CPU 时钟周期数 / 主频 = (指令条数 * CPI) / 主频</li>
+</ul>
+</li>
+<li>
+<p>CPI: 表示每条指令的周期数。即执行一条指令所需的平均时钟周期数</p>
+<ul>
+<li>执行一条指令的耗时 = CPI * CPU 时钟周期</li>
+</ul>
+</li>
+<li>
+<p>IPS: 每秒执行指令数</p>
+<ul>
+<li>IPS  = 1 / (平均 CPI * CPU 时钟周期) = 主频 / 平均 CPI</li>
+</ul>
+</li>
+<li>
+<p>MIPS: 每秒百万条指令数，即单位时间内执行的指令数</p>
+<ul>
+<li>MIPS = 指令条数 / (CPU 执行时间 * <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">10^6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span>) = 主频 / (CPI * <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">10^6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span>)</li>
+</ul>
+</li>
+<li>
+<p>FLOPS: 每秒浮点操作次数(K/M/G/TFLOPS)</p>
+</li>
+<li>
+<p>MFLOPS: 每秒百万次浮点操作次数</p>
+</li>
+</ul>
+<h2 id="目录">目录</h2>
+<ol>
+<li><a href="/9579b8d3/">数</a></li>
+<li><a href="/b49f5e78/">运算器</a></li>
+<li><a href="/a9104ae7/">存储器</a></li>
+<li><a href="/9c87b9e0/">主存</a></li>
+<li><a href="/3fb399e5/">主存优化</a></li>
+</ol>
 ]]></content>
       <categories>
         <category>计算机组成原理</category>
@@ -1504,322 +1825,6 @@ hr:nth-of-type(2) {
       </tags>
   </entry>
   <entry>
-    <title>存储器</title>
-    <url>/a9104ae7/</url>
-    <content><![CDATA[<h2 id="局部性原理">局部性原理</h2>
-<p>一个编写良好的计算机程序常常具有良好的局部性(locality)。也就是，它们倾向于引用邻近于其他最近引用过的数据项的数据项，或者最近引用过的数据项本身。</p>
-<ul>
-<li><strong>时间局部性</strong>(temporal locality): 在一个具有良好时间局部性的程序中，被引用过一次的内存位置很可能在不远的将来再被多次引用</li>
-<li><strong>空间局部性</strong>(spatial locality): 在一个具有良好空间局部性的程序中，如果一个内存位置被引用了一次，那么程序很可能在不远的将来引用附近的一个内存位置。</li>
-</ul>
-<h2 id="分类">分类</h2>
-<p><img src="/images/computer_system/memory/memory_classification.png" alt="存储器分类"></p>
-<h3 id="计算机系统中的作用">计算机系统中的作用</h3>
-<ul>
-<li>主存储器/内存: 主机的一部分，用于存放系统当前正在执行的数据和程序(临时存储器)</li>
-<li>辅助存储器/外存: 为外部设备，用于存放不用的数据和程序(永久存储器)<br>
-<img src="/images/computer_system/memory/memory_cpu_interactive.png" alt="CPU与存储器的交互"></li>
-</ul>
-<h3 id="存储介质">存储介质</h3>
-<ul>
-<li>半导体器件: 半导体存储器(RAM，ROM，主存)</li>
-<li>磁性材料: 磁表面存储器(磁盘，磁带，辅存)</li>
-<li>光介质: 光盘存储器(辅存)</li>
-</ul>
-<h3 id="存取方式">存取方式</h3>
-<ul>
-<li>随机存取: 按地址访问，存取时间与存储单元的位置无关(主存)</li>
-<li>顺序存取: 按地址访问，存取时间与存储单元的位置有关(磁盘，磁带)</li>
-<li>相联存取: 可以按内容(Content)或标签(Tag)访问存储单元</li>
-</ul>
-<h3 id="读写方式">读写方式</h3>
-<ul>
-<li>只读存储器(ROM，Read-Only Memory)</li>
-<li>随机存取存储器(RAM，Random-Access Memory)</li>
-</ul>
-<h3 id="信息的可保存性">信息的可保存性</h3>
-<ul>
-<li>永久记忆存储器/非易失性存储器: 断电后仍能保存信息(ROM，辅存)</li>
-<li>非永久记忆存储器/易失性存储器: 断电后信息丢失(主存中的RAM)</li>
-</ul>
-<h2 id="性能指标">性能指标</h2>
-<ul>
-<li><strong>存储器容量</strong>: 存储器中所有存储单元的总数目(存储器可容纳的二进制信息量)，描述单位通常为 <strong>字节</strong> 或 <strong>位</strong>
-<ul>
-<li><strong>位</strong>是构成存储器的最小单位，<strong>字节</strong>是数据存储的基本单位</li>
-<li>单元<strong>地址</strong>是内存单元的<strong>唯一标志</strong></li>
-<li>量化单位: 通常用 KB, MB, GB, TB 表示(B=8位，1个字节)，其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>=</mo><msup><mn>2</mn><mn>10</mn></msup></mrow><annotation encoding="application/x-tex">K=2^{10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><msup><mn>2</mn><mn>20</mn></msup></mrow><annotation encoding="application/x-tex">M=2^{20}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>=</mo><msup><mn>2</mn><mn>30</mn></msup></mrow><annotation encoding="application/x-tex">G=2^{30}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>=</mo><msup><mn>2</mn><mn>40</mn></msup></mrow><annotation encoding="application/x-tex">T=2^{40}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span></li>
-<li>总容量 = 存储单元个数 * 存储单元字长 (bit) 或 总容量 = 存储单元个数 * 存储单元字长 / 8 (Byte)</li>
-</ul>
-</li>
-<li><strong>存储速度</strong>
-<ul>
-<li>存取时间(Memory Access Time): 启动一次存储器操作到完成该操作所需的全部时间，时间越短，性能越好(单位: ns)</li>
-<li>存取周期(Memory Cycle Time): 存储器进行连续两次独立存储器操作所需的最小间隔时间(通常存储周期不小于存取时间)</li>
-<li>存储器带宽: 单位时间内从存储器读出的二进制数信息量，一般用 B/S(字节/秒)或 b/S(位/秒)表示</li>
-</ul>
-</li>
-<li><strong>存储器价格</strong>: 以每个数据位的价格来衡量
-<ul>
-<li>设存储器的容量为S，价格为C，则位价为C/S</li>
-<li>包含存储元件以及为该存储器操作服务的外围电路的价格</li>
-</ul>
-</li>
-<li><strong>可靠性</strong>: 表示存储器正常工作(正确存取)的性能</li>
-</ul>
-<h2 id="层次结构">层次结构</h2>
-<h3 id="背景">背景</h3>
-<ul>
-<li>存储技术: 不同存储技术的访问时间差异很大。速度较快的技术每字节的成本要比速度较慢的技术高，而且容量较小。CPU 和主存之间的速度差距在增大</li>
-<li>计算机软件: 一个编写良好的计算机程序常常具有良好的局部性</li>
-</ul>
-<h3 id="层次结构图">层次结构图</h3>
-<p><img src="/images/computer_system/memory/memory_level.png" alt="层次结构"></p>
-<ul>
-<li>L0 - L4 在主机内，往下的存储器位于主机外部</li>
-<li>存储器层次结构的本质是，每一层存储设备都是较低一层的<strong>缓存</strong></li>
-<li>缓存和主存之间主要需要解决<strong>速度</strong>不匹配问题, 主存和辅存之间主要需要解决<strong>容量</strong>不匹配问题</li>
-<li>缓存和主存使用的是<strong>实地址</strong>(物理地址), 主存和辅存之间使用<strong>虚地址</strong>(逻辑地址)</li>
-</ul>
-<h3 id="性能特性比较">性能特性比较</h3>
-<table>
-<thead>
-<tr>
-<th>存储器层次</th>
-<th>通用寄存器</th>
-<th>Cache</th>
-<th>主存储器</th>
-<th>磁盘存储器</th>
-<th>脱机存储器</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>存储周期</td>
-<td>&lt;10ns</td>
-<td>10 ~ 60 ns</td>
-<td>60 ~ 300ns</td>
-<td>10 ~ 30 ms</td>
-<td>2 ~ 20 min</td>
-</tr>
-<tr>
-<td>存储容量</td>
-<td>&lt;512B</td>
-<td>8KB ~ 2MB</td>
-<td>32MB ~ 1GB</td>
-<td>1GB ~ 1TB</td>
-<td>5GB ~ 10TB</td>
-</tr>
-<tr>
-<td>价格</td>
-<td>很高</td>
-<td>较高</td>
-<td>高</td>
-<td>较低</td>
-<td>低</td>
-</tr>
-<tr>
-<td>材料工艺</td>
-<td>ECL</td>
-<td>SRAM</td>
-<td>DRAM</td>
-<td>磁表面</td>
-<td>磁、光等</td>
-</tr>
-</tbody>
-</table>
-]]></content>
-      <categories>
-        <category>计算机组成原理</category>
-      </categories>
-      <tags>
-        <tag>计算机系统</tag>
-        <tag>计算机组成原理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>计算机体系架构简述</title>
-    <url>/fc022f0f/</url>
-    <content><![CDATA[<h2 id="简介">简介</h2>
-<ul>
-<li>计算机系统 = 硬件 + 软件<br>
-<img src="/images/computer_system/architecture/computer_architecture.png" alt="计算机系统"></li>
-</ul>
-<h2 id="计算机硬件系统组成">计算机硬件系统组成</h2>
-<ul>
-<li>
-<p>运算器(ALU, Arithmetic Logic Unit): 实现算术运算和逻辑运算的部件</p>
-<ul>
-<li>组成
-<ul>
-<li>算术单元: 处理加减乘除计算(全加器，乘法器等)</li>
-<li>逻辑单元: 处理逻辑运算(门电路等)</li>
-<li>移位器: 处理数据的移位</li>
-<li>寄存器组
-<ul>
-<li>通用寄存器: 存储数据、运算过程的中间/临时变量等</li>
-<li>状态寄存器: 记录运算过程的状态(溢出、负值、零值等)，可用于指令跳转的条件判断</li>
-</ul>
-</li>
-<li>多路选择器等</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>控制器: 向计算机各部件发出控制信息的部件</p>
-<ul>
-<li>组成
-<ul>
-<li>指令部件
-<ul>
-<li>程序计数器PC: 提供要执行的指令地址</li>
-<li>指令寄存器IR: 寄存现行指令</li>
-<li>指令译码器ID: 解释现行指令，产生相应的控制信号</li>
-</ul>
-</li>
-<li>时序部件: 产生计算机运行所需的时序信号</li>
-<li>微操作信号发生器: 产生执行指令的微操作控制信号</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>存储器: 存储程序的指令和数据信息</p>
-<ul>
-<li>层次结构(从上到下: 速度由快变慢，容量由低变高，价格由高变低)
-<ol>
-<li>寄存器</li>
-<li>Cache(高速缓冲存储器)</li>
-<li>主存(内存)</li>
-<li>辅存/外存(硬盘等)</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>
-<p>总线: 连接各个部件，传输数据</p>
-<ul>
-<li>地址总线: 传输 CPU 需要操作的内存地址</li>
-<li>数据总线: 传输内存数据</li>
-<li>控制总线: 发送、接收信号并响应(中断、设备复位…)</li>
-</ul>
-</li>
-<li>
-<p>适配器: 连接输入/输出设备与I/O总线、传输数据</p>
-</li>
-<li>
-<p>输入设备: 将各种形式的输入信息转换为机器可接受的编码形式。例如键盘、鼠标等</p>
-</li>
-<li>
-<p>输出设备: 将计算机处理结果转换成人们或其他设备所能接收的形式。例如显示器、打印机等</p>
-</li>
-</ul>
-<h2 id="计算机体系结构">计算机体系结构</h2>
-<h3 id="冯-诺依曼结构">冯·诺依曼结构</h3>
-<ul>
-<li>特点
-<ul>
-<li>程序存储，按地址访问</li>
-<li>使用二进制表示数据</li>
-<li>以运算器为中心</li>
-<li>指令顺序执行<br>
-<img src="/images/computer_system/architecture/base_on_arithmetic.png" alt="以存储器为中心的体系结构"></li>
-</ul>
-</li>
-<li>改进后的冯·诺依曼计算机使其从原来的 <strong>以运算器为中心</strong> 演变为 <strong>以存储器为中心</strong> 。从系统结构上讲，主要是通过各种并行处理手段提高计算机系统性能<br>
-<img src="/images/computer_system/architecture/base_on_memory.png" alt="以存储器为中心的体系结构"></li>
-</ul>
-<h3 id="哈佛结构">哈佛结构</h3>
-<ul>
-<li>区别与冯·诺依曼结构的特点
-<ul>
-<li>指令和数据存储器、总线区分开(指令和数据可能有不同的数据宽度)</li>
-</ul>
-</li>
-<li>改进的哈佛结构
-<ul>
-<li>程序和数据地址空间隔离，但可以从程序地址空间读取数据(大部分MCU使用这种方式)</li>
-<li>程序和数据地址共享，将程序和数据的缓存分开</li>
-</ul>
-<blockquote>
-<p>参考：<a href="https://zhuanlan.zhihu.com/p/144345863">计算机体系结构(一) 三大体系结构浅析</a></p>
-</blockquote>
-</li>
-</ul>
-<blockquote>
-<p>现今的处理器，从总线上看是冯·诺依曼结构，但 Cache 结构的设计使得其内部类似改进的哈佛结构(L1 Cache 分为 <strong>数据缓存</strong> 和 <strong>指令缓存</strong>, L2/L3 Cache 共享)</p>
-</blockquote>
-<h2 id="性能指标">性能指标</h2>
-<ul>
-<li>
-<p>吞吐量: 表征一台计算机在某一时间间隔/单位时间内能够处理的信息量</p>
-</li>
-<li>
-<p>响应时间: 表征从输入有效到系统产生响应并得到结果之间的时间度量，用时间单位来度量</p>
-</li>
-<li>
-<p>利用率: 在给定的时间间隔内，系统被实际使用的时间所占的比率，用百分比表示</p>
-</li>
-<li>
-<p>处理器字长: 处理机运算器中一次能够完成二进制数运算的位数(通常是8的倍数，字长标志着机器表示数的精度。字长越长，精度越高)</p>
-</li>
-<li>
-<p>总线宽度: 一般指 CPU 中运算器与存储器之间进行互连的内部总线二进制位数(总线宽度一般为处理机字长的1、2、4倍)</p>
-</li>
-<li>
-<p>CPU 主频(时钟频率) = 1 / CPU 时钟周期</p>
-<ul>
-<li>主频度量单位是 MHZ(兆赫兹)、GHZ(吉赫兹)</li>
-<li>时钟周期度量单位 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">\mu s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">μ</span><span class="mord mathdefault">s</span></span></span></span>(微秒), <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">ns</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">s</span></span></span></span>(纳秒)</li>
-</ul>
-</li>
-<li>
-<p>CPU 执行时间: 表示 CPU 执行一段程序所占用的 CPU 时间</p>
-<ul>
-<li>CPU 执行时间 = CPU 时钟周期数 * CPU 时钟周期长 = 指令条数 / (MIPS * <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">10^6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span>)</li>
-<li>CPU 执行时间 = CPU 时钟周期数 / 主频 = (指令条数 * CPI) / 主频</li>
-</ul>
-</li>
-<li>
-<p>CPI: 表示每条指令的周期数。即执行一条指令所需的平均时钟周期数</p>
-<ul>
-<li>执行一条指令的耗时 = CPI * CPU 时钟周期</li>
-</ul>
-</li>
-<li>
-<p>IPS: 每秒执行指令数</p>
-<ul>
-<li>IPS  = 1 / (平均 CPI * CPU 时钟周期) = 主频 / 平均 CPI</li>
-</ul>
-</li>
-<li>
-<p>MIPS: 每秒百万条指令数，即单位时间内执行的指令数</p>
-<ul>
-<li>MIPS = 指令条数 / (CPU 执行时间 * <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">10^6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span>) = 主频 / (CPI * <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">10^6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span>)</li>
-</ul>
-</li>
-<li>
-<p>FLOPS: 每秒浮点操作次数(K/M/G/TFLOPS)</p>
-</li>
-<li>
-<p>MFLOPS: 每秒百万次浮点操作次数</p>
-</li>
-</ul>
-<h2 id="目录">目录</h2>
-<ol>
-<li><a href="/9579b8d3/">数</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>计算机组成原理</category>
-      </categories>
-      <tags>
-        <tag>计算机系统</tag>
-        <tag>计算机组成原理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>运算器</title>
     <url>/b49f5e78/</url>
     <content><![CDATA[<h2 id="逻辑运算">逻辑运算</h2>
@@ -1983,6 +1988,360 @@ hr:nth-of-type(2) {
 </ul>
 </li>
 </ol>
+]]></content>
+      <categories>
+        <category>计算机组成原理</category>
+      </categories>
+      <tags>
+        <tag>计算机系统</tag>
+        <tag>计算机组成原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>高速缓冲存储器(Cache)</title>
+    <url>/ed4bec34/</url>
+    <content><![CDATA[<h2 id="简介">简介</h2>
+<ul>
+<li>存储器层次结构的本质是，每一层存储设备都是较低一层的<strong>缓存</strong></li>
+<li>Cache
+<ul>
+<li>位于 CPU 和主存之间的高速小容量存储器(一般由 SRAM 构成)</li>
+<li>功能: 弥补 <strong>CPU</strong> 和<strong>主存</strong>之间的速度差异</li>
+<li>理论基础: 程序的<strong>空间局部性原理</strong></li>
+</ul>
+</li>
+<li>相关数据单位
+<ul>
+<li><strong>块</strong>(约定多个字组成): 存储在缓存中的数据集合，数据块在缓存与主存/下一层缓存之间来回传输</li>
+<li><strong>行</strong>: 一般称 Cache 的一个数据块(容器)为<strong>行</strong>，在组成上，两者有所差别，行包含块和其它信息(一般是作为该容器的相关标识，例如有效位和标记位)</li>
+</ul>
+</li>
+</ul>
+<h2 id="组织结构">组织结构</h2>
+<h3 id="基本结构">基本结构</h3>
+<ul>
+<li>存储器: 地址 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 位, 大小为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><msup><mn>2</mn><mi>m</mi></msup></mrow><annotation encoding="application/x-tex">M = 2^m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span></span></span></span></span></span></span></li>
+<li>Cache
+<ul>
+<li>共 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><msup><mn>2</mn><mi>s</mi></msup></mrow><annotation encoding="application/x-tex">S = 2^s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">s</span></span></span></span></span></span></span></span></span></span></span> 组</li>
+<li>每组有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span> 行
+<ul>
+<li>每行包括一个有效位</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>=</mo><msup><mn>2</mn><mi>b</mi></msup></mrow><annotation encoding="application/x-tex">B = 2^b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.849108em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span></span></span></span> 字节的数据块</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mi>m</mi><mo>−</mo><mo stretchy="false">(</mo><mi>b</mi><mo>+</mo><mi>s</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t = m - (b + s)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mclose">)</span></span></span></span> 个标记/标志位(标志位是内存地址的其中 t 位，由于可能有多个内存地址映射到Cache同行中，因此需要标志位作为唯一标识)</li>
+</ul>
+</li>
+<li>大小 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mi>S</mi><mo>∗</mo><mi>E</mi><mo>∗</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">C = S * E * B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span> (不计标记位和有效位)<br>
+<img src="/images/computer_system/cache/cache_structure.png" alt="Cache 结构"></li>
+</ul>
+</li>
+<li>内存地址划分
+<ul>
+<li>标志位: t位</li>
+<li>组号: s位(不位于高位，使得临近数据块保存在不同组中，更好利用空间局部性原理)</li>
+<li>位偏移: b位<br>
+<img src="/images/computer_system/cache/cache_address_division.png" alt="地址划分"></li>
+</ul>
+</li>
+</ul>
+<h2 id="缓存请求流程">缓存请求流程</h2>
+<h3 id="预设">预设</h3>
+<p>系统组成: CPU &lt;-&gt; 缓存(Cache) &lt;-&gt; 主存</p>
+<h3 id="简要流程">简要流程</h3>
+<ol>
+<li>CPU 执行读取数据的指令</li>
+<li>CPU 向 Cache 请求数据
+<ul>
+<li>若 Cache 内部有该数据(缓存命中)，直接传输给 CPU，执行 4</li>
+<li>否则(缓存不命中)，执行 3</li>
+</ul>
+</li>
+<li>CPU 向主存请求数据，数据到达后，Cache 存储对应的数据块</li>
+<li>CPU 执行下一步操作</li>
+</ol>
+<h3 id="缓存读">缓存读</h3>
+<p>发生时期：CPU 想要读取字/数据</p>
+<h4 id="缓存命中">缓存命中</h4>
+<ul>
+<li>现象: Cache 内部有 CPU 需要的字/数据</li>
+<li>处理策略: Cache 直接向 CPU 传输数据</li>
+</ul>
+<h4 id="缓存不命中">缓存不命中</h4>
+<ul>
+<li>类型
+<ol>
+<li>强制性不命中: Cache 内部为空</li>
+<li>冲突不命中: 请求的数据与缓存的数据不一致，位置冲突</li>
+<li>容量不命中: 缓存太小了，访问的数据大小超过的缓存的大小</li>
+</ol>
+</li>
+<li>处理策略
+<ol>
+<li>主存数据块先复制到 Cache 中，再传输到 CPU</li>
+<li>主存数据(字)传输到 CPU，同时该字所属数据块传到 Cache 中</li>
+</ol>
+</li>
+</ul>
+<h3 id="缓存写">缓存写</h3>
+<p>发生时期：CPU 想要写入字/数据</p>
+<blockquote>
+<p>参考: <a href="https://zhuanlan.zhihu.com/p/571429282">透写和回写缓存（Write Through and Write Back in Cache）</a></p>
+</blockquote>
+<h4 id="写命中">写命中</h4>
+<ul>
+<li>现象: 想要写入数据的地址在缓存中</li>
+<li>处理策略
+<ol>
+<li><strong>透写(Write Through)</strong>: 同时更新缓存和主存(CPU 写主存无高速缓存作用，适用写数据较少的情况)</li>
+<li><strong>回写/延迟写入(Write Back/Write Deferred)</strong>: 数据先只在缓存中更新，之后更新到主存中(减少 CPU 对主存的访问，存在数据不一致性隐患)</li>
+</ol>
+<ul>
+<li>更新到主存的时机: 修改内容所在的缓存即将被另一个缓存替换</li>
+<li>脏位(Dirty Bit)标记，当标记为脏位时，对应的 Cache 行替换时将数据写回主存(当发生缓存读的<strong>冲突不命中</strong>时，访问两次内存，第一次写回脏数据，第二次读取所需数据)</li>
+</ul>
+</li>
+</ul>
+<h4 id="写不命中">写不命中</h4>
+<ul>
+<li>现象: 想要写入数据的地址不在缓存中</li>
+<li>处理策略
+<ol>
+<li><strong>写分配/写时取(Write Allocation/Fetch on Write)</strong>: 未写入数据先载入缓存，然后执行写命中操作</li>
+<li><strong>无写分配(No Write Allocation)</strong>: 数据直接写入主存，不干扰缓存，仅在读不命中时载入缓存(适用场景: 写入数据无需立刻使用)</li>
+</ol>
+</li>
+</ul>
+<h3 id="cache-缓存命中步骤">Cache 缓存命中步骤</h3>
+<ol>
+<li>组匹配</li>
+<li>行匹配(标志位比对)</li>
+<li>数据块内部偏移匹配获取对应数据</li>
+</ol>
+<p>前两个步骤匹配失败，则缓存不命中</p>
+<h3 id="相关指标">相关指标</h3>
+<h4 id="命中率">命中率</h4>
+<ul>
+<li>定义: CPU 访问主存数据时，命中 Cache 的次数占全部访问次数的比率</li>
+<li>影响因素: 程序行为，Cache 容量，组织方式，块大小</li>
+<li>命中率: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>=</mo><mfrac><msub><mi>N</mi><mi>c</mi></msub><mrow><msub><mi>N</mi><mi>c</mi></msub><mo>+</mo><msub><mi>N</mi><mi>m</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">h = \frac{N_{c}}{N_{c} + N_{m}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">h</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.3335309999999998em;vertical-align:-0.44509999999999994em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8884309999999999em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:-0.10903em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">+</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:-0.10903em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:-0.10903em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.44509999999999994em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>，其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">N_{c}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 为 Cache 完成存取的次数，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">N_{m}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 为主存完成存取的次数</li>
+</ul>
+<h4 id="系统平均访问时间">系统平均访问时间</h4>
+<ul>
+<li>平均访问时间: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mi>a</mi></msub><mo>=</mo><mi>h</mi><msub><mi>t</mi><mi>c</mi></msub><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>h</mi><mo stretchy="false">)</mo><msub><mi>t</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">t_{a} = ht_{c} + (1 - h)t_{m}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord mathdefault">h</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">h</span><span class="mclose">)</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">t_{c}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 为 Cache 访问时间，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">t_{m}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 为主存访问时间</li>
+</ul>
+<h4 id="访问效率">访问效率</h4>
+<ul>
+<li>设 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>=</mo><mfrac><msub><mi>t</mi><mi>m</mi></msub><msub><mi>t</mi><mi>c</mi></msub></mfrac></mrow><annotation encoding="application/x-tex">r = \frac{t_{m}}{t_{c}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.2857559999999997em;vertical-align:-0.44509999999999994em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8406559999999998em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.44509999999999994em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> 表示主存访问时间相比 Cache 访问时间的倍数</li>
+<li>访问效率: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mo>=</mo><mfrac><msub><mi>t</mi><mi>c</mi></msub><msub><mi>t</mi><mi>a</mi></msub></mfrac><mo>=</mo><mfrac><msub><mi>t</mi><mi>c</mi></msub><mrow><mi>h</mi><msub><mi>t</mi><mi>c</mi></msub><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>h</mi><mo stretchy="false">)</mo><msub><mi>t</mi><mi>m</mi></msub></mrow></mfrac><mo>=</mo><mfrac><mn>1</mn><mrow><mi>h</mi><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>h</mi><mo stretchy="false">)</mo><mi>r</mi></mrow></mfrac><mo>=</mo><mfrac><mn>1</mn><mrow><mi>r</mi><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>r</mi><mo stretchy="false">)</mo><mi>h</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">e = \frac{t_{c}}{t_{a}} = \frac{t_{c}}{ht_{c} + (1 - h)t_{m}} = \frac{1}{h + (1 - h)r} = \frac{1}{r + (1 - r)h}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.2857559999999997em;vertical-align:-0.44509999999999994em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8406559999999998em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.44509999999999994em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.3606559999999999em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8406559999999998em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">+</span><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight">h</span><span class="mclose mtight">)</span><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.365108em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span class="mbin mtight">+</span><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight">h</span><span class="mclose mtight">)</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.365108em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mbin mtight">+</span><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mclose mtight">)</span><span class="mord mathdefault mtight">h</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>，其中，以 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>→</mo><mn>1</mn><mo separator="true">,</mo><mi>r</mi><mo>=</mo><mn>5</mn><mo>∼</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">h \to 1, r = 5 \sim 10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">h</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span></span></span></span> 较佳</li>
+</ul>
+<h2 id="地址映射方式">地址映射方式</h2>
+<p>预设:</p>
+<ul>
+<li>存储器: 地址 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 位, 大小为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><msup><mn>2</mn><mi>m</mi></msup></mrow><annotation encoding="application/x-tex">M = 2^m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span></span></span></span></span></span></span></li>
+<li>Cache
+<ul>
+<li>共 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><msup><mn>2</mn><mi>s</mi></msup></mrow><annotation encoding="application/x-tex">S = 2^s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">s</span></span></span></span></span></span></span></span></span></span></span> 组</li>
+<li>每组有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span> 行，包括 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>=</mo><msup><mn>2</mn><mi>b</mi></msup></mrow><annotation encoding="application/x-tex">B = 2^b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.849108em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span></span></span></span></span></span></span></span> 字节的数据块</li>
+</ul>
+</li>
+<li>大小 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mi>S</mi><mo>∗</mo><mi>E</mi><mo>∗</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">C = S * E * B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span> (不计标记位和有效位)</li>
+</ul>
+<h3 id="全相联映射">全相联映射</h3>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mn>1</mn><mo separator="true">,</mo><mi>E</mi><mo>=</mo><mi>C</mi><mi mathvariant="normal">/</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">S = 1, E = C / B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span></li>
+<li>流程
+<ol>
+<li>组匹配: 组索引中定位组(只有1组，忽略匹配)</li>
+<li>行匹配: 遍历组中的每一行，找到有效的且标记位匹配的行(映射到这个组的数据块可以位于任意行)</li>
+<li>块偏移匹配<br>
+<img src="/images/computer_system/cache/cache_fully_associative_mapping.png" alt="全相联映射行匹配"></li>
+</ol>
+</li>
+<li>特点
+<ul>
+<li>没有<strong>冲突不命中</strong>的问题，缓存利用率高</li>
+<li>规模不能太大，太大的话标记位过长，导致电路规模增长，成本较高，查找速度较慢</li>
+<li>适用于小的高速缓存，如缓存页表项的 TLB</li>
+</ul>
+</li>
+</ul>
+<h3 id="直接映射">直接映射</h3>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>=</mo><mn>1</mn><mo separator="true">,</mo><mi>S</mi><mo>=</mo><mi>C</mi><mi mathvariant="normal">/</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">E = 1, S = C / B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span></li>
+<li>流程
+<ol>
+<li>组匹配: 组索引中定位组</li>
+<li>行匹配: 有效位判断 -&gt; 标记位匹配(只有一行，对应的数据块在哪一行是固定的)</li>
+<li>块偏移匹配<br>
+<img src="/images/computer_system/cache/cache_direct_mapping.png.png" alt="直接映射行匹配"></li>
+</ol>
+</li>
+<li>特点
+<ul>
+<li>映射方式简单，硬件易实现</li>
+<li>Cache 命中率低，替换频繁，可能存在 Cache 有空行但不能存储数据块的问题</li>
+</ul>
+</li>
+</ul>
+<h3 id="组相联映射">组相联映射</h3>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>&lt;</mo><mi>E</mi><mo>&lt;</mo><mi>C</mi><mi mathvariant="normal">/</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">1 \lt E \lt C / B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68354em;vertical-align:-0.0391em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72243em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span> E 路相联高速缓存</li>
+<li>全相联映射和直接映射是特殊的组相联映射</li>
+<li>流程
+<ol>
+<li>组匹配: 组索引中定位组</li>
+<li>行匹配: 遍历组中的每一行，找到有效的且标记位匹配的行(映射到这个组的数据块可以位于任意行)</li>
+<li>块偏移匹配<br>
+<img src="/images/computer_system/cache/cache_set_associative_mapping.png" alt="组相联映射行匹配"></li>
+</ol>
+</li>
+<li>特点
+<ul>
+<li>通常采用 2路、4路、8路比较</li>
+<li>E较小，硬件开销较小</li>
+</ul>
+</li>
+</ul>
+<h2 id="替换算法">替换算法</h2>
+<ul>
+<li>随机替换算法</li>
+<li>先进先出算法(FIFO)</li>
+<li>最近最少使用算法(LRU Least Recently Used)
+<ul>
+<li>统计 Cache 行的使用次数(计数器实现)</li>
+</ul>
+</li>
+</ul>
+<h2 id="其它">其它</h2>
+<p>这里主要放置一些自己看到的又懒得分类东西</p>
+<h3 id="传输关系">传输关系</h3>
+<ul>
+<li>CPU 和 Cache 之间的数据传输以 <strong>字</strong> 为单位</li>
+<li>主存 和 Cache 之间的数据传输以 <strong>块</strong> 为单位</li>
+</ul>
+<h3 id="缓存过小时-题外话">缓存过小时(题外话)</h3>
+<p>当执行一个程序，该程序所需内存过大，内存基本拉满时，会释放暂时不需要的页，从磁盘载入当前需要的虚拟内存页，但释放的页可能在下一步又要用到，于是又释放暂时不需要的页，从磁盘载入页…这样导致操作系统卡顿(磁盘和主存的数据传输导致)</p>
+<blockquote>
+<p>这部分应该放在虚拟内存篇章比较合适，但 <strong>每一层存储设备都是较低一层的缓存</strong>，所以放在这里也可以<br>
+题外话来源: 虚拟机内存设置 1G，编译代码时磁盘传输速度拉满，界面卡顿</p>
+</blockquote>
+<h3 id="代码中的冲突不命中">代码中的冲突不命中</h3>
+<blockquote>
+<p>来源: 《深入理解计算机系统》</p>
+</blockquote>
+<p>当程序访问大小为<strong>2的幂</strong>的数组时，<strong>直接映射</strong>高速缓存通常发生冲突不命中</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">func</span><span class="params">(<span class="type">int</span> x[<span class="number">8</span>], <span class="type">int</span> y[<span class="number">8</span>])</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; ++i) &#123;</span><br><span class="line">        sum += x[i] * y[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>预设
+<ul>
+<li>Cache 有 2 个组，直接映射</li>
+<li>一个块大小 16 字节(容纳4个<code>int</code>类型的数)</li>
+<li>x 起始地址为 0，y 内存地址紧跟 x</li>
+</ul>
+</li>
+<li>地址映射如下表</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>元素</th>
+<th>地址</th>
+<th>组索引</th>
+<th>元素</th>
+<th>地址</th>
+<th>组索引</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x[0]</td>
+<td>0</td>
+<td>0</td>
+<td>y[0]</td>
+<td>32</td>
+<td>0</td>
+</tr>
+<tr>
+<td>x[1]</td>
+<td>4</td>
+<td>0</td>
+<td>y[1]</td>
+<td>36</td>
+<td>0</td>
+</tr>
+<tr>
+<td>x[2]</td>
+<td>8</td>
+<td>0</td>
+<td>y[2]</td>
+<td>40</td>
+<td>0</td>
+</tr>
+<tr>
+<td>x[3]</td>
+<td>12</td>
+<td>0</td>
+<td>y[3]</td>
+<td>44</td>
+<td>0</td>
+</tr>
+<tr>
+<td>x[4]</td>
+<td>16</td>
+<td>1</td>
+<td>y[4]</td>
+<td>48</td>
+<td>1</td>
+</tr>
+<tr>
+<td>x[5]</td>
+<td>20</td>
+<td>1</td>
+<td>y[5]</td>
+<td>52</td>
+<td>1</td>
+</tr>
+<tr>
+<td>x[6]</td>
+<td>24</td>
+<td>1</td>
+<td>y[6]</td>
+<td>56</td>
+<td>1</td>
+</tr>
+<tr>
+<td>x[7]</td>
+<td>28</td>
+<td>1</td>
+<td>y[7]</td>
+<td>60</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>函数执行过程</p>
+<ol>
+<li>CPU 访问 x[0] 地址，缓存不命中(内部为空)，从主存中载入 x[0] ~ x[3] 到缓存组0</li>
+<li>CPU 访问 y[0] 地址，缓存不命中(冲突)，从主存中载入 y[0] ~ y[3] 到缓存组0</li>
+<li>CPU 访问 x[1] 地址，缓存不命中(冲突)，从主存中载入 x[0] ~ x[3] 到缓存组0</li>
+<li>CPU 访问 y[1] 地址，缓存不命中(冲突)，从主存中载入 y[0] ~ y[3] 到缓存组0<br>
+…</li>
+</ol>
+</li>
+<li>
+<p>上述过程称为<strong>抖动</strong>，即高速缓冲反复加载或驱逐相同高速缓存块的组</p>
+</li>
+<li>
+<p>解决方法: 让映射组错位，具体的解决方法是在数组后填充字节。例如<code>int x[8]</code> -&gt; <code>int x[12]</code>，这样设置，y 的起始坐标为 48，移到了下一组</p>
+</li>
+</ul>
+<h3 id="存储相关导图">存储相关导图</h3>
+<blockquote>
+<p>部分材料来源: <a href="https://xiaolincoding.com/">小林coding</a></p>
+</blockquote>
+<p><img src="/images/computer_system/cache/cache_usage.png" alt="存储相关导图"></p>
 ]]></content>
       <categories>
         <category>计算机组成原理</category>
