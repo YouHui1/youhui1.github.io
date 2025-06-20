@@ -31,6 +31,43 @@
     --trans-dark: rgba(25, 25, 25, 0.43);
     --border-style: 1px solid rgba(169, 169, 169, 0.5);
     --backdrop-filter: blur(2px) saturate(120%);
+
+    --blog-color: rgba(197, 50, 28, 0.357);
+    --blog-hover-color: #b4afff;
+    --blog-widget-hover: rgba(41, 20, 149, 0.325);
+    --blog-font-white: #FDFDFD;
+    --blog-light-green: #B2FFCA;
+    --blog-light-purple: #F6B9FF;
+    --blog-green: #11D991;
+    --blog-purple: #E764FF;
+    --blog-light-grey: #F2F2F2;
+    --blog-card-bg: rgba(255,255,255,0.7);
+    --blog-emphasis-color: #F7F81A;
+    --blog-bgblur: blur(10px);
+    --blog-footer-bg: linear-gradient(to bottom,transparent 0%,rgba(255,255,255,0.7) 40%);
+    --blog-font-grey: #888888;
+    --blog-categorycard-bg: rgba(255,255,255,0.5);
+    --blog-card-color1: rgba(255, 85, 0, 0.39);
+    --blog-card-color2: rgba(44, 41, 244, 0.349);
+    --blog-font-color: #F0F090;
+    --blog-archive-time-line: rgba(209, 97, 28, 0.88);
+    --blog-archive-card-border: rgba(255, 85, 0, 0.39);
+
+  }
+
+  [data-theme='dark'] {
+    --global-bg:black;
+    --blog-color: #041c29;
+    --blog-widget-hover: rgba(8, 40, 31, 0.396);
+    --blog-card-bg: rgba(0,0,0,0.2);
+    --blog-footer-bg: linear-gradient(to bottom,transparent 0%,rgba(0,0,0,0.7) 40%);
+    --blog-font-grey: #BBBBBB;
+    --blog-categorycard-bg:rgba(255,255,255,0);
+    --blog-card-color1: rgba(192, 192, 192, 0.6);
+    --blog-card-color2: rgba(15, 192, 192, 0.095);
+    --blog-font-color: #FDFDFD;
+    --blog-archive-time-line: rgba(192, 192, 192, 0.6);
+    --blog-archive-card-border: rgba(192, 192, 192, 0.89);
   }
 
   /* 首页文章卡片 */
@@ -108,44 +145,6 @@
 /* ------------------ 卡片 ------------------ */
 
 /* ----------------- 归档、标签、分类页 -------------------- */
-
-:root {
-  --blog-color: rgba(197, 50, 28, 0.357);
-  --blog-hover-color: #b4afff;
-  --blog-widget-hover: rgba(41, 20, 149, 0.325);
-  --blog-font-white: #FDFDFD;
-  --blog-light-green: #B2FFCA;
-  --blog-light-purple: #F6B9FF;
-  --blog-green: #11D991;
-  --blog-purple: #E764FF;
-  --blog-light-grey: #F2F2F2;
-  --blog-card-bg: rgba(255,255,255,0.5);
-  --blog-emphasis-color: #F7F81A;
-  --blog-bgblur: blur(10px);
-  --blog-footer-bg: linear-gradient(to bottom,transparent 0%,rgba(255,255,255,0.7) 40%);
-  --blog-font-grey: #888888;
-  --blog-categorycard-bg: rgba(255,255,255,0.5);
-  --blog-card-color1: rgba(255, 85, 0, 0.39);
-  --blog-card-color2: rgba(44, 41, 244, 0.349);
-  --blog-font-color: #F0F090;
-  --blog-archive-time-line: rgba(209, 97, 28, 0.88);
-  --blog-archive-card-border: rgba(255, 85, 0, 0.39);
-}
-
-[data-theme='dark'] {
-  --global-bg:black;
-  --blog-color: #041c29;
-  --blog-widget-hover: rgba(8, 40, 31, 0.396);
-  --blog-card-bg: rgba(0,0,0,0.2);
-  --blog-footer-bg: linear-gradient(to bottom,transparent 0%,rgba(0,0,0,0.7) 40%);
-  --blog-font-grey: #BBBBBB;
-  --blog-categorycard-bg:rgba(255,255,255,0);
-  --blog-card-color1: rgba(192, 192, 192, 0.6);
-  --blog-card-color2: rgba(15, 192, 192, 0.095);
-  --blog-font-color: #FDFDFD;
-  --blog-archive-time-line: rgba(192, 192, 192, 0.6);
-  --blog-archive-card-border: rgba(192, 192, 192, 0.89);
-}
 
 .layout.hide-aside{
   max-width:1200px;
