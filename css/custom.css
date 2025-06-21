@@ -59,7 +59,7 @@
     --global-bg:black;
     --blog-color: #041c29;
     --blog-widget-hover: rgba(8, 40, 31, 0.396);
-    --blog-card-bg: rgba(0,0,0,0.5);
+    --blog-card-bg: rgba(0,0,0,0.2);
     --blog-footer-bg: linear-gradient(to bottom,transparent 0%,rgba(0,0,0,0.7) 40%);
     --blog-font-grey: #BBBBBB;
     --blog-categorycard-bg:rgba(255,255,255,0);
