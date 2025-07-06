@@ -44,7 +44,6 @@
     --blog-card-bg: rgba(255,255,255,0.7);
     --blog-emphasis-color: #F7F81A;
     --blog-bgblur: blur(10px);
-    --blog-footer-bg: linear-gradient(to bottom,transparent 0%,rgba(255,255,255,0.7) 40%);
     --blog-font-grey: #888888;
     --blog-categorycard-bg: rgba(255,255,255,0.5);
     --blog-card-color1: rgba(255, 85, 0, 0.39);
@@ -52,7 +51,7 @@
     --blog-font-color: #F0F090;
     --blog-archive-time-line: rgba(209, 97, 28, 0.88);
     --blog-archive-card-border: rgba(255, 85, 0, 0.39);
-
+    --blog-footer-bg: linear-gradient(to top left, var(--blog-card-color1) 0%, var(--blog-card-color2) 100%);
   }
 
   [data-theme='dark'] {
@@ -60,7 +59,6 @@
     --blog-color: #041c29;
     --blog-widget-hover: rgba(8, 40, 31, 0.396);
     --blog-card-bg: rgba(0,0,0,0.2);
-    --blog-footer-bg: linear-gradient(to bottom,transparent 0%,rgba(0,0,0,0.7) 40%);
     --blog-font-grey: #BBBBBB;
     --blog-categorycard-bg:rgba(255,255,255,0);
     --blog-card-color1: rgba(192, 192, 192, 0.6);
@@ -68,6 +66,7 @@
     --blog-font-color: #FDFDFD;
     --blog-archive-time-line: rgba(192, 192, 192, 0.6);
     --blog-archive-card-border: rgba(192, 192, 192, 0.89);
+    --blog-footer-bg: linear-gradient(to top left, var(--blog-card-color1) 0%, var(--blog-card-color2) 100%);
   }
 
   /* 首页文章卡片 */
