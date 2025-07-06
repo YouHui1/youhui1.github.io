@@ -180,7 +180,7 @@
 
 .article-sort-item:not(.year){
   padding:8px 10px;
-  width:calc(50% - 0.8rem);
+  width:calc(100% - 0.8rem);
   margin:0.4rem;
   border:3px solid var(--blog-archive-card-border);
   border-radius:15px;
@@ -198,7 +198,7 @@
 .article-sort-item-img{
   transition:0.5s;
   height:90px;
-  width:140px;
+  width:180px;
 }
 
 .article-sort-item > a >img{
