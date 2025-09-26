@@ -52,6 +52,7 @@
     --blog-archive-time-line: rgba(209, 97, 28, 0.88);
     --blog-archive-card-border: rgba(255, 85, 0, 0.39);
     --blog-footer-bg: linear-gradient(to top left, var(--blog-card-color1) 0%, var(--blog-card-color2) 100%);
+    --blog-text-strong-color: #2F4F4F;
   }
 
   [data-theme='dark'] {
@@ -67,6 +68,7 @@
     --blog-archive-time-line: rgba(192, 192, 192, 0.6);
     --blog-archive-card-border: rgba(192, 192, 192, 0.89);
     --blog-footer-bg: linear-gradient(to top left, var(--blog-card-color1) 0%, var(--blog-card-color2) 100%);
+    --blog-text-strong-color: #E0EFEF;
   }
 
   /* 首页文章卡片 */
