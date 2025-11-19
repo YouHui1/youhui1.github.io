@@ -3818,4 +3818,93 @@ hr:nth-of-type(2) {
         <tag>计算机组成原理</tag>
       </tags>
   </entry>
+  <entry>
+    <title>数组</title>
+    <url>/340249a9/</url>
+    <content><![CDATA[<h2 id="概述">概述</h2>
+<p><strong>数组</strong> 是一个固定(有限)长度的、存储相同数据类型元素(元素大小固定)的集合。<s>数组：一组数(</s></p>
+<p><strong>数组</strong> 这个概念本身是模糊的，既可以视作 <strong>ADT</strong>, 又可以视作具体的实现，下列叙述默认将数组视为具体实现</p>
+<h2 id="简单图示-c">简单图示(C++)</h2>
+<p><img src="/images/datastructure/array/array.png" alt="数组"></p>
+<h2 id="代码定义">代码定义</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">char</span> a[<span class="number">10</span>];</span><br><span class="line"><span class="type">int</span> b[<span class="number">2</span>][<span class="number">3</span>];</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+<h2 id="特性">特性</h2>
+<ul>
+<li>数组层面
+<ul>
+<li><strong>顺序存储 —— 存储空间连续</strong>：数组内所有元素存储在一段连续的内存空间中</li>
+<li><strong>随机存取 —— 有索引</strong>：由于存储的位置是连续的，可以通过指针等直接取址定位</li>
+<li><strong>长度/容量固定</strong>：数组创建后长度固定，不可扩展压缩(若需要扩展，需要重新申请一个更大的数组)(压缩的话，可以自定义一个末指针，指定所需位置)</li>
+<li><strong>批处理</strong>：在申请以及释放资源方面，数组一般是成批处理的</li>
+</ul>
+</li>
+<li>元素层面
+<ul>
+<li>改变元素方式为<strong>覆盖</strong>，不可直接将元素<strong>删除</strong>。<strong>交换</strong>元素时只能交换元素的<strong>数值</strong>，其本身的位置信息(地址)<strong>无法</strong>交换</li>
+</ul>
+</li>
+</ul>
+<h2 id="复杂度分析-部分操作">复杂度分析(部分操作)</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>时间复杂度</th>
+<th>空间复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>随机访问</td>
+<td>O(1)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>查找元素(遍历)</td>
+<td>O(n)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>插入数据</td>
+<td>O(n)/O(1)(插入末尾，元素未满)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>删除数据</td>
+<td>O(n)/O(1)(末尾)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>扩容</td>
+<td>O(n)</td>
+<td>O(n)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="拓展：多维数组">拓展：多维数组</h2>
+<blockquote>
+<p>参考内容: <a href="https://www.programmercarl.com/%E6%95%B0%E7%BB%84%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html">代码随想录</a></p>
+</blockquote>
+<p>在C++中，定义一个二维数组：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">char</span> a[<span class="number">10</span>][<span class="number">10</span>];</span><br></pre></td></tr></table></figure>
+<p>在内存中连续分布：即<code>a[2][1]</code>存储在以a为起始地址起后21字节的位置</p>
+<blockquote>
+<p>在其它编程语言中未必也是连续分布的，似乎在java中存在这种多维数组结构：<br>
+<img src="/images/datastructure/array/java_array.png" alt="java多维数组"><br>
+在python中，<code>a = [1,2,3,...]</code> 所定义的结构并非数组，而是列表。python数组需要引入特定的package</p>
+</blockquote>
+<h2 id="发散-随想-自身理解">发散/随想/自身理解(?)</h2>
+<ul>
+<li>数组本身是相当简单的数据结构，但如果天马行空一点的话，运用起来也能组建出很复杂的结构和算法，一般是作为 <strong>载体/容器</strong> 的形式存在(即数据结构的 <strong>具体实现</strong>)</li>
+<li>数组在检索数据方面快，但是长度固定，元素类型固定，不太好处理涉及到数据不定长变换或数据本身类型不一致等情况</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+      </categories>
+      <tags>
+        <tag>数据结构与算法</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
 </search>
