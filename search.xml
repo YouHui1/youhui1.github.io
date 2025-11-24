@@ -3907,4 +3907,33 @@ hr:nth-of-type(2) {
         <tag>数据结构</tag>
       </tags>
   </entry>
+  <entry>
+    <title>节点</title>
+    <url>/e076d90b/</url>
+    <content><![CDATA[<h2 id="概述">概述</h2>
+<p>下面论述的节点，本质是一个<strong>结构体</strong>，可作为其它数据结构组成单元</p>
+<p>节点的由 <strong>数据</strong> 和 <strong>指针</strong> 组成，指针存储的是节点的 <strong>地址</strong>，指针抽象为节点的连接，根据不同连接，多个节点会形成不同的数据结构<br>
+<img src="/images/datastructure/node/node.png" alt="节点"></p>
+<h2 id="代码定义">代码定义</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">    <span class="type">int</span> value;</span><br><span class="line">    Node* pointer;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="特性">特性</h2>
+<ul>
+<li>每个节点可独立存在，因此多个节点的地址不一定是连续的</li>
+<li>一个节点通过 <strong>指针</strong> 访问其它的节点</li>
+</ul>
+<h2 id="发散-随想-自身理解">发散/随想/自身理解(?)</h2>
+<ul>
+<li>多个节点可以形成 <strong>链表</strong> , <strong>树</strong> , <strong>图</strong> 等数据结构<br>
+<img src="/images/datastructure/node/node_structure.png" alt="相关数据结构"></li>
+<li>由多个节点构成的数据结构，关注/操作点更多是节点之间的关系，而不是节点本身，节点本身只作为 <strong>容器</strong> 使用</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+      </categories>
+      <tags>
+        <tag>数据结构与算法</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
 </search>
