@@ -4177,7 +4177,7 @@ hr:nth-of-type(2) {
 </ul>
 </li>
 </ul>
-<h2 id="有根树">有根树</h2>
+<h3 id="有根树">有根树</h3>
 <p><img src="/images/datastructure/tree/rooted_tree.jpg" alt="有根树"></p>
 <ul>
 <li>根结点 r</li>
@@ -4194,22 +4194,22 @@ hr:nth-of-type(2) {
 </li>
 <li>树的高度(height): 所有结点深度的最大值(层数由下往上数, 根结点层数为0或1由具体情况而定, 在此将根结点视为深度0, 树高为 4)</li>
 </ul>
-<h3 id="有根二叉树-rooted-binary-tree">有根二叉树(rooted binary tree)</h3>
+<h4 id="有根二叉树-rooted-binary-tree">有根二叉树(rooted binary tree)</h4>
 <ul>
 <li>每个结点最多有两个子结点，子结点顺序通常加以区分，分别为 <strong>左子结点</strong> 和 <strong>右子结点</strong></li>
 <li>大多数情况下，二叉树指的是有根二叉树</li>
 </ul>
-<h3 id="完整二叉树-full-proper-binary-tree">完整二叉树(full/proper binary tree)</h3>
+<h4 id="完整二叉树-full-proper-binary-tree">完整二叉树(full/proper binary tree)</h4>
 <p><img src="/images/datastructure/tree/full_binary_tree.jpg" alt="完整二叉树"></p>
 <ul>
 <li>每个结点的子结点数量为 0(叶结点)或 2(左右子结点非空)</li>
 </ul>
-<h3 id="完全二叉树-complete-binary-tree">完全二叉树(complete binary tree)</h3>
+<h4 id="完全二叉树-complete-binary-tree">完全二叉树(complete binary tree)</h4>
 <p><img src="/images/datastructure/tree/complete_binary_tree.jpg" alt="完全二叉树"></p>
 <ul>
 <li>只有最下面两层结点的度数可以小于 2，且最下面一层的结点都集中在该层最左边的连续位置上</li>
 </ul>
-<h3 id="完美二叉树-perfect-binary-tree">完美二叉树(perfect binary tree)</h3>
+<h4 id="完美二叉树-perfect-binary-tree">完美二叉树(perfect binary tree)</h4>
 <p><img src="/images/datastructure/tree/perfect_binary_tree.jpg" alt="完美二叉树"></p>
 <ul>
 <li>所有叶结点的深度均相同，且所有非叶结点的子结点数量均为 2 的二叉树</li>
