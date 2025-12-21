@@ -4104,6 +4104,132 @@ hr:nth-of-type(2) {
 <li>连通图 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>=</mo><mo stretchy="false">(</mo><mi>V</mi><mo separator="true">,</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">G = (V, E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">G</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span>, 若从 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">G</span></span></span></span> 中删除点集 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>V</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><msup><mi>V</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>⊆</mo><mi>V</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">V&#x27;(V&#x27; \sube V)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0019em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⊆</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mclose">)</span></span></span></span> 后 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo stretchy="false">[</mo><mi>V</mi><mi mathvariant="normal">\</mi><msup><mi>V</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">G[V \backslash V&#x27;]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0019em;vertical-align:-0.25em;"></span><span class="mord mathnormal">G</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mord">\</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mclose">]</span></span></span></span> 不是连通图，称 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>V</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">V&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7519em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span> 为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">G</span></span></span></span> 的 <strong>点割集(vertex cut/separating set)</strong>, 大小为一的点割集称为 <strong>割点(cur vertex)</strong></li>
 <li>连通图 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>=</mo><mo stretchy="false">(</mo><mi>V</mi><mo separator="true">,</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">G = (V, E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">G</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span>, 若从 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">G</span></span></span></span> 中删除边集 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>E</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><msup><mi>E</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>⊆</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">E&#x27;(E&#x27; \sube E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0019em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⊆</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span> 后 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>G</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>=</mo><mo stretchy="false">(</mo><mi>V</mi><mo separator="true">,</mo><mi>E</mi><mi mathvariant="normal">\</mi><msup><mi>E</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">G&#x27; = (V, E \backslash E&#x27;)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7519em;"></span><span class="mord"><span class="mord mathnormal">G</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0019em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord">\</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 不是连通图，称 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>E</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow><annotation encoding="application/x-tex">E&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7519em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span> 为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">G</span></span></span></span> 的 <strong>边割集(vertex edge set)</strong>, 大小为一的边割集称为 <strong>桥(bridge)</strong></li>
 </ul>
+<h2 id="遍历">遍历</h2>
+<ul>
+<li><strong>深度优先搜索(Depth First Search, DFS)</strong>: 每次都尝试往更深的结点走</li>
+<li><strong>广度优先搜索(Breadth First Search, BFS)</strong>: 每次都尝试访问同一层结点
+<ul>
+<li>找到的路径是从起点开始的 <strong>最短</strong> 合法路径</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>基础学科学习</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>数据结构与算法</tag>
+        <tag>离散数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树基础知识</title>
+    <url>/65c05180/</url>
+    <content><![CDATA[<h2 id="简要">简要</h2>
+<blockquote>
+<p><a href="https://oi-wiki.org/graph/tree-basic/">OI Wiki 树基础</a><br>
+图论中的树和现实生活中的树长得一样，只不过我们习惯于处理问题的时候把树根放到上方来考虑。这种数据结构看起来像是一个倒挂的树，因此得名。</p>
+</blockquote>
+<ul>
+<li>与 <a href="">图论</a> 具有相同目的定位，简单温习离散数学下的树结构</li>
+<li>在后续的数据结构介绍中，大概率也用不到这么多知识，也存在有些必备知识没有罗列出来的情况，后续在介绍数据章节缺什么就补什么</li>
+</ul>
+<h2 id="参考书籍-资料-网站">参考书籍/资料/网站</h2>
+<ul>
+<li>Discrete Mathematics (Gary Chartrand, Ping Zhang)</li>
+<li><a href="https://oi-wiki.org/graph/tree-basic/">OI Wiki 树基础</a></li>
+</ul>
+<h2 id="定义">定义</h2>
+<ul>
+<li><strong>树(tree)</strong>: <strong>无环</strong> 的 <strong>连通图</strong>
+<ul>
+<li>一个没有固定根结点的树称为 <strong>无根树(unrooted tree)</strong></li>
+<li>在无根树基础上，指定一个结点为 <strong>根</strong>，形成一个 <strong>有根树(rooted tree)</strong>，有根树一般规定结点之间的 <strong>上下级</strong> 关系</li>
+</ul>
+</li>
+<li><strong>生成树(spanning tree)</strong>: 一个 <strong>连通图</strong> 的 <strong>生成子图</strong>, 同时要求是 <strong>树</strong>, 即从边集中选择 n - 1 条边连通所有顶点
+<ul>
+<li>当一个图是树时，该图只有一个生成树，即它 <strong>自身</strong></li>
+</ul>
+</li>
+<li><strong>森林(forest)</strong>: <strong>无环</strong> 的 <strong>图</strong>
+<ul>
+<li>森林中每个 <strong>连通分量</strong> 都是一棵 <strong>树</strong></li>
+<li>一棵树也可以称为森林</li>
+</ul>
+</li>
+</ul>
+<h2 id="性质-定义扩展">性质/定义扩展</h2>
+<h3 id="普遍性质">普遍性质</h3>
+<ul>
+<li>图 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>=</mo><mo stretchy="false">(</mo><mi>V</mi><mo separator="true">,</mo><mi>E</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi mathvariant="normal">∣</mi><mi>V</mi><mi mathvariant="normal">∣</mi><mo>=</mo><mi>n</mi><mo separator="true">,</mo><mi mathvariant="normal">∣</mi><mi>E</mi><mi mathvariant="normal">∣</mi><mo>=</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">G = (V, E) (|V| = n, |E| = m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">G</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">m</span><span class="mclose">)</span></span></span></span>, 满足以下 3 个条件中的 <strong>2</strong> 个时，该图就是树:
+<ol>
+<li>G 是连通的</li>
+<li>G 是无环的</li>
+<li>n = m + 1</li>
+</ol>
+</li>
+<li>叶结点(leaf node)
+<ul>
+<li>无根树: 度数 <strong>不超过 1</strong> 的结点</li>
+<li>有根树: <strong>没有子结点</strong> 的结点</li>
+</ul>
+</li>
+</ul>
+<h2 id="有根树">有根树</h2>
+<p><img src="/images/datastructure/tree/rooted_tree.jpg" alt="有根树"></p>
+<ul>
+<li>根结点 r</li>
+<li>以结点 n 为主视角:
+<ul>
+<li>祖先 a (ancestor): 结点 n 到根结点路径上除 n 本身外的其它结点</li>
+<li>父亲结点 p (parent node): 结点 n 到根结点路径上的第二个结点</li>
+<li>子结点 c (child node): 以 n 作为父结点的结点</li>
+<li>后代 d (descendant): 以 n 作为祖先的结点</li>
+<li>兄弟 s (sibling): 同个父结点的多个子结点互为兄弟</li>
+<li>结点深度(depth): 结点到根结点路径上的边数(层数由上往下数, 根结点层数为0或1由具体情况而定, 在此将根结点视为深度0, 结点 n 深度为 2)</li>
+<li>子树(subtree): 切断结点 n 与父结点相连的边后，该结点所在的子图(结点 n 与其后代构成的树)</li>
+</ul>
+</li>
+<li>树的高度(height): 所有结点深度的最大值(层数由下往上数, 根结点层数为0或1由具体情况而定, 在此将根结点视为深度0, 树高为 4)</li>
+</ul>
+<h3 id="有根二叉树-rooted-binary-tree">有根二叉树(rooted binary tree)</h3>
+<ul>
+<li>每个结点最多有两个子结点，子结点顺序通常加以区分，分别为 <strong>左子结点</strong> 和 <strong>右子结点</strong></li>
+<li>大多数情况下，二叉树指的是有根二叉树</li>
+</ul>
+<h3 id="完整二叉树-full-proper-binary-tree">完整二叉树(full/proper binary tree)</h3>
+<p><img src="/images/datastructure/tree/full_binary_tree.jpg" alt="完整二叉树"></p>
+<ul>
+<li>每个结点的子结点数量为 0(叶结点)或 2(左右子结点非空)</li>
+</ul>
+<h3 id="完全二叉树-complete-binary-tree">完全二叉树(complete binary tree)</h3>
+<p><img src="/images/datastructure/tree/complete_binary_tree.jpg" alt="完全二叉树"></p>
+<ul>
+<li>只有最下面两层结点的度数可以小于 2，且最下面一层的结点都集中在该层最左边的连续位置上</li>
+</ul>
+<h3 id="完美二叉树-perfect-binary-tree">完美二叉树(perfect binary tree)</h3>
+<p><img src="/images/datastructure/tree/perfect_binary_tree.jpg" alt="完美二叉树"></p>
+<ul>
+<li>所有叶结点的深度均相同，且所有非叶结点的子结点数量均为 2 的二叉树</li>
+<li>深度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> 的完美二叉树有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>k</mi></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{k} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9324em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 个结点</li>
+</ul>
+<blockquote>
+<p>中文定义与英文定义有所偏差，<strong>满二叉树</strong> 在此指的是完美二叉树，不是完整二叉树</p>
+</blockquote>
+<h2 id="树遍历">树遍历</h2>
+<ul>
+<li>DFS</li>
+<li>BFS</li>
+<li>二叉树遍历
+<ul>
+<li>先序遍历: 按照 <strong>根，左，右</strong> 顺序遍历</li>
+<li>中序遍历: 按照 <strong>左，根，右</strong> 顺序遍历</li>
+<li>后序遍历: 按照 <strong>左，右，根</strong> 顺序遍历</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>基础学科学习</category>
