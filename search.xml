@@ -1531,9 +1531,9 @@ hr:nth-of-type(2) {
 <ul>
 <li>回溯从大四(当时读大四)开始，刚开始只回溯小的时间段(几天)，随后不断扩增，以学期、年等为单位回溯，且越来越快，越来越频繁</li>
 <li>大学回溯按学期回溯，当时有一种恐惧感，一方面是又得经历那些不愉快乃至痛苦的事情(好像包括考试)，另一方面是自己<strong>取得的成果全都化为乌有</strong>(主要的来源，但与提到的<strong>特殊属性</strong>有些矛盾)。</li>
-<li><strong>因此在大学时期刻意回忆当时所发生的事情，然后刻意模仿当时的动作或选择</strong></li>
+<li><strong>因此在大学时期刻意回忆当时所发生的事情，然后刻意模仿当时的动作或选择</strong>，目的是为了能让自己尽可能维持&quot;现在的样子&quot;</li>
 <li><strong>高中</strong>课堂黑板上展示的是计算机组成原理(?)(或者是编译原理?)的内容，展示了好像是 CPU 的内部电路(但好像有提到编译原理)</li>
-<li>聊天主要和同桌表达了我已经<strong>释怀</strong>了，那些<strong>消失的成果</strong>也没必要通过<strong>模仿当时</strong>重新获取了，重要的是做好当下(?)。同桌一脸疑惑</li>
+<li>聊天主要和同桌表达了我已经<strong>释怀</strong>了的感受，那些<strong>消失的成果</strong>也没必要通过<strong>模仿当时</strong>重新获取了，重要的是做好当下(?)。同桌一脸疑惑</li>
 <li>好像还和同桌聊了会 CPU 的内部电路组成</li>
 <li><strong>回溯前自己会感觉到要开始回溯</strong>，在出生前被拉去当龙套时，我感觉到自己又要回溯了，这时候就醒了</li>
 </ul>
@@ -4601,6 +4601,223 @@ hr:nth-of-type(2) {
       <tags>
         <tag>计算机系统</tag>
         <tag>计算机组成原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>图</title>
+    <url>/ee040603/</url>
+    <content><![CDATA[<h2 id="概述">概述</h2>
+<ul>
+<li>一个由顶点和边组成的非线性数据结构，突出点与点之间的关系。广泛应用与现实场景的各种抽象建模，很灵活</li>
+<li>由图的建模使用可以衍生出各种各样的算法，这里不做详细说明，需要的时候在补上</li>
+</ul>
+<h2 id="简单图示">简单图示</h2>
+<p><img src="/images/datastructure/graph/graph.jpg" alt="图"></p>
+<h2 id="特性">特性</h2>
+<blockquote>
+<p>相对详细内容请查看 <a href="/10f14ed7">图论</a></p>
+</blockquote>
+<p>在图论介绍的各种分类以及性质，最终在数据结构层面影响到的是数据的存储、表示方式</p>
+<h3 id="表示方式">表示方式</h3>
+<p>以图示的图为例，表示方式如下</p>
+<ol>
+<li>
+<p>邻接矩阵</p>
+<p>以一个二维矩阵表示点与点之间的关系。如图所示，矩阵下标表示点的编号，矩阵值表示点与点是否相连(通常0表示没有相连，1及以上表示连接/边的权值)(图中省略0)</p>
+</li>
+</ol>
+<p><img src="/images/datastructure/graph/adjacency_matrix.jpg" alt="邻接矩阵"></p>
+<ul>
+<li>适用场景
+<ul>
+<li>稠密图</li>
+<li>频繁查询边信息</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>
+<p>邻接表</p>
+<p>以一个链表集合表示点与点之间关系。如图所示，集合中每个元素表示一个点，每个点有一个链表表示该点与其它点的关系</p>
+</li>
+</ol>
+<p><img src="/images/datastructure/graph/adjacency_list.jpg" alt="邻接表"></p>
+<ul>
+<li>适用场景
+<ul>
+<li>稀疏图</li>
+<li>频繁查询邻近点信息</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>
+<p>直接存边</p>
+<p>使用一个数组直接存边，每个元素包含起点和终点，若有边权则额外补充</p>
+</li>
+</ol>
+<h2 id="复杂度分析">复杂度分析</h2>
+<p>假设图的点数为n，边数为m</p>
+<h3 id="邻接矩阵">邻接矩阵</h3>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>时间复杂度</th>
+<th>空间复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>构建</td>
+<td>-</td>
+<td>O(n^2)</td>
+</tr>
+<tr>
+<td>查边</td>
+<td>O(1)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>遍历点所有出边</td>
+<td>O(n)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>遍历图</td>
+<td>O(n^2)</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="邻接表">邻接表</h3>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>时间复杂度</th>
+<th>空间复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>构建</td>
+<td>-</td>
+<td>O(m)</td>
+</tr>
+<tr>
+<td>查边</td>
+<td>O(k)(k为点的出度/链表长度)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>遍历点所有出边</td>
+<td>O(k)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>遍历图</td>
+<td>O(n + m)</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="边集">边集</h3>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>时间复杂度</th>
+<th>空间复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>构建</td>
+<td>-</td>
+<td>O(m)</td>
+</tr>
+<tr>
+<td>查边</td>
+<td>O(m)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>遍历点所有出边</td>
+<td>O(m)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>遍历图</td>
+<td>O(nm)</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="衍生部分算法">衍生部分算法</h2>
+<h3 id="遍历">遍历</h3>
+<h4 id="bfs-广度优先搜索">BFS (广度优先搜索)</h4>
+<ul>
+<li>借助队列逐层访问</li>
+<li>适用于获取最短路径场景等</li>
+</ul>
+<h4 id="dfs-深度优先搜试">DFS (深度优先搜试)</h4>
+<ul>
+<li>使用递归、栈(迭代)完成分支深度搜索</li>
+<li>适用于搜索所有路径等</li>
+</ul>
+<h3 id="最短路径">最短路径</h3>
+<ul>
+<li>Dijkstra 算法</li>
+<li>Floyd 算法</li>
+</ul>
+<h3 id="最小生成树">最小生成树</h3>
+<ul>
+<li>Kruskal 算法</li>
+<li>Prim 算法</li>
+</ul>
+<h3 id="拓扑排序">拓扑排序</h3>
+<h3 id="二分图匹配">二分图匹配</h3>
+<ul>
+<li>匈牙利算法</li>
+<li>KM 算法</li>
+</ul>
+<h3 id="网络流">网络流</h3>
+<ul>
+<li>最大流</li>
+<li>最小割</li>
+</ul>
+<h3 id="着色算法">着色算法</h3>
+<h2 id="发散-随想-自身理解">发散/随想/自身理解(?)</h2>
+<ul>
+<li>用处太广泛了，很多问题场景都可以用图来构建，而且衍生的算法太多了，很复杂</li>
+<li>不过在我的工作场景中好像没咋涉及到图结构的构建，衍生算法应该是有用到一点，但没啥印象</li>
+<li>刷题的时候遇到一大堆，不会的也一大堆</li>
+</ul>
+<h2 id="实现-c">实现(C++)</h2>
+<h3 id="构建">构建</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// leetcode 上，一般会给一个边集，每个元素有三个数值组成，[起点，终点，边权]</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Build</span><span class="params">(<span class="type">int</span> n, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; edges)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="存边">存边</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span> &#123;</span><br><span class="line">    <span class="type">int</span> start;</span><br><span class="line">    <span class="type">int</span> end;</span><br><span class="line">    <span class="type">int</span> weight;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">vector&lt;Edge&gt; graph;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp; edge: edges) &#123;</span><br><span class="line">    graph.<span class="built_in">push_back</span>(&#123;edge[<span class="number">0</span>], edge[<span class="number">1</span>], edge[<span class="number">2</span>]&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="邻接矩阵">邻接矩阵</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">graph</span>(n, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(n, <span class="number">0</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp; edge: edges) &#123;</span><br><span class="line">    graph[edge[<span class="number">0</span>]][edge[<span class="number">1</span>]] = edge[<span class="number">2</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="邻接表">邻接表</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Info</span> &#123;</span><br><span class="line">    <span class="type">int</span> p;</span><br><span class="line">    <span class="type">int</span> w;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">vector&lt;vector&lt;Info&gt;&gt; <span class="built_in">graph</span>(n);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp; edge: edges) &#123;</span><br><span class="line">    graph[edge[<span class="number">0</span>]].<span class="built_in">push_back</span>(&#123;edge[<span class="number">1</span>], edge[<span class="number">2</span>]&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="遍历">遍历</h3>
+<ul>
+<li>预设：图使用邻接表构建</li>
+</ul>
+<h4 id="dfs">DFS</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; g;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs_recursion</span><span class="params">(<span class="type">int</span> v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (v &gt;= g.<span class="built_in">size</span>()) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">visited</span><span class="params">(g.size(), <span class="literal">false</span>)</span></span>;</span><br><span class="line">    function&lt;<span class="type">void</span>(<span class="type">int</span>)&gt; dfs = [&amp;](<span class="type">int</span> x) &#123;</span><br><span class="line">        <span class="keyword">if</span> (visited[x]) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// operation</span></span><br><span class="line">        visited[x] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> y: g[x]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (visited[y]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="built_in">dfs</span>(y);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">dfs</span>(v);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs_iteration</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &gt;= g.<span class="built_in">size</span>()) <span class="keyword">return</span>;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">visited</span><span class="params">(g.size(), <span class="literal">false</span>)</span></span>;</span><br><span class="line">    stack&lt;<span class="type">int</span>&gt; st;</span><br><span class="line"></span><br><span class="line">    st.<span class="built_in">push</span>(x);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!st.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        <span class="type">int</span> top = st.<span class="built_in">top</span>();</span><br><span class="line">        st.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">if</span> (visited[top]) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span> (top &gt;= g.<span class="built_in">size</span>()) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// operation</span></span><br><span class="line">        visited[top] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = g[top].<span class="built_in">size</span>() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="type">int</span> y = g[top][i];</span><br><span class="line">            <span class="keyword">if</span> (visited[y]) <span class="keyword">continue</span>;</span><br><span class="line">            st.<span class="built_in">push</span>(y);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="bfs">BFS</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">bfs</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &gt;= g.<span class="built_in">size</span>()) <span class="keyword">return</span>;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">visited</span><span class="params">(g.size(), <span class="literal">false</span>)</span></span>;</span><br><span class="line">    queue&lt;<span class="type">int</span>&gt; que;</span><br><span class="line"></span><br><span class="line">    que.<span class="built_in">push</span>(x);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!que.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        <span class="type">int</span> front = que.<span class="built_in">front</span>();</span><br><span class="line">        que.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">if</span> (visited[front]) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span> (front &gt;= g.<span class="built_in">size</span>()) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// operation</span></span><br><span class="line">        visited[front] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> y: g[front]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (y &gt;= g.<span class="built_in">size</span>() || visited[y]) <span class="keyword">continue</span>;</span><br><span class="line">            que.<span class="built_in">push</span>(y);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+      </categories>
+      <tags>
+        <tag>数据结构与算法</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
 </search>
