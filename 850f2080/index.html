@@ -1,0 +1,398 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>哈希表 | Forgotten Area</title><meta name="author" content="YouHui"><meta name="copyright" content="YouHui"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="rgba(13, 53, 15, .05)"><meta name="description" content="根据提供的键(key)，快速精确查找对应值(value)的数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="哈希表">
+<meta property="og:url" content="https://youhui1.github.io/850f2080/">
+<meta property="og:site_name" content="Forgotten Area">
+<meta property="og:description" content="根据提供的键(key)，快速精确查找对应值(value)的数据结构">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://youhui1.github.io/images/datastructure/hash/hashing.jpg">
+<meta property="article:published_time" content="2026-08-08T03:54:22.000Z">
+<meta property="article:modified_time" content="2026-08-08T03:57:36.685Z">
+<meta property="article:author" content="YouHui">
+<meta property="article:tag" content="数据结构与算法">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://youhui1.github.io/images/datastructure/hash/hashing.jpg"><link rel="shortcut icon" href="/site_images/icon/uta.ico"><link rel="canonical" href="https://youhui1.github.io/850f2080/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '哈希表',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-08-08 11:57:36'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'rgba(13, 53, 15, .05)')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'rgba(255, 255, 255, .05)')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:100,300,400,500,700,900"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/echarts@4.9.0/dist/echarts.min.js"></script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"><style>#web_bg{
+  background: url(/site_images/site_img/sunset.png) !important;
+  background-attachment: local!important;
+  background-position: center!important;
+  background-size: cover!important;
+  background-repeat: no-repeat!important;
+}
+[data-theme="dark"]
+  #web_bg{
+    background: url(/site_images/site_img/moonlight.png) !important;
+    background-attachment: local!important;
+    background-position: center!important;
+    background-size: cover!important;
+    background-repeat: no-repeat!important;
+  }
+</style></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/site_images/icon/uta.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Forgotten Area"><span class="site-name">Forgotten Area</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">哈希表</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-08-08T03:54:22.000Z" title="发表于 2026-08-08 11:54:22">2026-08-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-08-08T03:57:36.685Z" title="更新于 2026-08-08 11:57:36">2026-08-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="哈希表"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h2 id="概述">概述</h2>
+<ul>
+<li>哈希表(Hash Table)又称散列表，是一种通过键(Key)来访问值(Value)的数据结构。</li>
+<li>通过某种计算将键值对映射到数组的某个位置/索引上，以此查找记录内容的过程称为哈希(Hashing)，</li>
+<li>实现将键值对映射到数组的某个位置的函数称为哈希函数(Hash Function)</li>
+</ul>
+<h2 id="简单图示">简单图示</h2>
+<p><img src="/images/datastructure/hash/hashing.jpg" alt="Hashing"></p>
+<h2 id="特性">特性</h2>
+<h3 id="场景">场景</h3>
+<ul>
+<li>适用与精确查找的场景(给定一个键k，找到与k对于的值v)</li>
+<li>不适用场景
+<ul>
+<li>具有多个相同键值对的记录场景</li>
+<li>范围查找</li>
+<li>最大最小键值查找</li>
+<li>按键值顺序访问</li>
+</ul>
+</li>
+</ul>
+<h3 id="哈希函数">哈希函数</h3>
+<ul>
+<li>数字
+<ul>
+<li>直接将键作为索引</li>
+<li>取模索引</li>
+<li>…</li>
+</ul>
+</li>
+<li>字符串
+<ul>
+<li>计算哈希值作为索引存储</li>
+</ul>
+</li>
+</ul>
+<h3 id="负载因子">负载因子</h3>
+<ul>
+<li>
+<p>记录哈希表的满载程度, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>=</mo><mi>N</mi><mi mathvariant="normal">/</mi><mi>M</mi></mrow><annotation encoding="application/x-tex">\alpha = N / M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span></span></p>
+<ul>
+<li>其中，<code>N</code> 表示实际存储的元素个数，<code>M</code> 表示哈希表容量(桶/槽个数，数组长度…)</li>
+</ul>
+</li>
+<li>
+<p>负载因子越高，哈希表空间利用率越高，发生冲突的概率越大，插入、查找、删除复杂度越差</p>
+</li>
+<li>
+<p>负载因子越低，空闲槽位越多，空间利用率越低</p>
+</li>
+</ul>
+<h3 id="冲突">冲突</h3>
+<ul>
+<li>出现原因：出现不同键值使用哈希函数计算出来的哈希值是相同的</li>
+<li>解决方法：开散列(Open Hashing)、闭散列(Close Hashing)</li>
+</ul>
+<h4 id="开散列法-数据存储位置是开放的-无数组大小限制">开散列法(数据存储位置是开放的，无数组大小限制)</h4>
+<ul>
+<li>拉链法: 在存放数据的地方开一个链表，相同索引的数据放到同一个链表中，查询的时候遍历列表获取数据</li>
+</ul>
+<p><img src="/images/datastructure/hash/open_hashing.jpg" alt="拉链法"></p>
+<h4 id="闭散列法-数据存储位置受数组范围影响">闭散列法(数据存储位置受数组范围影响)</h4>
+<ul>
+<li>如果发生冲突，就在冲突位置按照某种<strong>规则</strong>，往下继续查找，直到找到一处空位置为止，规则可以使用探测函数 <code>p</code> 表示(例如，发生冲突后的第 <code>i</code> 次探测表示: <code>Pos(i) = (h(k) + p(k, i)) % M</code>，其中，<code>Pos</code> 表示最终位置，<code>h</code> 为哈希函数，<code>k</code> 为键，<code>M</code> 为哈希表大小)
+<ul>
+<li>线性探查法：<code>p(k, i) = i</code>
+<ul>
+<li><code>Primary Clustering</code> 问题(元素在物理层面连续，大量元素挤在连续内存中)<br>
+<img src="/images/datastructure/hash/primary_clustering.jpg" alt="Primary Clustering">
+<ul>
+<li>解决方法
+<ul>
+<li>改良线性探测: <code>p(k, i) = i * c</code> (<code>c</code> 为常数)</li>
+<li><strong>伪</strong>随机: <code>p(k, i) = random()</code> (假设查找的元素是冲突元素，得获取原本的随机数才能找到元素，所以不能真随机)</li>
+<li>二次探测/平方探测: <code>p(k, i) = i^2</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>Secondary Clustering</code> 问题(元素在物理层面不一定连续，但是在探测函数上连续)<br>
+<img src="/images/datastructure/hash/secondary_clustering.jpg" alt="Secondary Clustering">
+<ul>
+<li>解决方法
+<ul>
+<li>双重哈希(Double Hashing): <code>p(k, i) = i * h2(k)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>删除元素时，将相关元素标记为 Tombstone(墓碑)，在搜索时跳过，插入时覆写</li>
+</ul>
+<h4 id="桶哈希法">桶哈希法</h4>
+<blockquote>
+<p>这个好像比较模糊，在教材 《Data Structures and Algorithm Analysis Edition 3.2 (C++ Version)》 —— Clifford A. Shaffer 中，把桶哈希归入闭散列法，但在网上也有开散列法的说法</p>
+</blockquote>
+<p><img src="/images/datastructure/hash/bucket_hashing.jpg" alt="桶哈希法"></p>
+<ul>
+<li>将整个哈希表分为多个块，称为桶(bucket)，每个桶内部有固定的槽位(slot)</li>
+<li>键通过哈希函数映射到某个桶，槽位满了之后，存储到桶里的其它槽位</li>
+<li>桶满了之后，按照设定规则处理(例如覆盖桶里的槽位)(教材给出了处理方式是，额外搞一个无限容量的桶来存储溢出的数据，这个地方有开散列的味道)</li>
+</ul>
+<h2 id="复杂度分析">复杂度分析</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>平均时间复杂度</th>
+<th>最坏时间复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查找</td>
+<td>O(1)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>插入</td>
+<td>O(1)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>O(1)</td>
+<td>O(n)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>平均时间复杂度预设: 元素分布均匀
+<ul>
+<li>开散列法: O(1 + <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span>) (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> 是负载因子) (失败查找期望)</li>
+<li>闭散列法: O(1 / (1 - <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span>)) (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> 是负载因子) (失败查找期望)</li>
+</ul>
+</li>
+<li>最坏时间复杂度都是发生冲突导致的
+<ul>
+<li>开散列法: 所有元素都在一条链上</li>
+<li>闭散列法: 数组聚集且塞满</li>
+</ul>
+</li>
+</ul>
+<h2 id="发散-随想-自身理解">发散/随想/自身理解(?)</h2>
+<ul>
+<li>C++ 中 <code>std::unordered_map&lt;&gt;</code>, <code>std::unordered_set&lt;&gt;</code> 底层是哈希表</li>
+<li>核心是哈希函数(映射函数)</li>
+<li>用的地方很多很多，对于精确查找的场景很方便</li>
+<li>同样可以和其它结构和算法打组合拳，例如和双向链表组合搞 LRU</li>
+</ul>
+<h2 id="实现">实现</h2>
+<h3 id="adt">ADT</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Hash</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Hash</span>() &#123;&#125;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">Hash</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">bool</span> <span class="title">Insert</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key, <span class="type">const</span> <span class="type">int</span> value)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">Remove</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">bool</span> <span class="title">Find</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key, <span class="type">int</span>&amp; value)</span> <span class="type">const</span> </span>= <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">int</span> <span class="title">Size</span><span class="params">()</span> <span class="type">const</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">Empty</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">Size</span>() == <span class="number">0</span>; &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="开散列法-拉链法">开散列法(拉链法)</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">OpenHash</span> : <span class="keyword">public</span> Hash &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">OpenHash</span>() &#123; <span class="built_in">init</span>(); &#125;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">OpenHash</span>() &#123; <span class="built_in">release</span>(); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">Insert</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key, <span class="type">const</span> <span class="type">int</span> value)</span> <span class="keyword">override</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">insert</span>(key, value); &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">Remove</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key)</span> <span class="keyword">override</span> </span>&#123; <span class="built_in">remove</span>(key); &#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">Find</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key, <span class="type">int</span>&amp; value)</span> <span class="type">const</span> <span class="keyword">override</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">find</span>(key, value); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">Size</span><span class="params">()</span> <span class="type">const</span> <span class="keyword">override</span> </span>&#123; <span class="keyword">return</span> size; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">        <span class="type">int</span> key;</span><br><span class="line">        <span class="type">int</span> value;</span><br><span class="line">        Node* next;</span><br><span class="line">        <span class="built_in">Node</span> (<span class="type">int</span> k, <span class="type">int</span> v, Node* n = <span class="literal">nullptr</span>) : <span class="built_in">key</span>(k), <span class="built_in">value</span>(v), <span class="built_in">next</span>(n) &#123;&#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        hash_table.<span class="built_in">resize</span>(INDEX, <span class="literal">nullptr</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">release</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; INDEX; ++i) &#123;</span><br><span class="line">            Node* cur = hash_table[i];</span><br><span class="line">            hash_table[i] = <span class="literal">nullptr</span>;</span><br><span class="line">            <span class="keyword">while</span> (cur != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">                <span class="keyword">auto</span> next = cur-&gt;next;</span><br><span class="line">                <span class="keyword">delete</span> cur;</span><br><span class="line">                cur = next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">insert</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key, <span class="type">const</span> <span class="type">int</span> value)</span> </span>&#123;</span><br><span class="line">        Node* node = <span class="built_in">find_node</span>(key);</span><br><span class="line">        <span class="keyword">if</span> (node != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            node-&gt;value = value;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> index = <span class="built_in">hash_function</span>(key);</span><br><span class="line">        Node* new_node = <span class="keyword">new</span> <span class="built_in">Node</span>(key, value);</span><br><span class="line">        Node* cur = hash_table[index];</span><br><span class="line">        new_node-&gt;next = cur;</span><br><span class="line">        hash_table[index] = new_node;</span><br><span class="line">        ++size;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">remove</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> index = <span class="built_in">hash_function</span>(key);</span><br><span class="line">        Node* cur = hash_table[index];</span><br><span class="line">        <span class="keyword">if</span> (cur == <span class="literal">nullptr</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (cur-&gt;key == key) &#123;</span><br><span class="line">            hash_table[index] = cur-&gt;next;</span><br><span class="line">            <span class="keyword">delete</span> cur;</span><br><span class="line">            --size;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (cur-&gt;next != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            <span class="keyword">auto</span> next = cur-&gt;next;</span><br><span class="line">            <span class="keyword">if</span> (next-&gt;key == key) &#123;</span><br><span class="line">                cur-&gt;next = next-&gt;next;</span><br><span class="line">                <span class="keyword">delete</span> next;</span><br><span class="line">                --size;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            cur = next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">find</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key, <span class="type">int</span>&amp; value)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        Node* node = <span class="built_in">find_node</span>(key);</span><br><span class="line">        <span class="keyword">if</span> (node != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            value = node-&gt;value;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">Node* <span class="title">find_node</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> index = <span class="built_in">hash_function</span>(key);</span><br><span class="line">        Node* cur = hash_table[index];</span><br><span class="line">        <span class="keyword">while</span> (cur != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cur-&gt;key == key) &#123;</span><br><span class="line">                <span class="keyword">return</span> cur;</span><br><span class="line">            &#125;</span><br><span class="line">            cur = cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">hash_function</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (key % INDEX + INDEX) % INDEX;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"></span><br><span class="line">    <span class="type">static</span> <span class="keyword">constexpr</span> <span class="type">int</span> INDEX = <span class="number">10</span>;</span><br><span class="line">    vector&lt;Node*&gt; hash_table;</span><br><span class="line">    <span class="type">int</span> size&#123;<span class="number">0</span>&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="闭散列法-线性探查法">闭散列法(线性探查法)</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CloseHash</span>: <span class="keyword">public</span> Hash &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">CloseHash</span>() &#123; <span class="built_in">init</span>(); &#125;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">CloseHash</span>() &#123; <span class="built_in">release</span>(); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">Insert</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key, <span class="type">const</span> <span class="type">int</span> value)</span> <span class="keyword">override</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">insert</span>(key, value); &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">Remove</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key)</span> <span class="keyword">override</span> </span>&#123; <span class="built_in">remove</span>(key); &#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">Find</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key, <span class="type">int</span>&amp; value)</span> <span class="type">const</span> <span class="keyword">override</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">find</span>(key, value); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">Size</span><span class="params">()</span> <span class="type">const</span> <span class="keyword">override</span> </span>&#123; <span class="keyword">return</span> size; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">enum</span> <span class="title class_">Status</span> &#123;</span><br><span class="line">        EMPTY,</span><br><span class="line">        OCCUPIED,</span><br><span class="line">        DELETED</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">        <span class="type">int</span> key;</span><br><span class="line">        <span class="type">int</span> value;</span><br><span class="line">        Status status;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">Node</span>(<span class="type">int</span> k = INT_MIN, <span class="type">int</span> v = INT_MIN, Status s = EMPTY)</span><br><span class="line">            : <span class="built_in">key</span>(k), <span class="built_in">value</span>(v), <span class="built_in">status</span>(s) &#123;&#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        hash_table.<span class="built_in">resize</span>(INDEX, <span class="built_in">Node</span>());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">release</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        hash_table.<span class="built_in">clear</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">insert</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key, <span class="type">const</span> <span class="type">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> index = <span class="built_in">find_node</span>(key);</span><br><span class="line">        <span class="keyword">if</span> (index != <span class="number">-1</span>) &#123;</span><br><span class="line">            hash_table[index].value = value;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (size == <span class="built_in">static_cast</span>&lt;<span class="type">int</span>&gt;(hash_table.<span class="built_in">size</span>())) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        index = <span class="built_in">hash_function</span>(key);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; INDEX; ++i) &#123;</span><br><span class="line">            <span class="type">int</span> pos = <span class="built_in">probe</span>(index, i);</span><br><span class="line">            <span class="keyword">if</span> (hash_table[pos].status == EMPTY || hash_table[pos].status == DELETED) &#123;</span><br><span class="line">                hash_table[pos] = <span class="built_in">Node</span>(key, value, OCCUPIED);</span><br><span class="line">                ++size;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">remove</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> index = <span class="built_in">find_node</span>(key);</span><br><span class="line">        <span class="keyword">if</span> (index == <span class="number">-1</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        hash_table[index].status = DELETED;</span><br><span class="line">        --size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">find</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key, <span class="type">int</span>&amp; value)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> index = <span class="built_in">find_node</span>(key);</span><br><span class="line">        <span class="keyword">if</span> (index == <span class="number">-1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        value = hash_table[index].value;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">hash_function</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (key % INDEX + INDEX) % INDEX;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">probe</span><span class="params">(<span class="type">int</span> base_index, <span class="type">int</span> i)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (base_index + i) % INDEX;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">find_node</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> index = <span class="built_in">hash_function</span>(key);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; INDEX; ++i) &#123;</span><br><span class="line">            <span class="type">int</span> pos = <span class="built_in">probe</span>(index, i);</span><br><span class="line">            <span class="keyword">if</span> (hash_table[pos].status == EMPTY) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (hash_table[pos].status == OCCUPIED &amp;&amp; hash_table[pos].key == key) &#123;</span><br><span class="line">                <span class="keyword">return</span> pos;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"></span><br><span class="line">    <span class="type">static</span> <span class="keyword">constexpr</span> <span class="type">int</span> INDEX = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">    vector&lt;Node&gt; hash_table;</span><br><span class="line">    <span class="type">int</span> size&#123;<span class="number">0</span>&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="桶哈希">桶哈希</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 桶满则插入失败，不搞无限槽位</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BucketHash</span> : <span class="keyword">public</span> Hash &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">BucketHash</span>() &#123; <span class="built_in">init</span>(); &#125;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">BucketHash</span>() &#123; <span class="built_in">release</span>(); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">Insert</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key, <span class="type">const</span> <span class="type">int</span> value)</span> <span class="keyword">override</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">insert</span>(key, value); &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">Remove</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key)</span> <span class="keyword">override</span> </span>&#123; <span class="built_in">remove</span>(key); &#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">Find</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key, <span class="type">int</span>&amp; value)</span> <span class="type">const</span> <span class="keyword">override</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">find</span>(key, value); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">Size</span><span class="params">()</span> <span class="type">const</span> <span class="keyword">override</span> </span>&#123; <span class="keyword">return</span> size; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">enum</span> <span class="title class_">Status</span> &#123; EMPTY, OCCUPIED, DELETED &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">        <span class="type">int</span> key;</span><br><span class="line">        <span class="type">int</span> value;</span><br><span class="line">        Status status;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">Node</span>(<span class="type">int</span> k = INT_MIN, <span class="type">int</span> v = INT_MIN, Status s = EMPTY)</span><br><span class="line">            : <span class="built_in">key</span>(k), <span class="built_in">value</span>(v), <span class="built_in">status</span>(s) &#123;&#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        hash_table.<span class="built_in">resize</span>(BUCKET_COUNT, <span class="built_in">vector</span>&lt;Node&gt;(SLOT_COUNT, <span class="built_in">Node</span>()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">release</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        hash_table.<span class="built_in">clear</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">hash_function</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (key % BUCKET_COUNT + BUCKET_COUNT) % BUCKET_COUNT;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在指定桶内查找 key，返回槽位索引；不存在返回 -1</span></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">find_in_bucket</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key, <span class="type">const</span> <span class="type">int</span> bucket)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        <span class="type">const</span> vector&lt;Node&gt;&amp; slots = hash_table[bucket];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; SLOT_COUNT; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (slots[i].status == EMPTY) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (slots[i].status == OCCUPIED &amp;&amp; slots[i].key == key) &#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">insert</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key, <span class="type">const</span> <span class="type">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> bucket = <span class="built_in">hash_function</span>(key);</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> slot = <span class="built_in">find_in_bucket</span>(key, bucket);</span><br><span class="line">        <span class="keyword">if</span> (slot != <span class="number">-1</span>) &#123;</span><br><span class="line">            hash_table[bucket][slot].value = value;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;Node&gt;&amp; slots = hash_table[bucket];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; SLOT_COUNT; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (slots[i].status == EMPTY || slots[i].status == DELETED) &#123;</span><br><span class="line">                slots[i] = <span class="built_in">Node</span>(key, value, OCCUPIED);</span><br><span class="line">                ++size;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">remove</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> bucket = <span class="built_in">hash_function</span>(key);</span><br><span class="line">        <span class="type">int</span> slot = <span class="built_in">find_in_bucket</span>(key, bucket);</span><br><span class="line">        <span class="keyword">if</span> (slot == <span class="number">-1</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        hash_table[bucket][slot].status = DELETED;</span><br><span class="line">        --size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">find</span><span class="params">(<span class="type">const</span> <span class="type">int</span> key, <span class="type">int</span>&amp; value)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> bucket = <span class="built_in">hash_function</span>(key);</span><br><span class="line">        <span class="type">int</span> slot = <span class="built_in">find_in_bucket</span>(key, bucket);</span><br><span class="line">        <span class="keyword">if</span> (slot == <span class="number">-1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        value = hash_table[bucket][slot].value;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">static</span> <span class="keyword">constexpr</span> <span class="type">int</span> BUCKET_COUNT = <span class="number">10</span>;</span><br><span class="line">    <span class="type">static</span> <span class="keyword">constexpr</span> <span class="type">int</span> SLOT_COUNT = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    vector&lt;vector&lt;Node&gt;&gt; hash_table;</span><br><span class="line">    <span class="type">int</span> size&#123;<span class="number">0</span>&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://youhui1.github.io">YouHui</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://youhui1.github.io/850f2080/">https://youhui1.github.io/850f2080/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://youhui1.github.io" target="_blank">Forgotten Area</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div><div class="post_share"><div class="social-share" data-image="/images/datastructure/hash/hashing.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/ee040603/" title="图"><img class="cover" src="/images/datastructure/graph/graph.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">图</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/site_images/icon/uta.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">YouHui</div><div class="author-info__description">学习记录博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/YouHui1"><i class="fab fa-github"></i><span>YouHui github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/YouHui1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://space.bilibili.com/39154874" target="_blank" title="Bilibili"><i class="fab fa-bilibili" style="color: #00B3EF;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E5%9B%BE%E7%A4%BA"><span class="toc-number">2.</span> <span class="toc-text">简单图示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E6%80%A7"><span class="toc-number">3.</span> <span class="toc-text">特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF"><span class="toc-number">3.1.</span> <span class="toc-text">场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0"><span class="toc-number">3.2.</span> <span class="toc-text">哈希函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90"><span class="toc-number">3.3.</span> <span class="toc-text">负载因子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%B2%E7%AA%81"><span class="toc-number">3.4.</span> <span class="toc-text">冲突</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E6%95%A3%E5%88%97%E6%B3%95-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E4%BD%8D%E7%BD%AE%E6%98%AF%E5%BC%80%E6%94%BE%E7%9A%84-%E6%97%A0%E6%95%B0%E7%BB%84%E5%A4%A7%E5%B0%8F%E9%99%90%E5%88%B6"><span class="toc-number">3.4.1.</span> <span class="toc-text">开散列法(数据存储位置是开放的，无数组大小限制)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AD%E6%95%A3%E5%88%97%E6%B3%95-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E4%BD%8D%E7%BD%AE%E5%8F%97%E6%95%B0%E7%BB%84%E8%8C%83%E5%9B%B4%E5%BD%B1%E5%93%8D"><span class="toc-number">3.4.2.</span> <span class="toc-text">闭散列法(数据存储位置受数组范围影响)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A1%B6%E5%93%88%E5%B8%8C%E6%B3%95"><span class="toc-number">3.4.3.</span> <span class="toc-text">桶哈希法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-number">4.</span> <span class="toc-text">复杂度分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E6%95%A3-%E9%9A%8F%E6%83%B3-%E8%87%AA%E8%BA%AB%E7%90%86%E8%A7%A3"><span class="toc-number">5.</span> <span class="toc-text">发散&#x2F;随想&#x2F;自身理解(?)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">6.</span> <span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#adt"><span class="toc-number">6.1.</span> <span class="toc-text">ADT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E6%95%A3%E5%88%97%E6%B3%95-%E6%8B%89%E9%93%BE%E6%B3%95"><span class="toc-number">6.2.</span> <span class="toc-text">开散列法(拉链法)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AD%E6%95%A3%E5%88%97%E6%B3%95-%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%9F%A5%E6%B3%95"><span class="toc-number">6.3.</span> <span class="toc-text">闭散列法(线性探查法)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%B6%E5%93%88%E5%B8%8C"><span class="toc-number">6.4.</span> <span class="toc-text">桶哈希</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/850f2080/" title="哈希表"><img src="/images/datastructure/hash/hashing.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="哈希表"/></a><div class="content"><a class="title" href="/850f2080/" title="哈希表">哈希表</a><time datetime="2026-08-08T03:54:22.000Z" title="发表于 2026-08-08 11:54:22">2026-08-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/ee040603/" title="图"><img src="/images/datastructure/graph/graph.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="图"/></a><div class="content"><a class="title" href="/ee040603/" title="图">图</a><time datetime="2026-07-18T09:57:14.000Z" title="发表于 2026-07-18 17:57:14">2026-07-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/bb6861fd/" title="优先队列/堆"><img src="/images/datastructure/heap/topic.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="优先队列/堆"/></a><div class="content"><a class="title" href="/bb6861fd/" title="优先队列/堆">优先队列/堆</a><time datetime="2026-07-12T04:22:50.000Z" title="发表于 2026-07-12 12:22:50">2026-07-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/7e5568cb/" title="[梦日记]-生存游戏">[梦日记]-生存游戏</a><time datetime="2026-03-29T16:06:47.000Z" title="发表于 2026-03-30 00:06:47">2026-03-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/7b216a3b/" title="树"><img src="/images/datastructure/tree/rooted_tree.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="树"/></a><div class="content"><a class="title" href="/7b216a3b/" title="树">树</a><time datetime="2026-03-22T14:20:39.000Z" title="发表于 2026-03-22 22:20:39">2026-03-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By YouHui</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><script type="text/javascript" id="maid-script" src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script><script>if (window.mermaid) {
+  var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
+  mermaid.initialize({theme: 'forest'});
+}</script></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'forest'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script defer src="/js/flip_chart_color.js"></script><script id="canvas_nest" defer="defer" color="52,200,0" opacity="0.7" zIndex="-2" count="10" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
